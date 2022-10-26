@@ -1,0 +1,17 @@
+{
+    "name": "samiu/wp_customer_support",
+    "type": "project",
+    "license": "GPL-v2",
+    "autoload": {
+        "psr-4": {
+            "WCS\\Inc\\": "./inc"
+        }
+    },
+    "authors": [
+        {
+            "name": "sabbirsam",
+            "email": "samiubat14@gmail.com"
+        }
+    ],
+    "require": {}
+}
