@@ -21,23 +21,18 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * 
  */
-
 defined('ABSPATH') or die('Hey, what are you doing here? You silly human!');
-
 if (file_exists(dirname(__FILE__).'/vendor/autoload.php')) {
     require_once dirname(__FILE__).'/vendor/autoload.php';
 }
-
 /**
  * All Namespace 
  */
-use WCS\Inc\WCS_Activate;
-use WCS\Inc\WCS_BaseController;
-use WCS\Inc\WCS_Enqueue;
-use WCS\Inc\WCS_AdminDashboard;
-use WCS\Inc\WCS_Deactivate;
-
-
+use WCS\classes\WCS_Activate;
+use WCS\classes\WCS_BaseController;
+use WCS\classes\WCS_Enqueue;
+use WCS\classes\WCS_AdminDashboard;
+use WCS\classes\WCS_Deactivate;
 /**
  * Main Class
  */
@@ -45,7 +40,7 @@ if(!class_exists('WCS_WPCustomerSupport')){
     class WCS_WPCustomerSupport{
         public $wp_customer_support;
         public function __construct(){
-            $this->includes();
+            $this->classesludes();
             $this->wp_customer_support = plugin_basename(__FILE__); 
         }
         /**
@@ -54,7 +49,6 @@ if(!class_exists('WCS_WPCustomerSupport')){
         function register(){
             add_action("plugins_loaded", array( $this, 'WCS_load' )); 
             add_action("activated_plugin", array( $this, 'WCS_plugin_activation' )); 
-
         }
         /**
          * Language load
@@ -65,17 +59,14 @@ if(!class_exists('WCS_WPCustomerSupport')){
         /**
          * Classes 
          */
-        public function includes() {
+        public function classesludes() {
            /**
             * Admin dashboard
             */
             new WCS_AdminDashboard();
             $enqueue= new WCS_Enqueue();
-            $enqueue->register();
-            
+            $enqueue->register();  
             new WCS_BaseController();
-            
-
         }
         /**
          * While active the plugin redirect

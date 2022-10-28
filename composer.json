@@ -4,7 +4,7 @@
     "license": "GPL-v2",
     "autoload": {
         "psr-4": {
-            "WCS\\Inc\\": "./inc"
+            "WCS\\classes\\": "./classes"
         }
     },
     "authors": [

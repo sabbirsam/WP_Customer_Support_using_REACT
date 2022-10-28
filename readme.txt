@@ -9,14 +9,13 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-We have brought admin chat box to easily store the connection in own database without using any third party application/API in the world of WordPress for a quick conversation between customer/vendor and admin.
-It is very easy to setup and it is ready to use as soon as the plugin is installed and activated.
 
-[youtube https://www.youtube.com/watch?v=L6EmXREa6OA&rel=0]
 
-=== Admin Chat Box Features ===
-1. **Realtime Chat System** –Instant user and admin can message.
-2. **Easy position change** –Place the chat box right or left in the frontend just by single click
+
+
+=== WP Customer Support System Features ===
+1. **RSystem** –Instant user and admin can message.
+2. **Change**  –Place the chat box right or left in the frontend just by single click
 3.**Customization**-Custom color can be used in the chat box Header very easily and totally free 
 
 
@@ -33,8 +32,7 @@ After activating the plugin navigate to your Admin Dashboard > Admin-Chat-Box > 
 
 == Screenshots ==
 1. chat Banner 
-2. chat Logo/Icon
-3. Screenshot-1-4
+
 
 
 == Changelog ==

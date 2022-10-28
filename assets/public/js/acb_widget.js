@@ -30,7 +30,7 @@
         /**
          * Design
          */
-        //  var msg_disp = $('#incoming_id').attr("value");
+        //  var msg_disp = $('#classesoming_id').attr("value");
         //  if(msg_disp){
         //     $("#vegan").css({"text-align": 'left'});
         //  }

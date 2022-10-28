@@ -1,0 +1,24 @@
+{
+  "name": "wp_customer_support",
+  "version": "1.0.0",
+  "description": "Customer Support System Management ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabbirsam/WP_Customer_Support_using_REACT.git"
+  },
+  "author": "devsabbirahmed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sabbirsam/WP_Customer_Support_using_REACT/issues"
+  },
+  "homepage": "https://github.com/sabbirsam/WP_Customer_Support_using_REACT#readme",
+  "devDependencies": {
+    "@wordpress/scripts": "^24.4.0"
+  }
+}
