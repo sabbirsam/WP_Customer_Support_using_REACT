@@ -1,1 +1,1 @@
-<h1>Tickets</h1>
+<div id="wcs_ticket"></div>

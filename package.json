@@ -20,5 +20,9 @@
   "homepage": "https://github.com/sabbirsam/WP_Customer_Support_using_REACT#readme",
   "devDependencies": {
     "@wordpress/scripts": "^24.4.0"
+  },
+  "dependencies": {
+    "react-router-dom": "^6.4.2",
+    "sass": "^1.55.0"
   }
 }

@@ -1,1 +1,1 @@
-<h1>Department</h1>
+<div id="wcs_department"></div>

@@ -1,2 +1,1 @@
-<div id="wcs_main">
-</div>
+<div id="wcs_dashboard"></div>

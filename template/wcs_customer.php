@@ -1,0 +1,1 @@
+<div id="wcs_customer"></div>

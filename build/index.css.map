@@ -1,1 +1,1 @@
-{"version":3,"file":"index.css","mappings":";;;AACI;EACI;AAAR,C","sources":["webpack://wp_customer_support/./src/style/main.scss"],"sourcesContent":["#jobplace {\r\n    h2{\r\n        color: red;\r\n    }\r\n}"],"names":[],"sourceRoot":""}
+{"version":3,"file":"index.css","mappings":";;;AAEQ;EACI;AADZ,C","sources":["webpack://wp_customer_support/./src/style/main.scss"],"sourcesContent":["#wcs_main {\r\n    .card {\r\n        h2{\r\n            color: red;\r\n        }\r\n    }\r\n}"],"names":[],"sourceRoot":""}

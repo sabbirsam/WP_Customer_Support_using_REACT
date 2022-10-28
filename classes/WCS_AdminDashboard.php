@@ -22,6 +22,14 @@ class WCS_AdminDashboard{
             $icon,
                 2 );
         add_submenu_page(
+            'dashboard_status', 'Dashboard', 'Dashboard', 'manage_options', 'dashboard_status', 
+            array( $this, 'wcs_dashboard' )
+        );
+        add_submenu_page(
+            'dashboard_status', 'Customer', 'Customer', 'manage_options', 'wcs_customer', 
+            array( $this, 'wcs_customer' )
+        );
+        add_submenu_page(
             'dashboard_status', 'Staff', 'Staff', 'manage_options', 'wcs_staff', 
             array( $this, 'wcs_staff' )
         );
@@ -43,6 +51,10 @@ class WCS_AdminDashboard{
     public function wcs_dashboard()
     {
         require_once plugin_dir_path(__FILE__).'../template/wcs_dashboard.php';
+    }
+    public function wcs_customer()
+    {
+        require_once plugin_dir_path(__FILE__).'../template/wcs_customer.php';
     }
     public function wcs_staff()
     {

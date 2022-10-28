@@ -1,1 +1,1 @@
-<h1>Product</h1>
+<div id="wcs_product"></div>
