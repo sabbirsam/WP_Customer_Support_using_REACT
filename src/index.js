@@ -1,9 +1,7 @@
 import App from "./App";
 import { render } from '@wordpress/element';
-import './style/main.scss';
 
 let current_page = window.location.search;
-console.log(current_page);
 
 // Render the App component into the DOM
 if(current_page === '?page=dashboard_status'){
@@ -23,4 +21,7 @@ else if(current_page === '?page=wcs_product'){
 }
 else if(current_page === '?page=wcs_tickets'){
     render(<App />, document.getElementById('wcs_ticket'));
+}
+else if(current_page === '?page=wcs_chat'){
+    render(<App />, document.getElementById('wcs_chat'));
 }

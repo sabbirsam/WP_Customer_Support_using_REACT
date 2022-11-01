@@ -1,8 +1,379 @@
-/*!********************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/style/main.scss ***!
-  \********************************************************************************************************************************************************************************************************************************************/
-#wcs_main .card h2 {
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Navbar/navbar.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************/
+.wcs_navbar {
+  height: 57px;
+  border-bottom: 0.5px solid rgb(231, 228, 228);
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+}
+.wcs_navbar .wcs_wrapper {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wcs_navbar .wcs_wrapper .wcs_search {
+  display: flex;
+  align-items: center;
+  border: 0.5px solid lightgray;
+  padding: 3px;
+}
+.wcs_navbar .wcs_wrapper .wcs_search input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.wcs_navbar .wcs_wrapper .wcs_search input:focus {
+  outline: none;
+  box-shadow: none;
+}
+.wcs_navbar .wcs_wrapper .wcs_search input::-moz-placeholder {
+  font-size: 12px;
+}
+.wcs_navbar .wcs_wrapper .wcs_search input::placeholder {
+  font-size: 12px;
+}
+.wcs_navbar .wcs_wrapper .wcs_items {
+  display: flex;
+  align-items: center;
+}
+.wcs_navbar .wcs_wrapper .wcs_items .wcs_item {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  position: relative;
+}
+.wcs_navbar .wcs_wrapper .wcs_items .wcs_item .wcs_icon {
+  font-size: 20px;
+}
+.wcs_navbar .wcs_wrapper .wcs_items .wcs_item .wcs_counter {
+  width: 15px;
+  height: 15px;
+  background-color: #6439ff;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Sidebar/sidebar.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+.wcs_sidebar {
+  flex: 1;
+  border-right: 0.5px solid rgb(230, 227, 227);
+  min-height: 88vh;
+  background-color: white;
+}
+.wcs_sidebar .wcs_top {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wcs_sidebar .wcs_top .wcs_logo {
+  font-size: 14px;
+  font-weight: bold;
+  color: #6439ff;
+}
+.wcs_sidebar hr {
+  height: 0px;
+}
+.wcs_sidebar .wcs_center {
+  padding-left: 20px;
+}
+.wcs_sidebar .wcs_center ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.wcs_sidebar .wcs_center ul .wcs_title {
+  font-size: 10px;
+  font-weight: bold;
+  color: #999;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+.wcs_sidebar .wcs_center ul li {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+.wcs_sidebar .wcs_center ul li:hover {
+  background-color: #ece8ff;
+}
+.wcs_sidebar .wcs_center ul li .wcs_icon {
+  font-size: 18px;
+  color: #7451f8;
+}
+.wcs_sidebar .wcs_center ul li span {
+  font-size: 13px;
+  font-weight: bold;
+  color: #888;
+  margin-left: 10px;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/dashboard.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+.wcs_home {
+  display: flex;
+}
+.wcs_home .wcs_homeContainer {
+  flex: 6;
+}
+.wcs_home .wcs_homeContainer .wcs_widgets, .wcs_home .wcs_homeContainer .wcs_charts {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+.wcs_home .wcs_homeContainer .wcs_charts {
+  padding: 5px 20px;
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Featured-chart/featured.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************/
+.wcs_featured {
+  flex: 2;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  padding: 10px;
+}
+.wcs_featured .wcs_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: gray;
+}
+.wcs_featured .wcs_top .wcs_title {
+  font-size: 16px;
+  font-weight: 500;
+}
+.wcs_featured .wcs_bottom {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.wcs_featured .wcs_bottom .wcs_featuredChart {
+  width: 100px;
+  height: 100px;
+}
+.wcs_featured .wcs_bottom .wcs_title {
+  font-weight: 500;
+  color: gray;
+  margin-top: 6px;
+  margin-bottom: 0px;
+}
+.wcs_featured .wcs_bottom .wcs_amount {
+  font-size: 30px;
+  margin: 0px;
+}
+.wcs_featured .wcs_bottom .wcs_desc {
+  font-weight: 300;
+  font-size: 12px;
+  color: gray;
+}
+.wcs_featured .wcs_bottom .wcs_summary {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wcs_featured .wcs_bottom .wcs_summary .wcs_item {
+  text-align: center;
+}
+.wcs_featured .wcs_bottom .wcs_summary .wcs_item .itemTitle {
+  font-size: 14px;
+  color: gray;
+}
+.wcs_featured .wcs_bottom .wcs_summary .wcs_item .itemResult {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.wcs_featured .wcs_bottom .wcs_summary .wcs_item .itemResult.positive {
+  color: green;
+}
+.wcs_featured .wcs_bottom .wcs_summary .wcs_item .itemResult.negative {
   color: red;
+}
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/react-circular-progressbar/dist/styles.css ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*
+ * react-circular-progressbar styles
+ * All of the styles in this file are configurable!
+ */
+
+.CircularProgressbar {
+  /*
+   * This fixes an issue where the CircularProgressbar svg has
+   * 0 width inside a "display: flex" container, and thus not visible.
+   */
+  width: 100%;
+  /*
+   * This fixes a centering issue with CircularProgressbarWithChildren:
+   * https://github.com/kevinsqi/react-circular-progressbar/issues/94
+   */
+  vertical-align: middle;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+  stroke: #3e98c7;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease 0s;
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+  stroke: #d6d6d6;
+  /* Used when trail is not full diameter, i.e. when props.circleRatio is set */
+  stroke-linecap: round;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+  fill: #3e98c7;
+  font-size: 20px;
+  dominant-baseline: middle;
+  text-anchor: middle;
+}
+
+.CircularProgressbar .CircularProgressbar-background {
+  fill: #d6d6d6;
+}
+
+/*
+ * Sample background styles. Use these with e.g.:
+ *
+ *   <CircularProgressbar
+ *     className="CircularProgressbar-inverted"
+ *     background
+ *     percentage={50}
+ *   />
+ */
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
+  fill: #3e98c7;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-text {
+  fill: #fff;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-path {
+  stroke: #fff;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-trail {
+  stroke: transparent;
+}
+
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Chart/chart.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+.wcs_chart {
+  flex: 4;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  color: gray;
+}
+.wcs_chart .wcs_title {
+  margin: 20px;
+}
+.wcs_chart .wcs_chartGrid {
+  stroke: rgb(228, 255, 255);
+}
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Widgets/widgets.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+.wcs_widget {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  padding: 10px;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  height: 100px;
+}
+.wcs_widget .wcs_left, .wcs_widget .wcs_right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.wcs_widget .wcs_left .wcs_title, .wcs_widget .wcs_right .wcs_title {
+  font-weight: bold;
+  font-size: 14px;
+  color: rgb(160, 160, 160);
+}
+.wcs_widget .wcs_left .wcs_counter, .wcs_widget .wcs_right .wcs_counter {
+  font-size: 28px;
+  font-weight: 300;
+}
+.wcs_widget .wcs_left .wcs_link, .wcs_widget .wcs_right .wcs_link {
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 12px;
+  border-bottom: 1px solid gray;
+}
+.wcs_widget .wcs_left .wcs_percentage, .wcs_widget .wcs_right .wcs_percentage {
+  display: flex;
+  align-items: center;
+}
+.wcs_widget .wcs_left .wcs_percentage.wcs_positive, .wcs_widget .wcs_right .wcs_percentage.wcs_positive {
+  color: green;
+}
+.wcs_widget .wcs_left .wcs_percentage.wcs_negative, .wcs_widget .wcs_right .wcs_percentage.wcs_negative {
+  color: red;
+}
+.wcs_widget .wcs_left .wcs_staff_icon, .wcs_widget .wcs_right .wcs_staff_icon {
+  font-size: 18px;
+  padding: 5px;
+  background-color: rgba(2, 225, 154, 0.295);
+  border-radius: 5px;
+  align-self: flex-end;
+}
+.wcs_widget .wcs_left .wcs_users_icon, .wcs_widget .wcs_right .wcs_users_icon {
+  font-size: 18px;
+  padding: 5px;
+  background-color: rgba(226, 211, 0, 0.353);
+  border-radius: 5px;
+  align-self: flex-end;
+}
+.wcs_widget .wcs_left .wcs_resolve_icon, .wcs_widget .wcs_right .wcs_resolve_icon {
+  font-size: 18px;
+  padding: 5px;
+  background-color: rgba(3, 102, 32, 0.508);
+  border-radius: 5px;
+  align-self: flex-end;
+}
+.wcs_widget .wcs_left .wcs_pending_icon, .wcs_widget .wcs_right .wcs_pending_icon {
+  font-size: 18px;
+  padding: 5px;
+  background-color: rgba(193, 6, 28, 0.334);
+  border-radius: 5px;
+  align-self: flex-end;
+}
+.wcs_widget .wcs_left .wcs_icon, .wcs_widget .wcs_right .wcs_icon {
+  font-size: 18px;
+  padding: 5px;
+  background-color: rgba(128, 0, 128, 0.295);
+  border-radius: 5px;
+  align-self: flex-end;
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Data-Table-Staff/data-table.staff.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
+.wcs_datatable_staff {
+  height: 600px;
+  padding: 20px;
 }
 
 /*# sourceMappingURL=index.css.map*/

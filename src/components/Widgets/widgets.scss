@@ -1,0 +1,88 @@
+.wcs_widget{
+    display: flex;
+    flex: 1; // its define size of box
+    justify-content: space-between;
+    padding: 10px;
+    //shadow
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(0,0,0,0.47);
+    box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    //@at-root
+    height: 100px;
+
+    //@at-root
+    .wcs_left, .wcs_right{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .wcs_title{
+            font-weight: bold;
+            font-size: 14px;
+            color: rgb(160, 160, 160);
+        }
+
+        .wcs_counter{
+            font-size: 28px;
+            font-weight: 300;
+        }
+
+        .wcs_link{
+            width: max-content;
+            font-size: 12px;
+            border-bottom: 1px solid gray;
+        }
+        .wcs_percentage{
+            // make equal 
+            display: flex;
+            align-items: center;
+            //@at-root
+            &.wcs_positive{
+                color: green;
+            }
+            &.wcs_negative{
+                color: red;
+            }
+            //@at-root
+
+        }
+    //  ICON style 
+        .wcs_staff_icon{
+            font-size: 18px;
+            padding: 5px;
+            background-color: rgba(2, 225, 154, 0.295);
+            border-radius: 5px;
+            align-self: flex-end;
+        }
+        .wcs_users_icon{
+            font-size: 18px;
+            padding: 5px;
+            background-color: rgba(226, 211, 0, 0.353);
+            border-radius: 5px;
+            align-self: flex-end;
+        }
+        .wcs_resolve_icon{
+            font-size: 18px;
+            padding: 5px;
+            background-color: rgba(3, 102, 32, 0.508);
+            border-radius: 5px;
+            align-self: flex-end;
+        }
+        .wcs_pending_icon{
+            font-size: 18px;
+            padding: 5px;
+            background-color: rgba(193, 6, 28, 0.334);
+            border-radius: 5px;
+            align-self: flex-end; //set right end the iocn 
+        }
+        .wcs_icon{
+            font-size: 18px;
+            padding: 5px;
+            background-color: rgba(128, 0, 128, 0.295);
+            border-radius: 5px;
+            align-self: flex-end; //set right end the iocn 
+        }
+        // END 
+        
+        
+    }
+}
