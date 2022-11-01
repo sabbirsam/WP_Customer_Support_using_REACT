@@ -1,4 +1,33 @@
 .wcs_datatable_staff{
     height: 600px;
     padding: 20px;
+
+    .wcs_cellWithImg{
+        display: flex;
+        align-items: center;
+
+        .wcs_cellImg{
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+    }
+
+    .cellWithStatus{
+        padding: 5px;
+        border-radius: 5px;
+
+        &.active{
+            background-color: rgba(0,128,0,0.05);
+            color: green;
+        }
+
+        &.inactive{
+            background-color: rgba(0,128,0,0.05);
+            color: crimson;
+        }
+
+    }
 }
