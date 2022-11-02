@@ -42,6 +42,23 @@ export const userColumns = [
   },
 ];
 
+export const actionColumns = [
+  {
+    field: "action",
+    headerName: "ACTION",
+    width: 300,
+    renderCell:(params)=>{
+      return(
+        <div className="wcs_cellAction">
+         <div className="wcs_addButton">ADD</div>
+         <div className="wcs_viewButton">VIEW</div>
+         <div className="wcs_deleteButton">DELETE</div>
+        </div>
+      );
+    },
+  },
+]
+
 
 export const userRows = [
   {
@@ -124,6 +141,7 @@ export const userRows = [
     status: "inactive",
     contact: 6568484,
   },
+  
 ];
 
 
@@ -133,10 +151,12 @@ const DataTableStaff = () => {
     <div className='wcs_datatable_staff'>
       <DataGrid
         rows={userRows}
-        columns={userColumns}
+        columns={userColumns.concat(actionColumns)}
         pageSize={8}
         rowsPerPageOptions={[8]}
         checkboxSelection
+        disableSelectionOnClick
+        
       />
     </div>
   )

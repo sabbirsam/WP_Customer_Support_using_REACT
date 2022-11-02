@@ -1,4 +1,5 @@
 import React from 'react'
+import DataTableTicket from '../components/Data-Table-Staff/DataTableTicket'
 import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar/Sidebar'
 
@@ -8,13 +9,11 @@ const Ticket = () => {
     <Sidebar/>
       <div className="wcs_homeContainer">
           <Navbar/>
-            <div className="wcs_ticket_cls" id="wcs_ticket">
-                <div className="wcs_widgets">
-                  <h2>Tickets</h2>
-                </div>
-            </div>
+          {/* <div className="wcs_staff" id="wcs_staff"> */}
+              <DataTableTicket/>
+          {/* </div> */}
       </div>
-    </div>
+</div>
   )
 }
 

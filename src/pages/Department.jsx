@@ -1,21 +1,19 @@
 import React from 'react'
+import DataTableStaff from '../components/Data-Table-Staff/DataTableStaff'
 import Navbar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar/Sidebar'
 
 const Department = () => {
   return (
     <div className='wcs_home'>
-          <Sidebar/>
-          <div className="wcs_homeContainer">
+      <Sidebar/>
+        <div className="wcs_homeContainer">
             <Navbar/>
-            <div className="wcs_department_cls" id="wcs_department">
-              <div className="wcs_widgets">
-              <h2>Department</h2>
-            </div>
-          </div>
+            {/* <div className="wcs_staff" id="wcs_staff"> */}
+                <DataTableStaff/>
+            {/* </div> */}
         </div>
-       
-    </div>
+  </div>
   )
 }
 
