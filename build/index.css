@@ -1,63 +1,3 @@
-/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Data-Table-Staff/data-table.staff.scss ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************/
-.wcs_datatable_staff {
-  height: 600px;
-  padding: 20px;
-}
-.wcs_datatable_staff .wcs_cellWithImg {
-  display: flex;
-  align-items: center;
-}
-.wcs_datatable_staff .wcs_cellWithImg .wcs_cellImg {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  margin-right: 20px;
-}
-.wcs_datatable_staff .cellWithStatus {
-  padding: 5px;
-  border-radius: 5px;
-}
-.wcs_datatable_staff .cellWithStatus.active {
-  background-color: rgba(0, 128, 0, 0.05);
-  color: green;
-}
-.wcs_datatable_staff .cellWithStatus.inactive {
-  background-color: rgba(0, 128, 0, 0.05);
-  color: crimson;
-}
-.wcs_datatable_staff .wcs_cellAction {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-.wcs_datatable_staff .wcs_cellAction .wcs_viewButton {
-  padding: 2px 5px;
-  border-radius: 5px;
-  color: darkblue;
-  border: 1px dotted rgba(0, 0, 139, 0.596);
-  cursor: pointer;
-}
-.wcs_datatable_staff .wcs_cellAction .wcs_deleteButton {
-  padding: 2px 5px;
-  border-radius: 5px;
-  color: rgb(172, 3, 146);
-  border: 1px dotted rgba(125, 2, 55, 0.596);
-  cursor: pointer;
-}
-
-input.PrivateSwitchBase-input.css-1m9pwf3 {
-  height: 3rem;
-  width: 3rem;
-  min-width: 3rem;
-}
-
-.css-1e2bxag-MuiDataGrid-root .MuiDataGrid-columnHeader:focus, .css-1e2bxag-MuiDataGrid-root .MuiDataGrid-cell:focus {
-  outline: none !important;
-}
 /*!**********************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Navbar/navbar.scss ***!
   \**********************************************************************************************************************************************************************************************************************************************************/
@@ -124,84 +64,6 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   position: absolute;
   top: -6px;
   right: -6px;
-}
-/*!************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Sidebar/sidebar.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************/
-.wcs_sidebar {
-  flex: 1;
-  border-right: 0.5px solid rgb(230, 227, 227);
-  min-height: 88vh;
-  background-color: white;
-}
-.wcs_sidebar .wcs_top {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.wcs_sidebar .wcs_top .wcs_logo {
-  font-size: 14px;
-  font-weight: bold;
-  color: #6439ff;
-}
-.wcs_sidebar hr {
-  height: 0px;
-}
-.wcs_sidebar .wcs_center {
-  padding-left: 20px;
-}
-.wcs_sidebar .wcs_center ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.wcs_sidebar .wcs_center ul .wcs_title {
-  font-size: 10px;
-  font-weight: bold;
-  color: #999;
-  margin-top: 15px;
-  margin-bottom: 5px;
-}
-.wcs_sidebar .wcs_center ul li {
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  cursor: pointer;
-}
-.wcs_sidebar .wcs_center ul li:hover {
-  background-color: #ece8ff;
-}
-.wcs_sidebar .wcs_center ul li .wcs_icon {
-  font-size: 18px;
-  color: #7451f8;
-}
-.wcs_sidebar .wcs_center ul li span {
-  font-size: 13px;
-  font-weight: bold;
-  color: #888;
-  margin-left: 10px;
-}
-/*!*********************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Customer/customer.scss ***!
-  \*********************************************************************************************************************************************************************************************************************************************************/
-.wcs_home {
-  display: flex;
-}
-.wcs_home .wcs_homeContainer {
-  flex: 6;
-}
-.wcs_home .wcs_homeContainer .addTicketbtn_c {
-  width: 100px;
-  height: 22px;
-  text-align: center;
-  margin-left: 20px;
-  margin-top: 10px;
-  padding: 5px;
-  border-radius: 5px;
-  color: rgb(5, 139, 0);
-  border: 1px dotted rgba(0, 139, 39, 0.596);
-  cursor: pointer;
 }
 /*!***********************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Dashboard/dashboard.scss ***!
@@ -449,6 +311,88 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   border-radius: 5px;
   align-self: flex-end;
 }
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Data-Table-Staff/data-table.staff.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
+.wcs_datatable_staff {
+  height: 600px;
+  padding: 20px;
+}
+.wcs_datatable_staff .wcs_cellWithImg {
+  display: flex;
+  align-items: center;
+}
+.wcs_datatable_staff .wcs_cellWithImg .wcs_cellImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 20px;
+}
+.wcs_datatable_staff .cellWithStatus {
+  padding: 5px;
+  border-radius: 5px;
+}
+.wcs_datatable_staff .cellWithStatus.active {
+  background-color: rgba(0, 128, 0, 0.05);
+  color: green;
+}
+.wcs_datatable_staff .cellWithStatus.inactive {
+  background-color: rgba(0, 128, 0, 0.05);
+  color: crimson;
+}
+.wcs_datatable_staff .wcs_cellAction {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.wcs_datatable_staff .wcs_cellAction .wcs_viewButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: darkblue;
+  border: 1px dotted rgba(0, 0, 139, 0.596);
+  cursor: pointer;
+}
+.wcs_datatable_staff .wcs_cellAction .wcs_deleteButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: rgb(172, 3, 146);
+  border: 1px dotted rgba(125, 2, 55, 0.596);
+  cursor: pointer;
+}
+
+input.PrivateSwitchBase-input.css-1m9pwf3 {
+  height: 3rem;
+  width: 3rem;
+  min-width: 3rem;
+}
+
+.css-1e2bxag-MuiDataGrid-root .MuiDataGrid-columnHeader:focus, .css-1e2bxag-MuiDataGrid-root .MuiDataGrid-cell:focus {
+  outline: none !important;
+}
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Staff/staff.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+.wcs_home {
+  display: flex;
+  width: 100%;
+}
+.wcs_home .wcs_homeContainer {
+  flex: 6;
+}
+.wcs_home .wcs_homeContainer .addTicketbtn_s {
+  width: 95px;
+  height: 22px;
+  text-align: center;
+  margin-left: 20px;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  color: rgb(5, 139, 0);
+  border: 1px dotted rgba(0, 139, 39, 0.596);
+  cursor: pointer;
+}
 /*!*************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Department/department.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************************/
@@ -491,18 +435,17 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   border: 1px dotted rgba(0, 139, 39, 0.596);
   cursor: pointer;
 }
-/*!***************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Staff/staff.scss ***!
-  \***************************************************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Customer/customer.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
 .wcs_home {
   display: flex;
-  width: 100%;
 }
 .wcs_home .wcs_homeContainer {
   flex: 6;
 }
-.wcs_home .wcs_homeContainer .addTicketbtn_s {
-  width: 95px;
+.wcs_home .wcs_homeContainer .addTicketbtn_c {
+  width: 100px;
   height: 22px;
   text-align: center;
   margin-left: 20px;
@@ -597,6 +540,78 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   color: rgb(5, 139, 0);
   border: 1px dotted rgba(0, 139, 39, 0.596);
   cursor: pointer;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Tab/tab.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+.content-tabs {
+  flex-grow: 1;
+}
+.content-tabs .content {
+  display: none;
+}
+.content-tabs .content h2 {
+  padding: 0px 0 5px 0px;
+}
+.content-tabs .active-content {
+  display: block;
+}
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Tab/sidebar.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+.wcs_sidebar {
+  flex: 1;
+  border-right: 0.5px solid rgb(230, 227, 227);
+  min-height: 88vh;
+  background-color: white;
+}
+.wcs_sidebar .wcs_top {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wcs_sidebar .wcs_top .wcs_logo {
+  font-size: 14px;
+  font-weight: bold;
+  color: #6439ff;
+}
+.wcs_sidebar hr {
+  height: 0px;
+}
+.wcs_sidebar .wcs_center {
+  padding-left: 20px;
+}
+.wcs_sidebar .wcs_center ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.wcs_sidebar .wcs_center ul .wcs_title {
+  font-size: 10px;
+  font-weight: bold;
+  color: #999;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+.wcs_sidebar .wcs_center ul li {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+.wcs_sidebar .wcs_center ul li:hover {
+  background-color: #ece8ff;
+}
+.wcs_sidebar .wcs_center ul li .wcs_icon {
+  font-size: 18px;
+  color: #7451f8;
+}
+.wcs_sidebar .wcs_center ul li span {
+  font-size: 13px;
+  font-weight: bold;
+  color: #888;
+  margin-left: 10px;
 }
 
 /*# sourceMappingURL=index.css.map*/

@@ -26,31 +26,7 @@ class WCS_AdminDashboard{
             'dashboard_status', 'Dashboard', 'Dashboard', 'manage_options', 'dashboard_status', 
             array( $this, 'wcs_dashboard' )
         );
-        //To show remove 'null' and add 'dashboard_status' 
-        add_submenu_page(
-            'null', 'Staff', 'Staff', 'manage_options', 'wcs_staff', 
-            array( $this, 'wcs_staff' )
-        );
-        add_submenu_page(
-            'null', 'Department', 'Department', 'manage_options', 'wcs_department', 
-            array( $this, 'wcs_department' )
-        );
-        add_submenu_page(
-            'null', 'Product', 'Product', 'manage_options', 'wcs_product', 
-            array( $this, 'wcs_Product' )
-        );
-        add_submenu_page(
-            'null', 'Customer', 'Customer', 'manage_options', 'wcs_customer', 
-            array( $this, 'wcs_customer' )
-        );
-        add_submenu_page(
-            'null', 'Tickets', 'Tickets', 'manage_options', 'wcs_tickets', 
-            array( $this, 'wcs_Tickets' )
-        );
-        add_submenu_page(
-            'null', 'Chat', 'Chat', 'manage_options', 'wcs_chat', 
-            array( $this, 'wcs_Chat' )
-        );
+        
         add_submenu_page(
             'dashboard_status', 'Settings', 'Settings', 'manage_options', 'wcs_setting', 
             array( $this, 'wcs_Setting' )
@@ -69,30 +45,7 @@ class WCS_AdminDashboard{
     {
         require_once plugin_dir_path(__FILE__).'../template/wcs_dashboard.php';
     }
-    public function wcs_staff()
-    {
-        require_once plugin_dir_path(__FILE__).'../template/wcs_staff.php';
-    }
-    public function wcs_department()
-    {
-        require_once plugin_dir_path(__FILE__).'../template/wcs_department.php';
-    }
-    public function wcs_Product()
-    {
-        require_once plugin_dir_path(__FILE__).'../template/wcs_product.php';
-    }
-    public function wcs_customer()
-    {
-        require_once plugin_dir_path(__FILE__).'../template/wcs_customer.php';
-    }
-    public function wcs_Tickets()
-    {
-        require_once plugin_dir_path(__FILE__).'../template/wcs_tickets.php';
-    }
-    public function wcs_Chat()
-    {
-        require_once plugin_dir_path(__FILE__).'../template/wcs_chat.php';
-    }
+    
     public function wcs_Setting()
     {
         require_once plugin_dir_path(__FILE__).'../template/wcs_setting.php';

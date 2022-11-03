@@ -1,0 +1,67 @@
+.wcs_sidebar{
+    flex: 1;
+    border-right: 0.5px solid rgb(230,227,227);
+    min-height: 88vh; // it create scroll 
+    background-color: white;
+    //logo
+    .wcs_top{
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .wcs_logo{
+            font-size: 14px;
+            font-weight: bold;
+            color: #6439ff;
+        }
+    }
+    hr{
+        height: 0px;
+    }
+
+    //list 
+    .wcs_center{
+        padding-left: 20px;
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            .wcs_title{
+                font-size: 10px;
+                font-weight: bold;
+                color: #999;
+                margin-top: 15px;
+                margin-bottom: 5px;
+            }
+            li{
+                display: flex;
+                align-items: center;
+                padding: 5px;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: #ece8ff;
+                }
+
+                // icon color 
+                .wcs_icon{
+                    font-size: 18px;
+                    color: #7451f8;
+                }
+
+                //text 
+                span{
+                    font-size: 13px;
+                    font-weight: bold;
+                    color: #888;
+                    margin-left: 10px;
+                }
+
+            }
+
+           
+        }
+    }
+}
