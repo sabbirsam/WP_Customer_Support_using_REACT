@@ -102,25 +102,26 @@ const WCSTab = () => {
             <Navbar/>
               <div className="content-tabs">
                 <div className={toggleState === 1 ? "content  active-content" : "content"}>
-                    <Dashboard/>
+                    {toggleState === 1 && <Dashboard/>}
+                    {/* <Dashboard/> */}
                 </div>
                 <div className={toggleState === 2 ? "content  active-content" : "content"}>
-                   <Staff/>
+                    {toggleState === 2 &&  <Staff/>}
                 </div>
                 <div className={toggleState === 3 ? "content  active-content" : "content"}>
-                   <Department/>
+                    {toggleState === 3 &&  <Department/>}
                 </div>
                 <div className={toggleState === 4 ? "content  active-content" : "content"}>
-                    <Product/>
+                    {toggleState === 4 &&   <Product/>}
                 </div>
                 <div className={toggleState === 5 ? "content  active-content" : "content"}>
-                    <Customer/>
+                     {toggleState === 5 && <Customer/>}
                 </div>
                 <div className={toggleState === 6 ? "content  active-content" : "content"}>
-                   <Ticket/>
+                    {toggleState === 6 &&  <Ticket/>}
                 </div>
                 <div className={toggleState === 7 ? "content  active-content" : "content"}>
-                    <Chat/>
+                    {toggleState === 7 &&  <Chat/>}
                 </div>
               </div>
           </div>
