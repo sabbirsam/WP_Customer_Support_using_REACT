@@ -48,13 +48,6 @@
   border: 1px dotted rgba(125, 2, 55, 0.596);
   cursor: pointer;
 }
-.wcs_datatable_staff .wcs_cellAction .wcs_addButton {
-  padding: 2px 5px;
-  border-radius: 5px;
-  color: rgb(5, 139, 0);
-  border: 1px dotted rgba(0, 139, 39, 0.596);
-  cursor: pointer;
-}
 
 input.PrivateSwitchBase-input.css-1m9pwf3 {
   height: 3rem;
@@ -189,9 +182,30 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   color: #888;
   margin-left: 10px;
 }
-/*!*************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/dashboard.scss ***!
-  \*************************************************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Customer/customer.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
+.wcs_home {
+  display: flex;
+}
+.wcs_home .wcs_homeContainer {
+  flex: 6;
+}
+.wcs_home .wcs_homeContainer .addTicketbtn_c {
+  width: 100px;
+  height: 22px;
+  text-align: center;
+  margin-left: 20px;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  color: rgb(5, 139, 0);
+  border: 1px dotted rgba(0, 139, 39, 0.596);
+  cursor: pointer;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Dashboard/dashboard.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
 .wcs_home {
   display: flex;
 }
@@ -435,9 +449,73 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   border-radius: 5px;
   align-self: flex-end;
 }
-/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Data-Table-Staff/data-table-ticket.scss ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Department/department.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
+.wcs_home {
+  display: flex;
+}
+.wcs_home .wcs_homeContainer {
+  flex: 6;
+}
+.wcs_home .wcs_homeContainer .addTicketbtn_d {
+  width: 115px;
+  height: 22px;
+  text-align: center;
+  margin-left: 20px;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  color: rgb(5, 139, 0);
+  border: 1px dotted rgba(0, 139, 39, 0.596);
+  cursor: pointer;
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Product/product.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
+.wcs_home {
+  display: flex;
+}
+.wcs_home .wcs_homeContainer {
+  flex: 6;
+}
+.wcs_home .wcs_homeContainer .addTicketbtn_p {
+  width: 95px;
+  height: 22px;
+  text-align: center;
+  margin-left: 20px;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  color: rgb(5, 139, 0);
+  border: 1px dotted rgba(0, 139, 39, 0.596);
+  cursor: pointer;
+}
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Staff/staff.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+.wcs_home {
+  display: flex;
+  width: 100%;
+}
+.wcs_home .wcs_homeContainer {
+  flex: 6;
+}
+.wcs_home .wcs_homeContainer .addTicketbtn_s {
+  width: 95px;
+  height: 22px;
+  text-align: center;
+  margin-left: 20px;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  color: rgb(5, 139, 0);
+  border: 1px dotted rgba(0, 139, 39, 0.596);
+  cursor: pointer;
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Data-Table-Ticket/data-table-ticket.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
 .wcs_datatable_staff {
   height: 600px;
   padding: 20px;
@@ -489,13 +567,6 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   border: 1px dotted rgba(125, 2, 55, 0.596);
   cursor: pointer;
 }
-.wcs_datatable_staff .wcs_cellAction .wcs_addButton {
-  padding: 2px 5px;
-  border-radius: 5px;
-  color: rgb(5, 139, 0);
-  border: 1px dotted rgba(0, 139, 39, 0.596);
-  cursor: pointer;
-}
 
 input.PrivateSwitchBase-input.css-1m9pwf3 {
   height: 3rem;
@@ -505,6 +576,27 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 
 .css-1e2bxag-MuiDataGrid-root .MuiDataGrid-columnHeader:focus, .css-1e2bxag-MuiDataGrid-root .MuiDataGrid-cell:focus {
   outline: none !important;
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Ticket/ticket.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+.wcs_home {
+  display: flex;
+}
+.wcs_home .wcs_homeContainer {
+  flex: 6;
+}
+.wcs_home .wcs_homeContainer .addTicketbtn_tic {
+  width: 95px;
+  height: 22px;
+  text-align: center;
+  margin-left: 20px;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  color: rgb(5, 139, 0);
+  border: 1px dotted rgba(0, 139, 39, 0.596);
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=index.css.map*/

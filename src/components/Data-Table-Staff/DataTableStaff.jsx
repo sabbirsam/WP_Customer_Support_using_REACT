@@ -1,4 +1,4 @@
-import * as React from 'react';
+// import * as React from 'react'; 
 import { DataGrid } from '@mui/x-data-grid';
 import './data-table.staff.scss'
 
@@ -50,7 +50,6 @@ export const actionColumns = [
     renderCell:(params)=>{
       return(
         <div className="wcs_cellAction">
-         <div className="wcs_addButton">ADD</div>
          <div className="wcs_viewButton">VIEW</div>
          <div className="wcs_deleteButton">DELETE</div>
         </div>

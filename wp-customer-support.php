@@ -33,6 +33,9 @@ use WCS\classes\WCS_BaseController;
 use WCS\classes\WCS_Enqueue;
 use WCS\classes\WCS_AdminDashboard;
 use WCS\classes\WCS_Deactivate;
+use WCS\classes\WCS_Tickets_Table;
+use WCS\classes\WCS_React_Rest_Route;
+
 /**
  * Main Class
  */
@@ -67,6 +70,9 @@ if(!class_exists('WCS_WPCustomerSupport')){
             $enqueue= new WCS_Enqueue();
             $enqueue->register();  
             new WCS_BaseController();
+            new WCS_Tickets_Table();
+            new WCS_React_Rest_Route();
+       
         }
         /**
          * While active the plugin redirect

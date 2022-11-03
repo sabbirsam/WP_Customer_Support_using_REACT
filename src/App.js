@@ -1,13 +1,17 @@
-import React from 'react';
-import Customer from './pages/Customer';
-import Dashboard from './pages/Dashboard';
-import Department from './pages/Department';
-import Product from './pages/Product';
-import Staff from './pages/Staff';
-import Ticket from './pages/Ticket';
-import Chat from './pages/Chat';
+// import React, { useState, useEffect }  from 'react';
+// import React  from 'react';
+// import axios from 'axios';
+import Customer from './pages/Customer/Customer';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Department from './pages/Department/Department';
+import Product from './pages/Product/Product';
+import Staff from './pages/Staff/Staff';
+import Ticket from './pages/Ticket/Ticket';
+import Chat from './pages/Chat/Chat';
+
 
 const App = () => {
+    
     let current_page = window.location.search;
 
     if(current_page === '?page=dashboard_status'){
