@@ -52,15 +52,25 @@ export const ticketColumns = [
     },
   ]
   
-const DataTableTicket = () => {
+  // let current_origin = window.location.origin;
+  // console.log(current_origin)
+  // let path = window.location.pathname;
+  // let c = path.substring(16, path.indexOf('/'));
+  // console.log(current_origin + c)
 
+  // const trimSlashes =  path.split('/').filter(v => v !== '').join('/');
+  // console.log(trimSlashes)
+
+  
+
+const DataTableTicket = () => {
+ 
   const [users, setUsers] = useState([]);
       useEffect(() => {
           getUsers();
       }, [getUsers()]);
       function getUsers() {
           axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/tickets').then(function(response) {
-              console.log(response.data);
               setUsers(response.data);
       });
   }

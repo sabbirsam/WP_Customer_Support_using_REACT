@@ -1,6 +1,8 @@
-// import * as React from 'react'; 
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import { DataGrid } from '@mui/x-data-grid';
 import './data-table.staff.scss'
+import image from '../../../assets/img/no_img.png'
 
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
@@ -11,8 +13,11 @@ export const userColumns = [
     renderCell: (params) => {
       return (
         <div className="wcs_cellWithImg">
-          <img className="wcs_cellImg" src={params.row.img} alt="avatar" />
-          {params.row.username}
+         {
+          params.row.img && <img className="wcs_cellImg" src={params.row.img} alt="staff" /> 
+          ||  <img className="wcs_cellImg" src={image} alt="staff" /> 
+         }
+         {params.row.user_name}
         </div>
       );
     },
@@ -58,98 +63,23 @@ export const actionColumns = [
   },
 ]
 
-
-export const userRows = [
-  {
-    id: 1,
-    username: "Snow",
-    img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    status: "inactive",
-    email: "wppool_snow@gmail.com",
-    contact: 3684845,
-  },
-  {
-    id: 2,
-    username: "Jamie Lannister",
-    img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    email: "wppool_2snow@gmail.com",
-    status: "active",
-    contact: 4684842,
-  },
-  {
-    id: 3,
-    username: "Lannister",
-    img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    email: "wppool_3snow@gmail.com",
-    status: "active",
-    contact: 4684845,
-  },
-  {
-    id: 4,
-    username: "Stark",
-    img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    email: "wppool_4snow@gmail.com",
-    status: "active",
-    contact: 1684846,
-  },
-  {
-    id: 5,
-    username: "Targaryen",
-    img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    email: "wppool_5snow@gmail.com",
-    status: "active",
-    contact: 2684842,
-  },
-  {
-    id: 6,
-    username: "Melisandre",
-    img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    email: "wppool_6snow@gmail.com",
-    status: "inactive",
-    contact: 1684845,
-  },
-  {
-    id: 7,
-    username: "Clifford",
-    img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    email: "wppool_7snow@gmail.com",
-    status: "active",
-    contact: 4684844,
-  },
-  {
-    id: 8,
-    username: "Frances",
-    img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    email: "wppool_8snow@gmail.com",
-    status: "active",
-    contact: 3668484,
-  },
-  {
-    id: 9,
-    username: "Roxie",
-    img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    email: "wppool_9snow@gmail.com",
-    status: "active",
-    contact: 6568484,
-  },
-  {
-    id: 10,
-    username: "Roxie",
-    img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    email: "wppool_21snow@gmail.com",
-    status: "inactive",
-    contact: 6568484,
-  },
-  
-];
-
-
-
 const DataTableStaff = () => {
+
+  const [staff, setstaff] = useState([]);
+      useEffect(() => {
+          getUsers();
+      }, [getUsers()]);
+
+      function getUsers() {
+          axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/staff').then(function(response) {
+            setstaff(response.data);
+      });
+  }
+
   return (
     <div className='wcs_datatable_staff'>
       <DataGrid
-        rows={userRows}
+        rows={staff}
         columns={userColumns.concat(actionColumns)}
         pageSize={8}
         rowsPerPageOptions={[8]}

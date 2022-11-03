@@ -6,10 +6,12 @@ import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import MarkUnreadChatAltIcon from '@mui/icons-material/MarkUnreadChatAlt';
+
 let current_page = window.location.pathname;
 
 
 const Sidebar = () => {
+    
     return (
         <div className='wcs_sidebar'>
            <div className="wcs_top">
@@ -78,7 +80,7 @@ const Sidebar = () => {
 
                 </ul>
            </div>
-           {/* <div className="wcs_bottom">Color Option</div> */}
+
         </div>
      );
 }

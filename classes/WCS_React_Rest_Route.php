@@ -19,8 +19,7 @@ class WCS_React_Rest_Route{
             'callback'=>[$this, 'get_tickets'],
             'permission_callback' => [$this, 'get_tickets_permission']
         ] );
-
-        /**
+         /**
          * Add tickets in DB
          */
         register_rest_route( 'wcs/v1', '/tickets',[
@@ -28,6 +27,25 @@ class WCS_React_Rest_Route{
             'callback'=>[$this, 'save_tickets'],
             'permission_callback' => [$this, 'save_tickets_permission']
         ] );
+        
+        /**
+         * Fetch User from DB
+         */
+        register_rest_route( 'wcs/v1', '/users',[
+            'methods'=>'GET',
+            'callback'=>[$this, 'get_users'],
+            'permission_callback' => [$this, 'get_users_permission']
+        ] );
+        /**
+         * Fetch Staff from DB
+         */
+        register_rest_route( 'wcs/v1', '/staff',[
+            'methods'=>'GET',
+            'callback'=>[$this, 'get_staff'],
+            'permission_callback' => [$this, 'get_staff_permission']
+        ] );
+
+       
     }
 
     /**
@@ -45,6 +63,7 @@ class WCS_React_Rest_Route{
         
         return true;
     } 
+
    //add tickets
     public function save_tickets( $req ){
         $test = sanitize_text_field( $req['id'] );
@@ -60,9 +79,35 @@ class WCS_React_Rest_Route{
         return current_user_can( 'publish_posts' );
   
     } 
-     /**
-     * 
+
+    /**
+     * User
+     * get User
      */
+    public function get_users(){
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'wcs_users';
+        $results = $wpdb->get_results("SELECT * FROM $table_name");
+        return rest_ensure_response($results);
+    } 
+    //set permission for fetch
+    public function get_users_permission(){
+        return true;
+    } 
+    /**
+     * Staff
+     * get Staff
+     */
+    public function get_staff(){
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'wcs_staff';
+        $results = $wpdb->get_results("SELECT * FROM $table_name");
+        return rest_ensure_response($results);
+    } 
+    //set permission for fetch
+    public function get_staff_permission(){
+        return true;
+    } 
   
     
 

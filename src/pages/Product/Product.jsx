@@ -10,9 +10,10 @@ const Product = () => {
       <Sidebar/>
         <div className="wcs_homeContainer">
             <Navbar/>
-            <div className="addTicketbtn_p">ADD PRODUCT</div>
+            <div className="product_active" id='wcs_product'>
+                <div className="addTicketbtn_p">ADD PRODUCT</div>
                 <DataTableStaff/>
-           
+            </div>
         </div>
   </div>
   )

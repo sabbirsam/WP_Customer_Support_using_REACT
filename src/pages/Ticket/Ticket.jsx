@@ -10,9 +10,11 @@ const Ticket = () => {
     <Sidebar/>
       <div className="wcs_homeContainer">
           <Navbar/>
-          <div className="addTicketbtn_tic">ADD TICKET</div>
-          <DataTableTicket/>
-          {/* <AddTicket/> */}
+          <div className="ticket_active" id='wcs_ticket'>
+              <div className="addTicketbtn_tic">ADD TICKET</div>
+              <DataTableTicket/>
+              {/* <AddTicket/> */}
+          </div> 
       </div>
 </div>
   )

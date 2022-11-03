@@ -9,7 +9,6 @@ import Staff from './pages/Staff/Staff';
 import Ticket from './pages/Ticket/Ticket';
 import Chat from './pages/Chat/Chat';
 
-
 const App = () => {
     
     let current_page = window.location.search;
@@ -65,5 +64,15 @@ const App = () => {
          );
     }
 }
+
+// const App = () => {
+   
+//     return (
+//         <>
+//             <Dashboard />
+//         </>
+//     );
+// }
+
 
 export default App; 

@@ -10,9 +10,10 @@ const Department = () => {
       <Sidebar/>
         <div className="wcs_homeContainer">
             <Navbar/>
-            <div className="addTicketbtn_d">ADD DEPARTMENT</div>
-            <DataTableStaff/>
-           
+            <div className="department_active" id='wcs_department'>
+                <div className="addTicketbtn_d">ADD DEPARTMENT</div>
+                <DataTableStaff/>
+            </div>
         </div>
   </div>
   )
