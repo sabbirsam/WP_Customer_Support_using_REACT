@@ -371,6 +371,14 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 .css-1e2bxag-MuiDataGrid-root .MuiDataGrid-columnHeader:focus, .css-1e2bxag-MuiDataGrid-root .MuiDataGrid-cell:focus {
   outline: none !important;
 }
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Staff/addstaff.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+.wcs_add_staff {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
 /*!***************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Staff/staff.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************/
@@ -435,6 +443,145 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   border: 1px dotted rgba(0, 139, 39, 0.596);
   cursor: pointer;
 }
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Data-Table_User/data-table-user.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
+.wcs_datatable_staff {
+  height: 600px;
+  padding: 20px;
+}
+.wcs_datatable_staff .wcs_cellWithImg {
+  display: flex;
+  align-items: center;
+}
+.wcs_datatable_staff .wcs_cellWithImg .wcs_cellImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 20px;
+}
+.wcs_datatable_staff .cellWithStatus {
+  padding: 5px;
+  border-radius: 5px;
+}
+.wcs_datatable_staff .cellWithStatus.active {
+  background-color: rgba(0, 128, 0, 0.05);
+  color: green;
+}
+.wcs_datatable_staff .cellWithStatus.inactive {
+  background-color: rgba(0, 128, 0, 0.05);
+  color: crimson;
+}
+.wcs_datatable_staff .wcs_cellAction {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.wcs_datatable_staff .wcs_cellAction .wcs_viewButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: darkblue;
+  border: 1px dotted rgba(0, 0, 139, 0.596);
+  cursor: pointer;
+}
+.wcs_datatable_staff .wcs_cellAction .wcs_deleteButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: rgb(172, 3, 146);
+  border: 1px dotted rgba(125, 2, 55, 0.596);
+  cursor: pointer;
+}
+
+input.PrivateSwitchBase-input.css-1m9pwf3 {
+  height: 3rem;
+  width: 3rem;
+  min-width: 3rem;
+}
+
+.css-1e2bxag-MuiDataGrid-root .MuiDataGrid-columnHeader:focus, .css-1e2bxag-MuiDataGrid-root .MuiDataGrid-cell:focus {
+  outline: none !important;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Customer/addcustomer.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+.wcs_add_customer {
+  display: flex;
+}
+.wcs_add_customer .wcs_tickets_container {
+  flex: 6;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top, .wcs_add_customer .wcs_tickets_container .wcs_bottom {
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  margin: 20px;
+  padding: 10px;
+  display: flex;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top h1, .wcs_add_customer .wcs_tickets_container .wcs_bottom h1 {
+  color: lightgray;
+  font-size: 20px;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_left, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_left {
+  flex: 1;
+  text-align: center;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_left img, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_left img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_left .formInput .title_name, .wcs_add_customer .wcs_tickets_container .wcs_top .wcs_left .formInput .title_email, .wcs_add_customer .wcs_tickets_container .wcs_top .wcs_left .formInput .title_num, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_left .formInput .title_name, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_left .formInput .title_email, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_left .formInput .title_num {
+  color: #737373;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right {
+  flex: 2;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right form, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right form label, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right form label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right form label .wcs_icon, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right form label .wcs_icon {
+  cursor: pointer;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right .formInput, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right .formInput {
+  width: 40%;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right .formInput input, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right .formInput input {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid gray;
+  background-color: #F0F0F1;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right .formInput input:focus, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right .formInput input:focus {
+  outline: none;
+  box-shadow: none;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right button, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right button {
+  width: 160px;
+  padding: 10px;
+  border: none;
+  background-color: teal;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Spinner/spinner.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+.wcs_spinner {
+  text-align: center;
+}
 /*!*********************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Customer/customer.scss ***!
   \*********************************************************************************************************************************************************************************************************************************************************/
@@ -444,7 +591,7 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 .wcs_home .wcs_homeContainer {
   flex: 6;
 }
-.wcs_home .wcs_homeContainer .addTicketbtn_c {
+.wcs_home .wcs_homeContainer .add_customer {
   width: 100px;
   height: 22px;
   text-align: center;
@@ -520,6 +667,14 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 .css-1e2bxag-MuiDataGrid-root .MuiDataGrid-columnHeader:focus, .css-1e2bxag-MuiDataGrid-root .MuiDataGrid-cell:focus {
   outline: none !important;
 }
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Ticket/addticket.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+.wcs_add_ticket {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
 /*!*****************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Ticket/ticket.scss ***!
   \*****************************************************************************************************************************************************************************************************************************************************/
@@ -529,7 +684,7 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 .wcs_home .wcs_homeContainer {
   flex: 6;
 }
-.wcs_home .wcs_homeContainer .addTicketbtn_tic {
+.wcs_home .wcs_homeContainer .add_ticket {
   width: 95px;
   height: 22px;
   text-align: center;
@@ -549,9 +704,6 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 }
 .content-tabs .content {
   display: none;
-}
-.content-tabs .content h2 {
-  padding: 0px 0 5px 0px;
 }
 .content-tabs .active-content {
   display: block;
@@ -612,6 +764,9 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   font-weight: bold;
   color: #888;
   margin-left: 10px;
+}
+.wcs_sidebar .wcs_center ul li.active {
+  background-color: #ece8ff;
 }
 
 /*# sourceMappingURL=index.css.map*/

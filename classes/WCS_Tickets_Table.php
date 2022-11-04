@@ -41,10 +41,13 @@ class WCS_Tickets_Table{
 
         $sql_users = "CREATE TABLE ".$users_table." (
             `id` INT(255) NOT NULL AUTO_INCREMENT,
-            `user_name` VARCHAR(255) DEFAULT NULL,
-            `contact` varchar(100),
-            `email` VARCHAR(255) DEFAULT NULL,
+            `file` text ,
+            `user_name` VARCHAR(255) NOT NULL,
+            `full_name` VARCHAR(255) NOT NULL,
+            `mobile_number` varchar(100),
+            `email` VARCHAR(255) NOT NULL,
             `address` text,
+            `country` varchar(500),
             `password` text NOT NULL,
             `status` tinyint(1) COMMENT '0=inactive,1=active',
             `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,

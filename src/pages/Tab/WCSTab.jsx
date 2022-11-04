@@ -31,23 +31,23 @@ const WCSTab = () => {
       <div className='wcs_home'>
           {/* Here  */}
             <div className='wcs_sidebar'>
-            <div className="wcs_top">
-                  <span className="wcs_logo"> <a href={current_page + '?page=dashboard_status'} style={{textDecoration:"none"}}>WP SUPPORT SYSTEM</a></span>
-              </div>
-              <hr />
-            <div className="wcs_center">
+                <div className="wcs_top">
+                    <span className="wcs_logo"> <a href={current_page + '?page=dashboard_status'} style={{textDecoration:"none"}}>WP SUPPORT SYSTEM</a></span>
+                </div>
+                <hr />
+                <div className="wcs_center">
                   <ul>
                       <p className="wcs_title">
                           MAIN
                       </p>
                       <a className={toggleState === 1 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(1)}>
-                          <li>
+                          <li className={toggleState === 1 ? "active" : "tabs"}>
                               <DashboardIcon className='wcs_icon'/>
                               <span >Dashboard</span>
                           </li>
                       </a>
                       <a className={toggleState === 2 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(2)}>
-                          <li>
+                          <li className={toggleState === 2 ? "active" : "tabs"}>
                               <SupportAgentIcon className='wcs_icon'/>
                               <span >Staff</span>
                           </li>
@@ -56,14 +56,14 @@ const WCSTab = () => {
                           ACCESSORIES
                       </p>
                       <a className={toggleState === 3 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(3)}>
-                          <li>
+                          <li className={toggleState === 3 ? "active" : "tabs"}>
                               <BrandingWatermarkIcon className='wcs_icon'/>
                               <span > Department</span>
                           </li>
                       </a>
 
                       <a className={toggleState === 4 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(4)}>
-                          <li>
+                          <li className={toggleState === 4 ? "active" : "tabs"}>
                               <ProductionQuantityLimitsIcon className='wcs_icon'/>
                               <span >Product</span>
                           </li>
@@ -74,13 +74,13 @@ const WCSTab = () => {
                       </p>
 
                       <a className={toggleState === 5 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(5)}>
-                          <li>
+                          <li className={toggleState === 5 ? "active" : "tabs"}>
                               <PeopleAltIcon className='wcs_icon'/>
                               <span >Customer</span>
                           </li>
                       </a>
                       <a className={toggleState === 6 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(6)}>
-                          <li>
+                          <li className={toggleState === 6 ? "active" : "tabs"}>
                               <ConfirmationNumberIcon className='wcs_icon'/>
                               <span >Ticket</span>
                           </li>
@@ -89,7 +89,7 @@ const WCSTab = () => {
                           SUPPORT
                       </p>
                       <a className={toggleState === 7 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(7)}>
-                          <li>
+                          <li className={toggleState === 7 ? "active" : "tabs"}>
                               <MarkUnreadChatAltIcon className='wcs_icon'/>
                               <span >Chat </span>
                           </li>

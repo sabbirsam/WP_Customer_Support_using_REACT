@@ -75,7 +75,7 @@ if(!class_exists('WCS_WPCustomerSupport')){
        
         }
         /**
-         * While active the plugin redirect
+         * Redirection
          */
         function WCS_plugin_activation($plugin){
             if (plugin_basename(__FILE__) == $plugin) {

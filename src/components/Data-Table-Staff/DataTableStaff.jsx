@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { DataGrid } from '@mui/x-data-grid';
+// import Spinner from '../../components/Spinner/Spinner';
 import './data-table.staff.scss'
 import image from '../../../assets/img/no_img.png'
 
@@ -64,6 +65,7 @@ export const actionColumns = [
 ]
 
 const DataTableStaff = () => {
+  // let  setLoading = false;
 
   const [staff, setstaff] = useState([]);
       useEffect(() => {
@@ -71,7 +73,10 @@ const DataTableStaff = () => {
       }, [getUsers()]);
 
       function getUsers() {
+            // setLoading=true;
+            // {setLoading === true ?? <Spinner/>}
           axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/staff').then(function(response) {
+            // setLoading=false;
             setstaff(response.data);
       });
   }

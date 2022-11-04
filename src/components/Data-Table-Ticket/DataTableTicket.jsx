@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { DataGrid } from '@mui/x-data-grid';
+// import Spinner from '../../components/Spinner/Spinner';
 import './data-table-ticket.scss'
 
 export const ticketColumns = [
@@ -34,9 +35,6 @@ export const ticketColumns = [
         );
       },
     },
-  ];
-  
-  export const actionColumns = [
     {
       field: "action",
       headerName: "ACTION",
@@ -44,41 +42,34 @@ export const ticketColumns = [
       renderCell:(params)=>{
         return(
           <div className="wcs_cellAction">
-           <div className="wcs_viewButton">VIEW</div>
-           <div className="wcs_deleteButton">DELETE</div>
+            <div className="wcs_viewButton" data-id={`${params.row.id}`}>VIEW</div>
+            <div className="wcs_deleteButton" data-id={`${params.row.id}`}>DELETE</div>
           </div>
         );
       },
     },
-  ]
-  
-  // let current_origin = window.location.origin;
-  // console.log(current_origin)
-  // let path = window.location.pathname;
-  // let c = path.substring(16, path.indexOf('/'));
-  // console.log(current_origin + c)
 
-  // const trimSlashes =  path.split('/').filter(v => v !== '').join('/');
-  // console.log(trimSlashes)
-
+  ];
   
 
 const DataTableTicket = () => {
- 
+  /**
+   * Ticket fetch
+   */
   const [users, setUsers] = useState([]);
       useEffect(() => {
           getUsers();
       }, [getUsers()]);
       function getUsers() {
           axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/tickets').then(function(response) {
-              setUsers(response.data);
+            setUsers(response.data);
       });
   }
 
   return (
     <div className='wcs_datatable_staff'>
       <DataGrid
-        columns={ticketColumns.concat(actionColumns)}
+        columns={ticketColumns}
         rows={users}
         pageSize={9}
         rowsPerPageOptions={[9]}

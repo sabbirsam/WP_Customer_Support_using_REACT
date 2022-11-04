@@ -1,0 +1,92 @@
+.wcs_add_customer{
+    display: flex;
+
+    // start 
+    .wcs_tickets_container{
+        flex:6;
+
+        .wcs_top, .wcs_bottom{
+            -webkit-box-shadow: 2px 4px 10px 1px rgba(0,0,0,0.47);
+            box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+            margin: 20px;
+            padding: 10px;
+            // to make side by side
+            display: flex;
+
+            h1{
+                color: lightgray;
+                font-size: 20px;
+            }
+            //given size
+            .wcs_left{
+             flex: 1; 
+             text-align: center; 
+             
+            //  image 
+            img{
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+                .formInput {
+                    .title_name, .title_email, .title_num{
+                        color: #737373;
+                    }
+                }
+
+            }
+            .wcs_right{
+             flex: 2; 
+             
+             //form field
+                form{
+                    display: flex;
+                    flex-wrap: wrap; // to set all inside the wrap with the given width screen
+                    gap: 20px;
+                    // justify-content: space-around;
+
+                    //file style and label design
+                    label{
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        .wcs_icon{
+                            cursor: pointer;
+                        }
+                    }
+                }
+                .formInput{
+                    width: 40%;
+                    input{
+                        width: 100%;
+                        // design 
+                        padding: 5px;
+                        border: none;
+                        border-bottom: 1px solid gray;
+                        background-color: #F0F0F1;
+
+                        &:focus{
+                            outline: none;
+                            box-shadow: none;
+                        }
+                    }
+                }
+
+                //@at-root btn
+                button{
+                    width: 160px;
+                    padding: 10px;
+                    border: none;
+                    background-color: teal;
+                    color: white;
+                    font-weight: bold;
+                    cursor: pointer;
+                    margin-top: 10px;
+                }
+
+            }
+        }
+    }
+}
