@@ -23,6 +23,7 @@ class WCS_Tickets_Table{
         $sql_table = "CREATE TABLE ".$ticket_table." (
             `id` INT(255) NOT NULL AUTO_INCREMENT,
             `user_name` VARCHAR(255) DEFAULT NULL,
+            `file` text ,
             `email` VARCHAR(255) DEFAULT NULL,
             `title` text NOT NULL,
             `description` text NOT NULL,
@@ -41,7 +42,6 @@ class WCS_Tickets_Table{
 
         $sql_users = "CREATE TABLE ".$users_table." (
             `id` INT(255) NOT NULL AUTO_INCREMENT,
-            `file` text ,
             `user_name` VARCHAR(255) NOT NULL,
             `full_name` VARCHAR(255) NOT NULL,
             `mobile_number` varchar(100),
@@ -50,6 +50,7 @@ class WCS_Tickets_Table{
             `country` varchar(500),
             `password` text NOT NULL,
             `status` tinyint(1) COMMENT '0=inactive,1=active',
+            `file` text ,
             `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (`id`)
         ) ENGINE=InnoDB ".$collate."";
@@ -61,12 +62,15 @@ class WCS_Tickets_Table{
 
         $sql_staff = "CREATE TABLE ".$users_staff." (
             `id` INT(255) NOT NULL AUTO_INCREMENT,
-            `user_name` VARCHAR(255) DEFAULT NULL,
-            `contact` varchar(100),
-            `email` VARCHAR(255) DEFAULT NULL,
+            `user_name` VARCHAR(255) NOT NULL,
+            `full_name` VARCHAR(255) NOT NULL,
+            `mobile_number` varchar(100),
+            `email` VARCHAR(255) NOT NULL,
             `address` text,
+            `country` varchar(500),
             `password` text NOT NULL,
             `status` tinyint(1) COMMENT '0=inactive,1=active',
+            `file` text ,
             `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (`id`)
         ) ENGINE=InnoDB ".$collate."";

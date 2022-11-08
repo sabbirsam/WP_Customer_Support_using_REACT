@@ -1,12 +1,12 @@
 // import React from 'react'
 import DataTableUser from '../../components/Data-Table_User/DataTableUser'
 import AddCustomer from './AddCustomer';
-import Spinner from '../../components/Spinner/Spinner';
+// import Spinner from '../../components/Spinner/Spinner';
 import { useState } from "react";
 import "./customer.scss"
 
 const Customer = () => {
-  let  setLoading = false;
+
   const [AddCustomers, setAddCustomer] = useState(0);
 
   const toggleTab = (index) => {

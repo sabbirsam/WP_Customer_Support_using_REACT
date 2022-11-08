@@ -19,17 +19,16 @@
     .cellWithStatus{
         padding: 5px;
         border-radius: 5px;
-
-        &.active{
-            background-color: rgba(0,128,0,0.05);
-            color: green;
-        }
-
-        &.inactive{
-            background-color: rgba(0,128,0,0.05);
-            color: crimson;
-        }
-
+    }
+    .cellWithStatus.id-1{
+        background-color: rgba(0,128,0,0.05);
+        color: green;
+        width: 48px;
+        text-align: center;
+    }
+    .cellWithStatus.id-0{
+        background-color: rgba(0,128,0,0.05);
+        color: crimson; 
     }
 
     .wcs_cellAction{

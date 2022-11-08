@@ -9,8 +9,6 @@ import MarkUnreadChatAltIcon from '@mui/icons-material/MarkUnreadChatAlt';
 import Navbar from "../../components/Navbar/Navbar";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import Staff from "../../pages/Staff/Staff";
-import Department from "../../pages/Department/Department";
-import Product from "../../pages/Product/Product";
 import Customer from "../../pages/Customer/Customer";
 import Ticket from "../../pages/Ticket/Ticket";
 import Chat from "../../pages/Chat/Chat";
@@ -52,35 +50,19 @@ const WCSTab = () => {
                               <span >Staff</span>
                           </li>
                       </a>
-                      <p className="wcs_title">
-                          ACCESSORIES
-                      </p>
-                      <a className={toggleState === 3 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(3)}>
-                          <li className={toggleState === 3 ? "active" : "tabs"}>
-                              <BrandingWatermarkIcon className='wcs_icon'/>
-                              <span > Department</span>
-                          </li>
-                      </a>
-
-                      <a className={toggleState === 4 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(4)}>
-                          <li className={toggleState === 4 ? "active" : "tabs"}>
-                              <ProductionQuantityLimitsIcon className='wcs_icon'/>
-                              <span >Product</span>
-                          </li>
-                      </a>
-
+                     
                       <p className="wcs_title">
                           SERVICE
                       </p>
 
-                      <a className={toggleState === 5 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(5)}>
-                          <li className={toggleState === 5 ? "active" : "tabs"}>
+                      <a className={toggleState === 3 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(3)}>
+                          <li className={toggleState === 3 ? "active" : "tabs"}>
                               <PeopleAltIcon className='wcs_icon'/>
                               <span >Customer</span>
                           </li>
                       </a>
-                      <a className={toggleState === 6 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(6)}>
-                          <li className={toggleState === 6 ? "active" : "tabs"}>
+                      <a className={toggleState === 4 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(4)}>
+                          <li className={toggleState === 4 ? "active" : "tabs"}>
                               <ConfirmationNumberIcon className='wcs_icon'/>
                               <span >Ticket</span>
                           </li>
@@ -88,8 +70,8 @@ const WCSTab = () => {
                       <p className="wcs_title">
                           SUPPORT
                       </p>
-                      <a className={toggleState === 7 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(7)}>
-                          <li className={toggleState === 7 ? "active" : "tabs"}>
+                      <a className={toggleState === 5 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(5)}>
+                          <li className={toggleState === 5 ? "active" : "tabs"}>
                               <MarkUnreadChatAltIcon className='wcs_icon'/>
                               <span >Chat </span>
                           </li>
@@ -108,20 +90,15 @@ const WCSTab = () => {
                 <div className={toggleState === 2 ? "content  active-content" : "content"}>
                     {toggleState === 2 &&  <Staff/>}
                 </div>
+                
                 <div className={toggleState === 3 ? "content  active-content" : "content"}>
-                    {toggleState === 3 &&  <Department/>}
+                     {toggleState === 3 && <Customer/>}
                 </div>
                 <div className={toggleState === 4 ? "content  active-content" : "content"}>
-                    {toggleState === 4 &&   <Product/>}
+                    {toggleState === 4 &&  <Ticket/>}
                 </div>
                 <div className={toggleState === 5 ? "content  active-content" : "content"}>
-                     {toggleState === 5 && <Customer/>}
-                </div>
-                <div className={toggleState === 6 ? "content  active-content" : "content"}>
-                    {toggleState === 6 &&  <Ticket/>}
-                </div>
-                <div className={toggleState === 7 ? "content  active-content" : "content"}>
-                    {toggleState === 7 &&  <Chat/>}
+                    {toggleState === 5 &&  <Chat/>}
                 </div>
               </div>
           </div>

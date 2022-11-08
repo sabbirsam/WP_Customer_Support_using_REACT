@@ -18,27 +18,36 @@
     .cellWithStatus{
         padding: 5px;
         border-radius: 5px;
-
-        &.complete{
-            background-color: rgb(0 128 0 / 12%);
-            color: green;
-        }
-
-        &.pending{
-            background-color: rgb(247 6 73 / 98%);
-            color: rgb(255 255 255);
-        }
-        &.ongoing{
-            background-color: rgba(134, 224, 7, 0.745);
-            color: rgb(1, 13, 2);
-        }
-
     }
+   //0 is pending
+    .cellWithStatus.id-0{
+        background-color: rgba(0,128,0,0.05);
+        color: crimson; 
+    }
+    //1 ongoing
+    .cellWithStatus.id-1{
+        background-color: rgba(134, 224, 7, 0.745);
+        color: rgb(1, 13, 2);
+        width: 53px;
+        text-align: center;
+    }
+    //2 is resolved
+    .cellWithStatus.id-2{
+        background-color: rgba(0,128,0,0.05);
+        color: green;
+    }
+   
 
     .wcs_cellAction{
         display: flex;
         align-items: center;
         gap: 15px;
+        .action_reset{
+            width: 28px;
+            height: 15px;
+            cursor: pointer;
+            text-align: center;
+        }
 
         .wcs_viewButton{
             padding: 2px 5px;

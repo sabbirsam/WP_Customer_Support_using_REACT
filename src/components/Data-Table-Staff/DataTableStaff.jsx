@@ -30,8 +30,8 @@ export const userColumns = [
   },
 
   {
-    field: "contact",
-    headerName: "Contact",
+    field: "mobile_number",
+    headerName: "Mobile",
     width: 200,
   },
   {
@@ -40,8 +40,8 @@ export const userColumns = [
     width: 160,
     renderCell: (params) => {
       return (
-        <div className={`cellWithStatus ${params.row.status}`}>
-          {params.row.status}
+        <div className={`cellWithStatus id-${params.row.status}`}>
+          {params.row.status ==="1" ? "Active" : "Inactive"}
         </div>
       );
     },
