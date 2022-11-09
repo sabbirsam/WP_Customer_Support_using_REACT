@@ -1,5 +1,6 @@
 import React, {useState, createContext, useContext} from "react"
 import {TicketviewContext} from "../../contexts/TicketviewContext"
+import {TicketeditContext} from "../../contexts/TicketeditContext"
 import axios from "axios";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import './data-table-ticket.scss'
@@ -12,7 +13,8 @@ const TicketActions = ({params}) => {
    */
     const [action, setAction] = useState(null);
     const {view, setView } = useContext(TicketviewContext);
-    const [edit, setEdit] = useState(null);
+    // const [edit, setEdit] = useState(null);
+    const {edit, setEdit} = useContext(TicketeditContext);
 
     const handleAction = (e) =>{
       setAction(e);

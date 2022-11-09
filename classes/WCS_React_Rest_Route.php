@@ -33,6 +33,12 @@ class WCS_React_Rest_Route{
             'callback'=>[$this, 'delete_tickets'],
             'permission_callback' => [$this, 'delete_tickets_permission']
         ] );
+        //Edit
+        register_rest_route( 'wcs/v1', '/tickets',[
+            'methods'=>'POST',
+            'callback'=>[$this, 'edit_tickets'],
+            'permission_callback' => [$this, 'edit_tickets_permission']
+        ] );
         
         /**--------------------------------------------------------------
          * Fetch User from DB
@@ -68,7 +74,6 @@ class WCS_React_Rest_Route{
             'permission_callback' => [$this, 'save_staff_permission']
         ] );
 
-       
     }
 
     /**----------------------------------------------------------
@@ -82,10 +87,7 @@ class WCS_React_Rest_Route{
         return rest_ensure_response($results);
     } 
     //set permission for fetch
-    public function get_tickets_permission(){
-        
-        return true;
-    } 
+    public function get_tickets_permission(){return true; } 
 
    //add tickets
     public function save_tickets( $req ){
@@ -131,11 +133,7 @@ class WCS_React_Rest_Route{
        
     } 
     //add tickets permission
-    public function save_tickets_permission(){
-        // return true;
-        return current_user_can( 'publish_posts' );
-  
-    } 
+    public function save_tickets_permission(){ return current_user_can( 'publish_posts' ); } 
 
     //delete
     public function delete_tickets( $req ){
@@ -156,12 +154,70 @@ class WCS_React_Rest_Route{
         }
        
     } 
-    //add tickets permission
-    public function delete_tickets_permission(){
-        // return true;
-        return current_user_can( 'publish_posts' );
-  
+    //delete tickets permission
+    public function delete_tickets_permission(){return current_user_can( 'publish_posts' );} 
+
+    //Edit---------------------------------------------------------------------------------------------
+    public function edit_tickets( $req ){
+
+        function sanitize_text_or_array_field($array_or_string) {
+            if( is_string($array_or_string) ){
+                $array_or_string = sanitize_text_field($array_or_string);
+            }elseif( is_array($array_or_string) ){
+                foreach ( $array_or_string as $key => &$value ) {
+                    if ( is_array( $value ) ) {
+                        $value = sanitize_text_or_array_field($value);
+                    }
+                    else {
+                        $value = sanitize_text_field( $value );
+                    }
+                }
+            } 
+            return $array_or_string;
+        }
+        // save to db 
+        // then 
+        $id = sanitize_text_or_array_field($req ['id'])?? '';
+        /**
+         * Edit ticket updated
+         */
+        if($id){
+            $table = $wpdb->prefix . 'wcs_tickets';
+            $data = array( 'full_name' => $fullname, 'mobile_number' => $mobile,'address' => $address,'email' => $email,'user_name' => $username,'password' => $password,'country' => $country,'file' => $file ,'date_created' => $date);
+            $format = array('%s','%s','%s','%s','%s','%s','%s','%s','%s');
+            $results = $wpdb->get_results("SELECT $data FROM $table WHERE `id` = $id");
+            return rest_ensure_response($results);
+            
+        }
+        /**
+         * Update data show 
+         */
+        $username = sanitize_text_or_array_field($req ['username'])?? '';
+        $title = sanitize_text_or_array_field($req ['title']) ?? '';
+        $email = sanitize_text_or_array_field($req ['email'])?? '';
+        // $description = sanitize_text_or_array_field($req ['description'])?? '';
+        $description = $req ['description']?? '';
+        $file = sanitize_text_or_array_field($req ['file']) ?? '';
+
+        $date = date('Y-m-d H:i:s');
+        global $wpdb;
+        $table=$wpdb->prefix.'wcs_tickets';
+
+        $data_update = array('user_name' => $username,'title' => $title,'description' => $description,'email' => $email,'file' => $file ,'date_created' => $date);
+        $data_where = array('id' => $id);
+        $update = $wpdb->update($table , $data_update, $data_where);
+    
+        if($update){
+            return rest_ensure_response('successfully Update data'); 
+            wp_die();
+        }else{
+            return rest_ensure_response('Failed update data');
+            wp_die();
+        }
+       
     } 
+    //Edit tickets permission
+    public function edit_tickets_permission(){return current_user_can( 'publish_posts' );} 
 
     /**
      * User-------------------------------------------------------
