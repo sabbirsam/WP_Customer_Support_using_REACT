@@ -34,7 +34,7 @@ class WCS_React_Rest_Route{
             'permission_callback' => [$this, 'delete_tickets_permission']
         ] );
         //Edit
-        register_rest_route( 'wcs/v1', '/tickets',[
+        register_rest_route( 'wcs/v1', '/tickets_edit',[
             'methods'=>'POST',
             'callback'=>[$this, 'edit_tickets'],
             'permission_callback' => [$this, 'edit_tickets_permission']
@@ -175,20 +175,21 @@ class WCS_React_Rest_Route{
             } 
             return $array_or_string;
         }
-        // save to db 
-        // then 
+        
         $id = sanitize_text_or_array_field($req ['id'])?? '';
+
         /**
          * Edit ticket updated
          */
-        if($id){
-            $table = $wpdb->prefix . 'wcs_tickets';
-            $data = array( 'full_name' => $fullname, 'mobile_number' => $mobile,'address' => $address,'email' => $email,'user_name' => $username,'password' => $password,'country' => $country,'file' => $file ,'date_created' => $date);
-            $format = array('%s','%s','%s','%s','%s','%s','%s','%s','%s');
-            $results = $wpdb->get_results("SELECT $data FROM $table WHERE `id` = $id");
-            return rest_ensure_response($results);
-            
-        }
+
+        // if($id){
+        //     $table = $wpdb->prefix . 'wcs_tickets';
+        //     $data = array( 'full_name' => $fullname, 'mobile_number' => $mobile,'address' => $address,'email' => $email,'user_name' => $username,'password' => $password,'country' => $country,'file' => $file ,'date_created' => $date);
+        //     $format = array('%s','%s','%s','%s','%s','%s','%s','%s','%s');
+        //     $results = $wpdb->get_results("SELECT $data FROM $table WHERE `id` = $id");
+        //     return rest_ensure_response($results);   
+        // }
+        
         /**
          * Update data show 
          */

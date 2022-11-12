@@ -1,0 +1,20 @@
+.status_widget{
+    display: inline-block;
+    padding: 10px;
+    .selectFields{
+        padding: 10px;
+        // display: table-cell;
+    }
+    button.status_submit {
+        width: 92%;
+        margin-left: 12px;
+        border: none;
+        background-color: teal;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+        height: 41px;
+        border-radius: 2px;
+    }
+}

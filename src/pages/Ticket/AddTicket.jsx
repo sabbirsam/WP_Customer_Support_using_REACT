@@ -1,6 +1,6 @@
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import Noimage from "../../../assets/img/no_img.png"
-import React, {useState} from "react"
+import React, {useState,useEffect} from "react"
 import axios from "axios";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -9,12 +9,28 @@ import 'sweetalert2/src/sweetalert2.scss'
 import "./addticket.scss";
 
 const AddTicket = () => {
+   const [evalidation, setEValidation] = useState(true);
+   const [bgColor, setBgcolor] = useState("#cccccc");
+   const [color, setColor] = useState("#666666");
+
    const [file, setFile] = useState();
    const [image, setImage] = useState("");
    const [username, setUsername] = useState("");
    const [title, setTitle] = useState("");
    const [email, setEmail] = useState("");
    const [description, setDescription] = useState('');
+
+
+   useEffect(() => {
+    if (username.length <= 2 || email.length <= 3) {
+      setEValidation(true)
+    }
+    else {
+      setEValidation(false)
+      setBgcolor("teal")
+      setColor("white")
+    }
+  }, [username, email]);
 
    /**
     * On submit
@@ -40,6 +56,9 @@ const AddTicket = () => {
             setEmail("");
             setDescription("");
 
+            setEValidation(true)
+            setBgcolor("#cccccc")
+            setColor("#666666")
  
           // console.log(res);
  
@@ -95,7 +114,7 @@ const AddTicket = () => {
                     <input type="email" placeholder="jhon@gmail.com" name="email" value={email} onChange={e =>setEmail(e.target.value) }/>
                   </div>
                  
-                  <button className="wcs_user_create" onClick={handleSubmit}>ADD</button>
+                  <button style={{background:bgColor,color:color}} className="wcs_user_create" disabled={evalidation} onClick={handleSubmit}>ADD</button>
                   
                 </form>
               </div>

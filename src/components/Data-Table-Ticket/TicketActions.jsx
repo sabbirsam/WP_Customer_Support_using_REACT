@@ -7,22 +7,20 @@ import './data-table-ticket.scss'
 import ReplyAllIcon from '@mui/icons-material/ReplyAll';
 
 const TicketActions = ({params}) => {
+  // console.log(params)
   
   /**
    * Action mode
    */
     const [action, setAction] = useState(null);
     const {view, setView } = useContext(TicketviewContext);
-    // const [edit, setEdit] = useState(null);
     const {edit, setEdit} = useContext(TicketeditContext);
 
     const handleAction = (e) =>{
       setAction(e);
     }
     const handleView = (e) =>{
-      // setView(true);
       setView(e);
-      
     }    
     const handleEdit=(e)=>{ 
       setEdit(e);
@@ -68,12 +66,12 @@ const TicketActions = ({params}) => {
   return (
       <>
         {action === null &&<div className="wcs_cellAction">
-            <div className="wcs_viewButton" data-id={`${params.row.id}`} onClick={(e) => { handleView(params.row.id) }} >VIEW</div>
+            <div className="wcs_viewButton" data-id={`${params.row.id}`} onClick={(e) => { handleView(params) }} >VIEW</div>
             <div className="wcs_viewButton" data-id={`${params.row.id}`} onClick={(e) => { handleAction(params.row.id) }} >ACTION</div>
         </div>}
         {action &&<div className="wcs_cellAction">
             <div className="wcs_deleteButton" data-id={`${params.row.id}`} onClick={(e) => { handleReset(params.row.id) }}>{<ReplyAllIcon className="action_reset"/>}</div>
-            <div className="wcs_deleteButton" data-id={`${params.row.id}`} onClick={(e) => { handleEdit(params.row.id) }}>EDIT</div>
+            <div className="wcs_deleteButton" data-id={`${params.row.id}`} onClick={(e) => { handleEdit(params) }}>EDIT</div>
             <div className="wcs_deleteButton" data-id={`${params.row.id}`} onClick={(e) => { handleDelete(params.row.id) }}>DELETE</div> 
         </div>}
 

@@ -8,36 +8,22 @@ import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
 
 const EditTicket = ({ticketNum}) => {
+  console.log( ticketNum)
 
-   const id = ticketNum;
-   const [file, setFile] = useState();
-   const [image, setImage] = useState("");
-   const [username, setUsername] = useState("");
-   const [title, setTitle] = useState("");
-   const [email, setEmail] = useState("");
-   const [description, setDescription] = useState('');
-
-  /**
-   * Ticket fetch
-   */
-  const [users, setUsers] = useState();
-  useEffect(() => {
-      getUsers();
-    }, []);
-    function getUsers() {
-        axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/tickets').then(function(response) {
-          setUsers(response.data);
-    });
-  }
-  console.log(users);
+   const id = ticketNum.row.id;
+   const [file, setFile] = useState(ticketNum.row.file);
+   const [image, setImage] = useState(ticketNum.row.image);
+   const [username, setUsername] = useState(ticketNum.row.user_name);
+   const [title, setTitle] = useState(ticketNum.row.title);
+   const [email, setEmail] = useState(ticketNum.row.email);
+   const [description, setDescription] = useState(ticketNum.row.description);
 
    /**
     * On submit
     */
     const handleSubmit = async e => {
       e.preventDefault();
-      const url = `${appLocalizer.apiUrl}/wcs/v1/tickets`;
-      // const url = "http://localhost/wppool/chatbox/wp-json/wcs/v1/tickets";
+      const url = `${appLocalizer.apiUrl}/wcs/v1/tickets_edit`;
       try{
         const res = await axios.post(url, {
         id, file,username,title,email,description
@@ -110,7 +96,7 @@ const EditTicket = ({ticketNum}) => {
                     <input type="email" placeholder="jhon@gmail.com" name="email" value={email} onChange={e =>setEmail(e.target.value) }/>
                   </div>
                  
-                  <button className="wcs_user_create" onClick={handleSubmit}>ADD</button>
+                  <button className="wcs_user_create" onClick={handleSubmit}>UPDATE</button>
                   
                 </form>
               </div>
