@@ -19,15 +19,18 @@
         padding: 5px;
         border-radius: 5px;
     }
-   //0 is pending
+   //0 is Open
     .cellWithStatus.id-0{
+        background-color: rgba(7, 166, 224, 0.745);
+        color: rgb(1, 13, 2);
+        width: 51px;
+        text-align: center;
+    }
+    //1 Pending
+    .cellWithStatus.id-1{
+       
         background-color: rgba(0,128,0,0.05);
         color: crimson; 
-    }
-    //1 ongoing
-    .cellWithStatus.id-1{
-        background-color: rgba(134, 224, 7, 0.745);
-        color: rgb(1, 13, 2);
         width: 53px;
         text-align: center;
     }
@@ -35,6 +38,11 @@
     .cellWithStatus.id-2{
         background-color: rgba(0,128,0,0.05);
         color: green;
+    }
+     //3 is Close
+     .cellWithStatus.id-3{
+        background-color: rgb(200 225 0 / 30%);
+        color: rgb(255 0 219);
     }
    
 

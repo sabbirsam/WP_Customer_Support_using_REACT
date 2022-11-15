@@ -27,8 +27,6 @@ const AddCustomer = () => {
   }); 
   const [saveloader, setsaveLoader] = useState("SAVE")
   const handleChange = e =>{
-    // setFile(e.target.files[0]); //to add instant images
-    //Inputs 
     setCInputs(prev=>({...prev, [e.target.name] : e.target.value})) 
   }
   console.log(cinputs);
@@ -42,16 +40,14 @@ const AddCustomer = () => {
 
     const url = `${appLocalizer.apiUrl}/wcs/v1/users`;
     try{
-      // const res = await axios.post("http://localhost/wppool/chatbox/wp-json/wcs/v1/users", cinputs)
       const res = await axios.post(url, cinputs, {
         headers:{
           'content-type': 'application/json',
           'X-WP-NONCE':appLocalizer.nonce
         }
       }).then(function(res) {
+        console.log(res.data)
         setsaveLoader("SAVE")
-
-        // console.log(res);
         setFile("");
         setCInputs({
           file : "",
@@ -63,18 +59,40 @@ const AddCustomer = () => {
           address : "",
           country : "",
         });
-       
 
-        Swal.fire({
-          // position: 'top-end',
+      if(res.data === 0){
+
+          Swal.fire({
           toast: true,
           position: 'bottom-right',
-          icon: 'success',
-          title: 'User has been saved',
+          icon: 'error',
+          title: "Failed to inserted data! Unauthorize access",
           showConfirmButton: false,
           timer: 1500
         })
-        
+
+        }else if(res.data === 1){
+          
+            Swal.fire({
+            toast: true,
+            position: 'bottom-right',
+            icon: 'success',
+            title: "Customer created successfully",
+            showConfirmButton: false,
+            timer: 1500
+          })
+
+      }else{
+          Swal.fire({
+          toast: true,
+          position: 'bottom-right',
+          icon: 'info',
+          title: "Failed to create as email exist",
+          showConfirmButton: false,
+          timer: 1500
+          })
+
+        }
 
       });// .then can add here
       
@@ -84,13 +102,6 @@ const AddCustomer = () => {
 
   }
 
-  // const [name, setName] = useState();
-  // const [gmail, setGmail] = useState("jhon@gmail.com");
-  // const [number, setNum] = useState("+880 18546165");
-  /**
-   * File selection
-   */
- 
   return (
     <div className="wcs_add_customer" id="wcs_add_customer">
       <div className="wcs_tickets_container">
@@ -101,11 +112,6 @@ const AddCustomer = () => {
           <div className="wcs_bottom">
               <div className="wcs_left">
                 <img src={file ? URL.createObjectURL(file)  : Noimage } value={file} alt="Add Customer" />
-                {/* <div className="formInput">
-                    <h2 className="title_name">{name ? name : "Jhon Doe"}</h2>
-                    <h3 className="title_email">jhon@gmail.com</h3>
-                    <h3 className="title_num">+880 18546165</h3>
-                </div> */}
               </div>
               <div className="wcs_right">
                 <form action="">
@@ -142,10 +148,7 @@ const AddCustomer = () => {
                     <label htmlFor="country">Country</label>
                     <input type="text" placeholder="Bangladesh" value={cinputs.country} name="country" onChange={handleChange}/>
                   </div>
-                  {/* <button className="wcs_user_create" onClick={handleSubmit}>Save</button> */}
-                  <button className="wcs_user_create" onClick={handleSubmit}>{saveloader}</button>
-                  {/* <button className="wcs_user_create" onClick={(e) => { handleSubmit(e)}}>{saveloader}</button> */}
-                  
+                  <button className="wcs_user_create" onClick={handleSubmit}>{saveloader}</button>                  
                 </form>
               </div>
           </div>

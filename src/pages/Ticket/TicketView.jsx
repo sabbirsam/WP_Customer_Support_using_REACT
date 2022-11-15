@@ -8,15 +8,43 @@ import BadgeIcon from '@mui/icons-material/Badge';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
+import axios from "axios";
 import Tags from "../../components/Tags/Tags";
 
 
 const TicketView = ({ticketNum}) => {
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState([]);
+  const [resdescription, setResdescription] = useState([]);
+
+  if(ticketNum.row.description.length>0){
+    var myDesc = JSON.parse(ticketNum.row.description);
+  }
+  if(ticketNum.row.res_description.length>0){
+    var myResdesc = JSON.parse(ticketNum.row.res_description);
+  }
+
+
   
-  console.log({description})
+  // console.log({description})
   // console.log(ticketNum.row.id)
+
+
+  
+    /**
+   * Ticket fetch
+   */
+    //  const [users, setUsers] = useState([]);
+    //  useEffect(() => {
+    //       getUsers();
+    //   }, []);
+    //   function getUsers() {
+    //       axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/tickets_res').then(function(response) {
+    //         setUsers(response.data);
+    //   });
+    // } 
+    // console.log(users)
+
   return (
     <div className="wcs_view_ticket" id="wcs_view_ticket">
       <div className="wcs_tickets_container">
@@ -39,15 +67,50 @@ const TicketView = ({ticketNum}) => {
                 <span className="sp_email">To: { ticketNum.row.email}</span>
               </div>
           </div>
-          <div className='wcs_tickets'>
-              <div className="wcs_title_class">
-                {<BadgeIcon className="Icon_description_user"/>}
-                <div className="wcs_editor">
-                {/* <ReactQuill theme="snow" className="editor_filed" value={ticketNum.row.description} /> */}
-                <div dangerouslySetInnerHTML={{__html: ticketNum.row.description}}></div>
-                </div>
-              </div>
-          </div>
+          {/* User tickets  */}
+            {
+              myDesc &&
+              myDesc.map(desc => {
+                return (
+                    <div className='wcs_tickets'>
+                      <div className="wcs_title_class">
+                        {<BadgeIcon className="Icon_description_user"/>}
+                        {/* <div  className="user_title">{ticketNum.row.user_name[0]}</div> */}
+                        <div className="wcs_editor">
+                          <div className="desc">
+                          {
+                            <div className="wcs_descriptions" dangerouslySetInnerHTML={{__html: desc}}></div>
+                          }
+                          </div>
+                      </div>
+                      </div>
+                  </div>
+                  )
+              })
+            }
+            {/*Tickets Response  */}
+            {
+              myResdesc&&
+              myResdesc.map(desc => {
+                return (
+                    <div className='wcs_tickets_res'>
+                      <div className="wcs_title_res_class">
+                        {<AdminPanelSettingsIcon className="Icon_description_user_res"/>}
+                        {/* <div  className="user_title">{ticketNum.row.user_name[0]}</div> */}
+                        <div className="wcs_editor_res">
+                          <div className="desc_res">
+                          {
+                            <div className="wcs_descriptions_res" dangerouslySetInnerHTML={{__html: desc}}></div>
+                          }
+                          </div>
+                      </div>
+                      </div>
+                  </div>
+                  )
+              })
+            }
+
+
           <div className='wcs_tickets'>
               <div className="wcs_title_class">
                 {<BorderColorIcon className="Icon_description_user"/>}
@@ -60,7 +123,7 @@ const TicketView = ({ticketNum}) => {
           <div className='wcs_tickets'>
               <div className="wcs_title_class">
                 <div className="wcs_editor">
-                  <button className="wcs_user_create">SAVE</button>  
+                  <button className="wcs_user_create">SEND</button>  
                 </div>
               </div>
           </div>
@@ -69,9 +132,10 @@ const TicketView = ({ticketNum}) => {
       <div className="wcs_left">
           <div className="properties">
             <h2 className="properties_title">PROPERTIES</h2>
-            <Tags/>
+            <Tags {...{ticketNum}}/>
           </div>
           <div className="wcs_right">
+            {/* left side not down editor  */}
             <div className="wcs_editor"><ReactQuill theme="snow" className="editor_filed_note" /> </div>
           </div>
           <div className="wcs_right">

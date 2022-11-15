@@ -6,16 +6,19 @@ import './data-table-user.scss'
 import image from '../../../assets/img/no_img.png'
 
 export const userColumns = [
+  // { field: "ID", headerName: "ID", width: 70 },
   { field: "id", headerName: "ID", width: 70 },
+ 
   {
     field: "name",
+    // field: "user_login",
     headerName: "Name",
     width: 280,
     renderCell: (params) => {
       return (
         <div className="wcs_cellWithImg">
          {
-          params.row.img && <img className="wcs_cellImg" src={params.row.img} alt="staff" /> 
+          params.row.file && <img className="wcs_cellImg" src={params.row.file} alt="staff" /> 
           ||  <img className="wcs_cellImg" src={image} alt="staff" /> 
          }
          {params.row.user_name}
@@ -23,6 +26,22 @@ export const userColumns = [
       );
     },
   },
+
+  // {
+  //   field: "display_name",
+  //   headerName: "Display Name",
+  //   width: 200,
+  // },
+  // {
+  //   field: "user_email",
+  //   headerName: "Email",
+  //   width: 300,
+  // },
+  // {
+  //   field: "user_registered",
+  //   headerName: "Register date",
+  //   width: 160,
+  // },
   {
     field: "email",
     headerName: "Email",
@@ -35,6 +54,7 @@ export const userColumns = [
     width: 200,
   },
   {
+    // field: "user_status",
     field: "status",
     headerName: "Status",
     width: 160,
@@ -52,7 +72,7 @@ export const actionColumns = [
   {
     field: "action",
     headerName: "ACTION",
-    width: 300,
+    width: 150,
     renderCell:(params)=>{
       return(
         <div className="wcs_cellAction">
@@ -67,7 +87,7 @@ export const actionColumns = [
 const DataTableStaff = () => {
   // let  setLoading = false;
 
-  const [staff, setstaff] = useState([]);
+  const [user, setUser] = useState([]);
       useEffect(() => {
           getUsers();
       }, [getUsers()]);
@@ -77,20 +97,20 @@ const DataTableStaff = () => {
             // {setLoading === true ?? <Spinner/>}
           axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/users').then(function(response) {
             // setLoading=false;
-            setstaff(response.data);
+            setUser(response.data);
       });
   }
 
   return (
     <div className='wcs_datatable_staff'>
       <DataGrid
-        rows={staff}
+        rows={user}
         columns={userColumns.concat(actionColumns)}
         pageSize={8}
         rowsPerPageOptions={[8]}
         checkboxSelection
         disableSelectionOnClick
-        
+        getRowId={row => row.id}
       />
     </div>
   )

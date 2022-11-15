@@ -18,7 +18,8 @@ const AddTicket = () => {
    const [username, setUsername] = useState("");
    const [title, setTitle] = useState("");
    const [email, setEmail] = useState("");
-   const [description, setDescription] = useState('');
+   const [description, setDescription] = useState([]);
+   const [resdescription, setResdescription] = useState([]);
 
 
    useEffect(() => {
@@ -37,7 +38,7 @@ const AddTicket = () => {
     */
     const handleSubmit = async e => {
       e.preventDefault();
-  
+
       const url = `${appLocalizer.apiUrl}/wcs/v1/tickets`;
       try{
         const res = await axios.post(url, {
@@ -88,7 +89,7 @@ const AddTicket = () => {
           <div className="wcs_bottom" id='wcs_bottom'>
               <div className="wcs_left">
                 <div className="wcs_editor">
-                <ReactQuill theme="snow" className="editor_filed" value={description} onChange={setDescription} />
+                <ReactQuill theme="snow" className="editor_filed" name="description" value={description} onChange={setDescription} />
                 </div>
               </div>
               <div className="wcs_right">

@@ -39,6 +39,24 @@ class WCS_React_Rest_Route{
             'callback'=>[$this, 'edit_tickets'],
             'permission_callback' => [$this, 'edit_tickets_permission']
         ] );
+
+        /**
+         * Fetch Tickets from DB
+         */
+        register_rest_route( 'wcs/v1', '/tickets_res',[
+            'methods'=>'GET',
+            'callback'=>[$this, 'get_tickets_res'],
+            'permission_callback' => [$this, 'get_tickets_res_permission']
+        ] );
+         /**
+         * Add tickets in DB
+         */
+        register_rest_route( 'wcs/v1', '/tickets_res',[
+            'methods'=>'POST',
+            'callback'=>[$this, 'save_tickets_res'],
+            'permission_callback' => [$this, 'save_tickets_res_permission']
+        ] );
+
         
         /**--------------------------------------------------------------
          * Fetch User from DB
@@ -88,6 +106,19 @@ class WCS_React_Rest_Route{
     } 
     //set permission for fetch
     public function get_tickets_permission(){return true; } 
+    /**----------------------------------------------------------
+     * Tickets response
+     * get Tickets Response
+     */
+    public function get_tickets_res(){
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'wcs_tickets_response';
+        $results = $wpdb->get_results("SELECT * FROM $table_name");
+        return rest_ensure_response($results);
+    } 
+    //set permission for fetch tickets response
+    public function get_tickets_res_permission(){return true; } 
+
 
    //add tickets
     public function save_tickets( $req ){
@@ -115,10 +146,15 @@ class WCS_React_Rest_Route{
         $description = $req ['description']?? '';
         $file = sanitize_text_or_array_field($req ['file']) ?? '';
 
+        $d = array($description);
+        $desc = json_encode($d);
+
+
+
         $date = date('Y-m-d H:i:s');
         global $wpdb;
         $table=$wpdb->prefix.'wcs_tickets';
-        $data = array( 'user_name' => $username,'title' => $title,'description' => $description,'email' => $email,'file' => $file ,'date_created' => $date);
+        $data = array( 'user_name' => $username,'title' => $title,'description' => $desc,'email' => $email,'file' => $file ,'date_created' => $date);
         $format = array('%s','%s','%s','%s','%s','%s');
         $wpdb->insert($table,$data,$format);
         $save = $wpdb->insert_id;
@@ -177,18 +213,6 @@ class WCS_React_Rest_Route{
         }
         
         $id = sanitize_text_or_array_field($req ['id'])?? '';
-
-        /**
-         * Edit ticket updated
-         */
-
-        // if($id){
-        //     $table = $wpdb->prefix . 'wcs_tickets';
-        //     $data = array( 'full_name' => $fullname, 'mobile_number' => $mobile,'address' => $address,'email' => $email,'user_name' => $username,'password' => $password,'country' => $country,'file' => $file ,'date_created' => $date);
-        //     $format = array('%s','%s','%s','%s','%s','%s','%s','%s','%s');
-        //     $results = $wpdb->get_results("SELECT $data FROM $table WHERE `id` = $id");
-        //     return rest_ensure_response($results);   
-        // }
         
         /**
          * Update data show 
@@ -225,10 +249,13 @@ class WCS_React_Rest_Route{
      * get User
      */
     public function get_users(){
+    
         global $wpdb;
+        // $table_name = $wpdb->prefix . 'users';
         $table_name = $wpdb->prefix . 'wcs_users';
         $results = $wpdb->get_results("SELECT * FROM $table_name");
         return rest_ensure_response($results);
+        
     } 
     //set permission for fetch
     public function get_users_permission(){
@@ -253,8 +280,7 @@ class WCS_React_Rest_Route{
                     }
                 } 
                 return $array_or_string;
-            }
-
+            }           
             //
             $username = sanitize_text_or_array_field($req ['username'])?? '';
             $fullname = sanitize_text_or_array_field($req ['fullname']) ?? '';
@@ -262,24 +288,47 @@ class WCS_React_Rest_Route{
             $mobile = sanitize_text_or_array_field($req ['mobile']) ?? '';
             $country = sanitize_text_or_array_field($req ['country']) ?? '';
             $address = sanitize_text_or_array_field($req ['address'])?? '';
-            $password = sanitize_text_or_array_field($req ['password'])?? '';
+
+            $n_password = sanitize_text_or_array_field($req ['password'])?? '';
+            // $password = wp_hash_password($n_password);
+            $password = md5($n_password);
+            
             $file = sanitize_text_or_array_field($req ['file']) ?? '';
 
+            
             $date = date('Y-m-d H:i:s');
             global $wpdb;
             $table=$wpdb->prefix. 'wcs_users';
-            $data = array( 'full_name' => $fullname, 'mobile_number' => $mobile,'address' => $address,'email' => $email,'user_name' => $username,'password' => $password,'country' => $country,'file' => $file ,'date_created' => $date);
-            $format = array('%s','%s','%s','%s','%s','%s','%s','%s','%s');
-            $wpdb->insert($table,$data,$format);
-            $save = $wpdb->insert_id;
-        
-            if($save){
-                return rest_ensure_response('successfully inserted data'); 
-                wp_die();
-            }else{
-                return rest_ensure_response('Failed inserted data');
-                wp_die();
+
+            $gmail_found = $wpdb->get_results("SELECT `email` FROM $table"); //SELECT `password` FROM `wp_wcs_users` WHERE id = '1'
+            $expected = [];
+            foreach ($gmail_found as $key=>$obj){
+                $expected[] = $obj->email; 
             }
+            
+            if (!in_array($email, $expected)) {
+                
+                $data = array( 'full_name' => $fullname, 'mobile_number' => $mobile,'address' => $address,'email' => $email,'user_name' => $username,'password' => $password,'country' => $country,'file' => $file ,'date_created' => $date);
+                $format = array('%s','%s','%s','%s','%s','%s','%s','%s','%s');
+                $wpdb->insert($table,$data,$format);
+                $save = $wpdb->insert_id;
+            
+                if($save){
+                    // return rest_ensure_response('successfully inserted data'); 
+                    return rest_ensure_response(1); 
+                    wp_die();
+                }else{
+                    // return rest_ensure_response('Failed inserted data');
+                    return rest_ensure_response(0);
+                    wp_die();
+                }
+
+              } else {
+                    return rest_ensure_response(3);
+                    // return rest_ensure_response('Failed to save as email exist');
+                    wp_die();
+              }
+  
        
     } 
     //add users permission
@@ -372,3 +421,29 @@ class WCS_React_Rest_Route{
     
 
 }
+
+            // global $wpdb;
+            // $table=$wpdb->prefix. 'wcs_users';
+            // $n_password = sanitize_text_or_array_field($req ['password'])?? '';
+            // // $password = wp_hash_password($n_password);
+            // $password = $wp_hasher->HashPassword($n_password);
+
+            // $password_hashed = $wpdb->get_results("SELECT `password` FROM $table  WHERE id = '5' "); //SELECT `password` FROM `wp_wcs_users` WHERE id = '1'
+            //             // // print_r($password_hashed->password);
+            // foreach ($password_hashed as $item){
+            //     $hash = $item->password; 
+            // }
+            // print_r($hash);
+            // print_r($n_password);
+            
+            // require_once( ABSPATH . 'wp-includes/class-phpass.php');
+            // $wp_hasher = new PasswordHash(8, TRUE);
+            // $check = $wp_hasher->CheckPassword($n_password, $hash);
+            //             //// $check = $wp_hasher->CheckPassword($n_password, $hash);
+            //             //// return $wp_hasher->HashPassword($password);
+            // if( $check ) {
+            //     return rest_ensure_response('Matched'); 
+            // } else {
+            //     return rest_ensure_response('No, Wrong Password'); 
+            //     echo "No, Wrong Password";
+            // }

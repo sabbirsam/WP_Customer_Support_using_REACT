@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import {Box, TextField, MenuItem} from '@mui/material';
 import "./tag.scss"
 
-const Tags = () => {
-    const [status, setStatus] = useState('');
-    const [priority, setPriority] = useState('');
-    const [agent, setAgent] = useState('');
-    const [group, setGroup] = useState('');
+const Tags = ({ticketNum}) => {
+    const [status, setStatus] = useState(ticketNum.row.status);
+    const [priority, setPriority] = useState(ticketNum.row.priority);
+    const [agent, setAgent] = useState(ticketNum.row.customer_id);
+    const [group, setGroup] = useState(ticketNum.row.groups);
    
+    // console.log(ticketNum);
 
     const handleChange = (event) => {
         setStatus(event.target.value);
@@ -32,8 +33,8 @@ const Tags = () => {
       const handleSubmit = () => {
         console.log(status)
         console.log(priority)
-        console.log({agent})
-        console.log({group})
+        console.log(agent)
+        console.log(group)
       }
 
  
@@ -43,10 +44,10 @@ const Tags = () => {
         <div className="status_widget">
             <Box width='250px' className='selectFields'>
                 <TextField label="Status" select value={status} onChange={handleChange} fullWidth>
-                    <MenuItem value="0">Close</MenuItem>
-                    <MenuItem value="1">Open</MenuItem>
-                    <MenuItem value="2">Pending</MenuItem>
-                    <MenuItem value="3">Resolve</MenuItem>
+                    <MenuItem value="0">Open</MenuItem>
+                    <MenuItem value="1">Pending</MenuItem>
+                    <MenuItem value="2">Resolve</MenuItem>
+                    <MenuItem value="3">Close</MenuItem>
                 </TextField>
               </Box>
             <Box width='250px' className='selectFields'>
@@ -67,9 +68,9 @@ const Tags = () => {
               </Box>
             <Box width='250px' className='selectFields'>
                 <TextField label="group" select value={group} onChange={handleGroup} fullWidth>
-                    <MenuItem value="0">Affiliates</MenuItem>
-                    <MenuItem value="1">Facebook</MenuItem>
-                    <MenuItem value="2">Support</MenuItem>
+                    <MenuItem value="0">Support</MenuItem>
+                    <MenuItem value="1">Affiliates</MenuItem>
+                    <MenuItem value="2">Facebook</MenuItem>
                     <MenuItem value="3">Marketing</MenuItem>
                 </TextField>
               </Box>

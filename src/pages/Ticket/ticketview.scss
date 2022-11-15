@@ -21,7 +21,12 @@
                 .wcs_editor {
                     width: 85%;
                     margin-left: 55px;
-                    margin-top: 18px;
+                    // margin-left:35px;
+                    .desc{
+                        box-shadow: 2px 4px 10px 1px rgb(201 201 201 / 47%);
+                        text-align: left;
+                        padding: 11px;
+                    }
                     .editor_filed{
                         width: 800px;
                         height: 400px;
@@ -36,16 +41,39 @@
                         cursor: pointer;
                         margin-top: 10px;
                     }
+
+                    button.wcs_user_create{
+                        width: 160px;
+                        padding: 10px;
+                        border: none;
+                        background-color: teal;
+                        color: white;
+                        font-weight: bold;
+                        cursor: pointer;
+                        margin-top: 38px;
+                        float: left;
+                    }
                 }
 
                 
                 .Icon_description_user{
                     position: absolute;
-                    top: 30px;
                     left: 3px;
                     font-size: 35px;
                     color: #92b588;
+                   
                 }
+                .user_title {
+                    border: 7px dotted #cdebc4;
+                    background-color: #cdebc4;
+                    width: 19px;
+                    font-size: 23px;
+                    border-radius: 7px;
+                    text-align: center;
+                    color: rgba(0, 0, 0, 0.3);
+                    margin-left: 2px;
+                }
+
                 .title_icon{
                     font-size: 35px;
                     color: #92b588;
@@ -102,6 +130,33 @@
             }
             
     
+        }
+        .wcs_tickets_res {
+            display: flex;
+            flex-direction: row-reverse;
+
+            .wcs_title_res_class{
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                .Icon_description_user_res{
+                    position: absolute;
+                    right: -35px;
+                    font-size: 35px;
+                    color: #92b588;  
+                }
+           
+                .wcs_editor_res {
+                    // width: 85%;
+                    margin-right: 15px;
+                    .desc_res{
+                        box-shadow: 2px 4px 10px 1px rgb(201 201 201 / 47%);
+                        // text-align: left;
+                        padding: 11px;
+                    }
+                }
+            }
         }
         
     }
@@ -177,7 +232,7 @@
             color: white;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 25px;
             float: left;
         }
 

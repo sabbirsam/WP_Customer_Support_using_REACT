@@ -1804,18 +1804,24 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   border-radius: 5px;
 }
 .wcs_datatable_staff .cellWithStatus.id-0 {
-  background-color: rgba(0, 128, 0, 0.05);
-  color: crimson;
+  background-color: rgba(7, 166, 224, 0.745);
+  color: rgb(1, 13, 2);
+  width: 51px;
+  text-align: center;
 }
 .wcs_datatable_staff .cellWithStatus.id-1 {
-  background-color: rgba(134, 224, 7, 0.745);
-  color: rgb(1, 13, 2);
+  background-color: rgba(0, 128, 0, 0.05);
+  color: crimson;
   width: 53px;
   text-align: center;
 }
 .wcs_datatable_staff .cellWithStatus.id-2 {
   background-color: rgba(0, 128, 0, 0.05);
   color: green;
+}
+.wcs_datatable_staff .cellWithStatus.id-3 {
+  background-color: rgba(200, 225, 0, 0.3);
+  color: rgb(255, 0, 219);
 }
 .wcs_datatable_staff .wcs_cellAction {
   display: flex;
@@ -2921,7 +2927,11 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 .wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .wcs_editor {
   width: 85%;
   margin-left: 55px;
-  margin-top: 18px;
+}
+.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .wcs_editor .desc {
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  text-align: left;
+  padding: 11px;
 }
 .wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .wcs_editor .editor_filed {
   width: 800px;
@@ -2937,12 +2947,32 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   cursor: pointer;
   margin-top: 10px;
 }
+.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .wcs_editor button.wcs_user_create {
+  width: 160px;
+  padding: 10px;
+  border: none;
+  background-color: teal;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 38px;
+  float: left;
+}
 .wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .Icon_description_user {
   position: absolute;
-  top: 30px;
   left: 3px;
   font-size: 35px;
   color: #92b588;
+}
+.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .user_title {
+  border: 7px dotted #cdebc4;
+  background-color: #cdebc4;
+  width: 19px;
+  font-size: 23px;
+  border-radius: 7px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.3);
+  margin-left: 2px;
 }
 .wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .title_icon {
   font-size: 35px;
@@ -2990,6 +3020,28 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   color: #888;
   margin-left: 10px;
   padding-left: 13px;
+}
+.wcs_view_ticket .wcs_tickets_container .wcs_tickets_res {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.wcs_view_ticket .wcs_tickets_container .wcs_tickets_res .wcs_title_res_class {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.wcs_view_ticket .wcs_tickets_container .wcs_tickets_res .wcs_title_res_class .Icon_description_user_res {
+  position: absolute;
+  right: -35px;
+  font-size: 35px;
+  color: #92b588;
+}
+.wcs_view_ticket .wcs_tickets_container .wcs_tickets_res .wcs_title_res_class .wcs_editor_res {
+  margin-right: 15px;
+}
+.wcs_view_ticket .wcs_tickets_container .wcs_tickets_res .wcs_title_res_class .wcs_editor_res .desc_res {
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  padding: 11px;
 }
 .wcs_view_ticket .wcs_left {
   flex: 1;
@@ -3059,7 +3111,7 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   color: white;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 25px;
   float: left;
 }
 /*!*****************************************************************************************************************************************************************************************************************************************************!*\

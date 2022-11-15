@@ -8,14 +8,14 @@ import image from '../../../assets/img/no_img.png'
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
-    field: "name",
+    field: "user_name",
     headerName: "Name",
     width: 280,
     renderCell: (params) => {
       return (
         <div className="wcs_cellWithImg">
          {
-          params.row.img && <img className="wcs_cellImg" src={params.row.img} alt="staff" /> 
+          params.row.file && <img className="wcs_cellImg" src={params.row.file} alt="staff" /> 
           ||  <img className="wcs_cellImg" src={image} alt="staff" /> 
          }
          {params.row.user_name}

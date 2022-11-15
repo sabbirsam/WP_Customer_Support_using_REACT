@@ -43,7 +43,7 @@ export const ticketColumns = [
       renderCell: (params) => {
         return (
           <div className={`cellWithStatus id-${params.row.status}`}>
-              {params.row.status ==="1" ? "Ongoing" : params.row.status ==="2" ? "Resolved" : "Pending"}
+              {params.row.status ==="0" ? "Open" : params.row.status ==="1" ? "Pending" : params.row.status ==="2" ? "Resolved" : "Close"}
           </div>
         );
       },
