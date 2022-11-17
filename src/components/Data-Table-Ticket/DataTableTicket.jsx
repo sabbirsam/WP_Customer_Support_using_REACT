@@ -66,6 +66,7 @@ const DataTableTicket = () => {
       useEffect(() => {
           getUsers();
       }, [getUsers()]);
+      
       function getUsers() {
           axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/tickets').then(function(response) {
             setUsers(response.data);

@@ -1,12 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {Box, TextField, MenuItem} from '@mui/material';
+import axios from "axios";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 import "./tag.scss"
 
 const Tags = ({ticketNum}) => {
     const [status, setStatus] = useState(ticketNum.row.status);
     const [priority, setPriority] = useState(ticketNum.row.priority);
-    const [agent, setAgent] = useState(ticketNum.row.customer_id);
+    const [staff_id, setAgent] = useState(ticketNum.row.customer_id);
     const [group, setGroup] = useState(ticketNum.row.groups);
+
+    // const id = ticketNum.row.id;
+    // const file = ticketNum.row.file;
+    // const username = ticketNum.row.user_name;
+    // const title = ticketNum.row.title;
+    // const email= ticketNum.row.email;
+    // const description = ticketNum.row.description;
+    // const res_description = ticketNum.row.res_description;
+
    
     // console.log(ticketNum);
 
@@ -30,11 +42,38 @@ const Tags = ({ticketNum}) => {
       };
       
 
-      const handleSubmit = () => {
-        console.log(status)
-        console.log(priority)
-        console.log(agent)
-        console.log(group)
+      const handleSubmit = async e => {
+        // console.log(status)
+        // console.log(priority)
+        // console.log(agent)
+        // console.log(group)
+
+        const url = `${appLocalizer.apiUrl}/wcs/v1/tickets_edit`;
+          try{
+            const res = await axios.post(url, {
+              status,priority,staff_id,group
+              // id, file,username,title,email,description,res_description,status,priority,staff_id,group
+            }, {
+              headers:{
+                'content-type': 'application/json',
+                'X-WP-NONCE':appLocalizer.nonce
+              }
+            }).then(function(res) {
+                Swal.fire({
+                  toast: true,
+                  position: 'bottom-right',
+                  icon: 'success',
+                  title: 'Data Updated',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+            });
+            
+          } catch(err){
+            console.log(err);
+          } 
+
+
       }
 
  
@@ -59,7 +98,7 @@ const Tags = ({ticketNum}) => {
                 </TextField>
               </Box>
             <Box width='250px' className='selectFields'>
-                <TextField label="Agent" select value={agent} onChange={handleAgent} fullWidth>
+                <TextField label="Agent" select value={staff_id} onChange={handleAgent} fullWidth>
                     <MenuItem value="0">SABBIR SAM</MenuItem>
                     <MenuItem value="1">TOUKIR</MenuItem>
                     <MenuItem value="2">ADNANA</MenuItem>

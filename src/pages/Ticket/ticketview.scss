@@ -1,78 +1,21 @@
-.wcs_view_ticket{
+.wcs_ticket_view{
     display: flex;
     padding: 20px;
     gap: 20px;
 
-    .wcs_tickets_container{
-        flex:4;
-        img{
-            width: 50%;
-        }
+    .wcs_ticket_container{
+        flex: 5;
+        padding: 10px;
+
+        // inner style start 
         .wcs_tickets{
             display: flex;
             flex: 1; 
             padding: 10px;
-    
             .wcs_title_class{
                 display: flex;
                 align-items: center;
                 position: relative;
-           
-                .wcs_editor {
-                    width: 85%;
-                    margin-left: 55px;
-                    // margin-left:35px;
-                    .desc{
-                        box-shadow: 2px 4px 10px 1px rgb(201 201 201 / 47%);
-                        text-align: left;
-                        padding: 11px;
-                    }
-                    .editor_filed{
-                        width: 800px;
-                        height: 400px;
-                    }
-                    .wcs_user_create{
-                        width: 160px;
-                        padding: 10px;
-                        border: none;
-                        background-color: teal;
-                        color: white;
-                        font-weight: bold;
-                        cursor: pointer;
-                        margin-top: 10px;
-                    }
-
-                    button.wcs_user_create{
-                        width: 160px;
-                        padding: 10px;
-                        border: none;
-                        background-color: teal;
-                        color: white;
-                        font-weight: bold;
-                        cursor: pointer;
-                        margin-top: 38px;
-                        float: left;
-                    }
-                }
-
-                
-                .Icon_description_user{
-                    position: absolute;
-                    left: 3px;
-                    font-size: 35px;
-                    color: #92b588;
-                   
-                }
-                .user_title {
-                    border: 7px dotted #cdebc4;
-                    background-color: #cdebc4;
-                    width: 19px;
-                    font-size: 23px;
-                    border-radius: 7px;
-                    text-align: center;
-                    color: rgba(0, 0, 0, 0.3);
-                    margin-left: 2px;
-                }
 
                 .title_icon{
                     font-size: 35px;
@@ -98,6 +41,36 @@
                     color: #92b588;
                     margin-left: 6px;
                 }
+                .Icon_description_user{
+                    font-size: 35px;
+                    color: #92b588;   
+                }
+
+                .Icon_description_user_res{
+                    position: absolute;
+                    right: -35px;
+                    font-size: 35px;
+                    color: #92b588;  
+                }
+                .wcs_description {
+                    margin-left: 15px;
+                }
+
+                .wcs_editor_button{
+                    margin-left: 35px;
+                
+                    .wcs_ticket_submit{
+                        width: 160px;
+                        padding: 10px;
+                        border: none;
+                        background-color: teal;
+                        color: white;
+                        font-weight: bold;
+                        cursor: pointer;
+                        margin-top: 25px;
+                        float: left;
+                    }
+                }
             }
             .wcs_title_info{
                 display: flex;
@@ -114,10 +87,6 @@
                     color: rgba(0, 0, 0, 0.3);
                     margin-left: 2px;
                 }
-                // .user_icon{
-                //     font-size: 30px;
-                //     color: #7451f8;
-                // }
                 span{
                     position: relative;
                     top: -30px;
@@ -128,115 +97,28 @@
                     padding-left: 13px;
                 }
             }
-            
-    
-        }
-        .wcs_tickets_res {
-            display: flex;
-            flex-direction: row-reverse;
 
-            .wcs_title_res_class{
-                display: flex;
-                align-items: center;
-                position: relative;
-
-                .Icon_description_user_res{
-                    position: absolute;
-                    right: -35px;
-                    font-size: 35px;
-                    color: #92b588;  
-                }
-           
-                .wcs_editor_res {
-                    // width: 85%;
-                    margin-right: 15px;
-                    .desc_res{
-                        box-shadow: 2px 4px 10px 1px rgb(201 201 201 / 47%);
-                        // text-align: left;
-                        padding: 11px;
-                    }
-                }
-            }
         }
+        // response des style 
+
+        // inner style END 
+    }
+
+    .wcs_ticket_widgets{
+        // widgets style 
+        flex: 1;
+        padding: 10px;
+        // box-shadow: 2px 4px 10px 1px rgb(201 201 201 / 47%);
+        position: sticky;
+        // top: -2rem;
+        // align-self: center;
+        top: 20px;
+        right: 0px;
+        // align-self: auto;
+        align-self: start;
+
         
     }
-    .wcs_left{
-        // flex: 2; 
-        flex: 1; 
-        height: 100vh;
-        text-align: left; 
-        padding: 10px;
-        margin: 20px;
-        box-shadow: 2px 4px 10px 1px rgb(201 201 201 / 47%);
-        .properties_title {
-            margin-left: 21px;
-            color: #888;
-        }
-        .wcs_editor{
-            margin-right: 10px;
-            .quill.editor_filed_note {
-                height: 200px;
-            }
-        }
-    }
-    .wcs_right{
-        flex: 2; 
-        margin-top: 64px;
-        .wcs_inp_imstatuss{
-            position: relative;
-            .subimstatus {
-                position: absolute;
-                top: -2px;
-                right: 5px;
-                margin-top: 4px;
-            }
-        }
-        label{
-            display: flex;
-            align-items: center;
-            gap: 10px;
 
-            .wcs_icon{
-                cursor: pointer;
-            }
-        }
-        .formInput{
-            width: 100%;
-            input{
-                width: 100%;
-                // design 
-                padding: 5px;
-                border: none;
-                border-bottom: 1px solid gray;
-                background-color: #F0F0F1;
-
-                &:focus{
-                    outline: none;
-                    box-shadow: none;
-                }
-
-            }
-            img{
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                object-fit: cover;
-            }
-
-        }
-        button.wcs_user_create{
-            width: 160px;
-            padding: 10px;
-            border: none;
-            background-color: teal;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 25px;
-            float: left;
-        }
-
-    }
-    
-
+   
 }

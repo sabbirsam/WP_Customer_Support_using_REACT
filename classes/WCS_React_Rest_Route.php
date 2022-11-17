@@ -43,19 +43,19 @@ class WCS_React_Rest_Route{
         /**
          * Fetch Tickets from DB
          */
-        register_rest_route( 'wcs/v1', '/tickets_res',[
-            'methods'=>'GET',
-            'callback'=>[$this, 'get_tickets_res'],
-            'permission_callback' => [$this, 'get_tickets_res_permission']
-        ] );
+        // register_rest_route( 'wcs/v1', '/tickets_res',[
+        //     'methods'=>'GET',
+        //     'callback'=>[$this, 'get_tickets_res'],
+        //     'permission_callback' => [$this, 'get_tickets_res_permission']
+        // ] );
          /**
          * Add tickets in DB
          */
-        register_rest_route( 'wcs/v1', '/tickets_res',[
-            'methods'=>'POST',
-            'callback'=>[$this, 'save_tickets_res'],
-            'permission_callback' => [$this, 'save_tickets_res_permission']
-        ] );
+        // register_rest_route( 'wcs/v1', '/tickets_res',[
+        //     'methods'=>'POST',
+        //     'callback'=>[$this, 'save_tickets_res'],
+        //     'permission_callback' => [$this, 'save_tickets_res_permission']
+        // ] );
 
         
         /**--------------------------------------------------------------
@@ -110,14 +110,14 @@ class WCS_React_Rest_Route{
      * Tickets response
      * get Tickets Response
      */
-    public function get_tickets_res(){
-        global $wpdb;
-        $table_name = $wpdb->prefix . 'wcs_tickets_response';
-        $results = $wpdb->get_results("SELECT * FROM $table_name");
-        return rest_ensure_response($results);
-    } 
+    // public function get_tickets_res(){
+    //     global $wpdb;
+    //     $table_name = $wpdb->prefix . 'wcs_tickets_response';
+    //     $results = $wpdb->get_results("SELECT * FROM $table_name");
+    //     return rest_ensure_response($results);
+    // } 
     //set permission for fetch tickets response
-    public function get_tickets_res_permission(){return true; } 
+    // public function get_tickets_res_permission(){return true; } 
 
 
    //add tickets
@@ -146,15 +146,15 @@ class WCS_React_Rest_Route{
         $description = $req ['description']?? '';
         $file = sanitize_text_or_array_field($req ['file']) ?? '';
 
-        $d = array($description);
-        $desc = json_encode($d);
+        // $d = array($description);
+        // $desc = json_encode($d);
 
 
 
         $date = date('Y-m-d H:i:s');
         global $wpdb;
         $table=$wpdb->prefix.'wcs_tickets';
-        $data = array( 'user_name' => $username,'title' => $title,'description' => $desc,'email' => $email,'file' => $file ,'date_created' => $date);
+        $data = array( 'user_name' => $username,'title' => $title,'description' => $description,'email' => $email,'file' => $file ,'date_created' => $date);
         $format = array('%s','%s','%s','%s','%s','%s');
         $wpdb->insert($table,$data,$format);
         $save = $wpdb->insert_id;
@@ -222,13 +222,16 @@ class WCS_React_Rest_Route{
         $email = sanitize_text_or_array_field($req ['email'])?? '';
         // $description = sanitize_text_or_array_field($req ['description'])?? '';
         $description = $req ['description']?? '';
+        // $d = array($description);
+        // $desc = json_encode($d);
+        $res_description = $req ['res_description']?? '';
+
         $file = sanitize_text_or_array_field($req ['file']) ?? '';
 
         $date = date('Y-m-d H:i:s');
         global $wpdb;
         $table=$wpdb->prefix.'wcs_tickets';
-
-        $data_update = array('user_name' => $username,'title' => $title,'description' => $description,'email' => $email,'file' => $file ,'date_created' => $date);
+        $data_update = array('user_name' => $username,'title' => $title,'description' => $description,'res_description' => $res_description,'email' => $email,'file' => $file ,'date_created' => $date);
         $data_where = array('id' => $id);
         $update = $wpdb->update($table , $data_update, $data_where);
     

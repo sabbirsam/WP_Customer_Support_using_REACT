@@ -18,8 +18,9 @@ const AddTicket = () => {
    const [username, setUsername] = useState("");
    const [title, setTitle] = useState("");
    const [email, setEmail] = useState("");
-   const [description, setDescription] = useState([]);
-   const [resdescription, setResdescription] = useState([]);
+  //  const [description, setDescription] = useState([]);
+   const [description, setDescription] = useState("");
+  //  const [resdescription, setResdescription] = useState([]);
 
 
    useEffect(() => {

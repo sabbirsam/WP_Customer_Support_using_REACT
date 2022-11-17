@@ -2830,7 +2830,7 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   font-size: 20px;
 }
 .wcs_add_ticket .wcs_tickets_container .wcs_top .wcs_left, .wcs_add_ticket .wcs_tickets_container .wcs_bottom .wcs_left {
-  flex: 1;
+  flex: 3;
   text-align: center;
 }
 .wcs_add_ticket .wcs_tickets_container .wcs_top .wcs_left .wcs_editor, .wcs_add_ticket .wcs_tickets_container .wcs_bottom .wcs_left .wcs_editor {
@@ -2843,7 +2843,7 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   color: #737373;
 }
 .wcs_add_ticket .wcs_tickets_container .wcs_top .wcs_right, .wcs_add_ticket .wcs_tickets_container .wcs_bottom .wcs_right {
-  flex: 2;
+  flex: 3;
 }
 .wcs_add_ticket .wcs_tickets_container .wcs_top .wcs_right form, .wcs_add_ticket .wcs_tickets_container .wcs_bottom .wcs_right form {
   display: flex;
@@ -2903,207 +2903,64 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 /*!*********************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Ticket/ticketview.scss ***!
   \*********************************************************************************************************************************************************************************************************************************************************/
-.wcs_view_ticket {
+.wcs_ticket_view {
   display: flex;
   padding: 20px;
   gap: 20px;
 }
-.wcs_view_ticket .wcs_tickets_container {
-  flex: 4;
+.wcs_ticket_view .wcs_ticket_container {
+  flex: 5;
+  padding: 10px;
 }
-.wcs_view_ticket .wcs_tickets_container img {
-  width: 50%;
-}
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets {
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets {
   display: flex;
   flex: 1;
   padding: 10px;
 }
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class {
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class {
   display: flex;
   align-items: center;
   position: relative;
 }
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .wcs_editor {
-  width: 85%;
-  margin-left: 55px;
-}
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .wcs_editor .desc {
-  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-  text-align: left;
-  padding: 11px;
-}
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .wcs_editor .editor_filed {
-  width: 800px;
-  height: 400px;
-}
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .wcs_editor .wcs_user_create {
-  width: 160px;
-  padding: 10px;
-  border: none;
-  background-color: teal;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-}
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .wcs_editor button.wcs_user_create {
-  width: 160px;
-  padding: 10px;
-  border: none;
-  background-color: teal;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 38px;
-  float: left;
-}
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .Icon_description_user {
-  position: absolute;
-  left: 3px;
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .title_icon {
   font-size: 35px;
   color: #92b588;
 }
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .user_title {
-  border: 7px dotted #cdebc4;
-  background-color: #cdebc4;
-  width: 19px;
-  font-size: 23px;
-  border-radius: 7px;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.3);
-  margin-left: 2px;
-}
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .title_icon {
-  font-size: 35px;
-  color: #92b588;
-}
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .sp_title {
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .sp_title {
   margin-left: 19px;
   font-weight: bold;
   color: #888;
   margin-left: 10px;
   font-size: 18px;
 }
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class span {
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class span {
   font-size: 14px;
   color: #888;
   margin-left: 10px;
 }
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_class .title_icon_email {
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .title_icon_email {
   font-size: 25px;
   font-weight: bold;
   color: #92b588;
   margin-left: 6px;
 }
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 30px;
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .Icon_description_user {
+  font-size: 35px;
+  color: #92b588;
 }
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_info .user_title {
-  border: 7px dotted #cdebc4;
-  background-color: #cdebc4;
-  width: 19px;
-  font-size: 23px;
-  border-radius: 7px;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.3);
-  margin-left: 2px;
-}
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets .wcs_title_info span {
-  position: relative;
-  top: -30px;
-  left: 23px;
-  font-size: 14px;
-  color: #888;
-  margin-left: 10px;
-  padding-left: 13px;
-}
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets_res {
-  display: flex;
-  flex-direction: row-reverse;
-}
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets_res .wcs_title_res_class {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets_res .wcs_title_res_class .Icon_description_user_res {
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .Icon_description_user_res {
   position: absolute;
   right: -35px;
   font-size: 35px;
   color: #92b588;
 }
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets_res .wcs_title_res_class .wcs_editor_res {
-  margin-right: 15px;
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .wcs_description {
+  margin-left: 15px;
 }
-.wcs_view_ticket .wcs_tickets_container .wcs_tickets_res .wcs_title_res_class .wcs_editor_res .desc_res {
-  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-  padding: 11px;
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .wcs_editor_button {
+  margin-left: 35px;
 }
-.wcs_view_ticket .wcs_left {
-  flex: 1;
-  height: 100vh;
-  text-align: left;
-  padding: 10px;
-  margin: 20px;
-  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-}
-.wcs_view_ticket .wcs_left .properties_title {
-  margin-left: 21px;
-  color: #888;
-}
-.wcs_view_ticket .wcs_left .wcs_editor {
-  margin-right: 10px;
-}
-.wcs_view_ticket .wcs_left .wcs_editor .quill.editor_filed_note {
-  height: 200px;
-}
-.wcs_view_ticket .wcs_right {
-  flex: 2;
-  margin-top: 64px;
-}
-.wcs_view_ticket .wcs_right .wcs_inp_imstatuss {
-  position: relative;
-}
-.wcs_view_ticket .wcs_right .wcs_inp_imstatuss .subimstatus {
-  position: absolute;
-  top: -2px;
-  right: 5px;
-  margin-top: 4px;
-}
-.wcs_view_ticket .wcs_right label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.wcs_view_ticket .wcs_right label .wcs_icon {
-  cursor: pointer;
-}
-.wcs_view_ticket .wcs_right .formInput {
-  width: 100%;
-}
-.wcs_view_ticket .wcs_right .formInput input {
-  width: 100%;
-  padding: 5px;
-  border: none;
-  border-bottom: 1px solid gray;
-  background-color: #F0F0F1;
-}
-.wcs_view_ticket .wcs_right .formInput input:focus {
-  outline: none;
-  box-shadow: none;
-}
-.wcs_view_ticket .wcs_right .formInput img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.wcs_view_ticket .wcs_right button.wcs_user_create {
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .wcs_editor_button .wcs_ticket_submit {
   width: 160px;
   padding: 10px;
   border: none;
@@ -3113,6 +2970,39 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   cursor: pointer;
   margin-top: 25px;
   float: left;
+}
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 30px;
+}
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_info .user_title {
+  border: 7px dotted #cdebc4;
+  background-color: #cdebc4;
+  width: 19px;
+  font-size: 23px;
+  border-radius: 7px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.3);
+  margin-left: 2px;
+}
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_info span {
+  position: relative;
+  top: -30px;
+  left: 23px;
+  font-size: 14px;
+  color: #888;
+  margin-left: 10px;
+  padding-left: 13px;
+}
+.wcs_ticket_view .wcs_ticket_widgets {
+  flex: 1;
+  padding: 10px;
+  position: sticky;
+  top: 20px;
+  right: 0px;
+  align-self: start;
 }
 /*!*****************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Tags/tag.scss ***!
