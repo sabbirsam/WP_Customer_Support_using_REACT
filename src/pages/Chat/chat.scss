@@ -1,0 +1,114 @@
+.wcs_chat_cls{
+    .wcs_Chats{
+        // height: calc(100vh - 70px);
+        display: flex;
+    
+        .chatMenu{
+            flex: 3.5;
+            .chatMenuWrapper{
+                padding: 10px;
+                height: 100%;
+                margin-left: 15px;
+
+                .ChatMenuInput{
+                    width: 90%;
+                    padding: 10px 0px;
+                    border: none;
+                    border-bottom: 0.5px solid lightgray;
+                    background: transparent;
+                    
+                    &:focus{
+                        outline: none;
+                        box-shadow: none;
+                    }
+    
+                    &::placeholder{
+                        font-size: 12px;
+                        margin-left: 15px;
+                    }
+                }
+            }
+           
+        }
+        .chatBox{
+            flex: 5.5;
+            -webkit-box-shadow: 2px 4px 10px 1px rgba(0,0,0,0.47);
+            box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+            padding: 10px;
+
+            .chatBoxWrapper{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                
+                .chatBoxTop{
+                    height: 500px;
+                    overflow-y:scroll ;
+                    padding-right: 10px;
+                    &::-webkit-scrollbar {
+                        width: 5px;
+                      }
+                    &::-webkit-scrollbar-track {
+                        box-shadow: inset 0 0 5px grey; 
+                        border-radius: 10px;
+                      }
+                    &::-webkit-scrollbar-thumb {
+                        background: teal;
+                        border-radius: 10px;
+                      }
+                    &::-webkit-scrollbar-thumb:hover {
+                        background: teal;
+                      }
+                }
+
+                .chatBoxBottom{
+                    margin-top: 20px;
+                    // display: flex; removed as i set it below on the editor
+                    align-items: center;
+                    justify-content: space-between;
+                   
+
+                    .chatMessageImput{
+                        width: 95%;
+                        // height: 80%;
+                        height: 140px;
+                        padding: 10px;
+                        border: none;
+
+                        .ql-toolbar.ql-snow {
+                            border: none;
+                            // border-bottom: 1px solid #ccc;
+                            border-top: 1px solid #ccc;
+                            border-left: 1px solid #ccc;
+                            border-right: 1px solid #ccc;
+                        }
+                        .ql-editor img {
+                            max-width: 20%;
+                        }
+                    }
+                    .chatSubmitBtn{
+                        width: 100px;
+                        padding: 10px;
+                        border: none;
+                        border-radius: 5px;
+                        background-color: teal;
+                        color: white;
+                        font-weight: bold;
+                        cursor: pointer;
+                        //add below code as flex removed and postion btn below the editor
+                        margin-top: 45px;
+                        margin-left: 10px;
+                    }
+                }
+
+            }
+        }
+        .chatOnline{
+            flex: 3;
+            .chatOnlineWrapper{
+                padding: 10px;
+                height: 100%;
+            }
+        }
+    }
+}

@@ -1,7 +1,8 @@
 .wcs_sidebar{
     flex: 1;
     border-right: 0.5px solid rgb(230,227,227);
-    min-height: 88vh; // it create scroll 
+    // min-height: 88vh; // it create scroll 
+    max-height: 95vh; // it create scroll 
     background-color: white;
     //logo
     .wcs_top{

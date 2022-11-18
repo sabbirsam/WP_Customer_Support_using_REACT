@@ -2912,6 +2912,24 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   flex: 5;
   padding: 10px;
 }
+.wcs_ticket_view .wcs_ticket_container .wcs_issues_container {
+  overflow-y: scroll;
+  height: 500px;
+}
+.wcs_ticket_view .wcs_ticket_container .wcs_issues_container::-webkit-scrollbar {
+  width: 5px;
+}
+.wcs_ticket_view .wcs_ticket_container .wcs_issues_container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+.wcs_ticket_view .wcs_ticket_container .wcs_issues_container::-webkit-scrollbar-thumb {
+  background: teal;
+  border-radius: 10px;
+}
+.wcs_ticket_view .wcs_ticket_container .wcs_issues_container::-webkit-scrollbar-thumb:hover {
+  background: teal;
+}
 .wcs_ticket_view .wcs_ticket_container .wcs_tickets {
   display: flex;
   flex: 1;
@@ -2968,7 +2986,6 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   color: white;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 25px;
   float: left;
 }
 .wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_info {
@@ -3053,6 +3070,170 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   border: 1px dotted rgba(0, 139, 39, 0.596);
   cursor: pointer;
 }
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Chat/chat.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+.wcs_chat_cls .wcs_Chats {
+  display: flex;
+}
+.wcs_chat_cls .wcs_Chats .chatMenu {
+  flex: 3.5;
+}
+.wcs_chat_cls .wcs_Chats .chatMenu .chatMenuWrapper {
+  padding: 10px;
+  height: 100%;
+  margin-left: 15px;
+}
+.wcs_chat_cls .wcs_Chats .chatMenu .chatMenuWrapper .ChatMenuInput {
+  width: 90%;
+  padding: 10px 0px;
+  border: none;
+  border-bottom: 0.5px solid lightgray;
+  background: transparent;
+}
+.wcs_chat_cls .wcs_Chats .chatMenu .chatMenuWrapper .ChatMenuInput:focus {
+  outline: none;
+  box-shadow: none;
+}
+.wcs_chat_cls .wcs_Chats .chatMenu .chatMenuWrapper .ChatMenuInput::-moz-placeholder {
+  font-size: 12px;
+  margin-left: 15px;
+}
+.wcs_chat_cls .wcs_Chats .chatMenu .chatMenuWrapper .ChatMenuInput::placeholder {
+  font-size: 12px;
+  margin-left: 15px;
+}
+.wcs_chat_cls .wcs_Chats .chatBox {
+  flex: 5.5;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  padding: 10px;
+}
+.wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxTop {
+  height: 500px;
+  overflow-y: scroll;
+  padding-right: 10px;
+}
+.wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxTop::-webkit-scrollbar {
+  width: 5px;
+}
+.wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxTop::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+.wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxTop::-webkit-scrollbar-thumb {
+  background: teal;
+  border-radius: 10px;
+}
+.wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxTop::-webkit-scrollbar-thumb:hover {
+  background: teal;
+}
+.wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxBottom {
+  margin-top: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+.wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxBottom .chatMessageImput {
+  width: 95%;
+  height: 140px;
+  padding: 10px;
+  border: none;
+}
+.wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxBottom .chatMessageImput .ql-toolbar.ql-snow {
+  border: none;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+.wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxBottom .chatMessageImput .ql-editor img {
+  max-width: 20%;
+}
+.wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxBottom .chatSubmitBtn {
+  width: 100px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: teal;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 45px;
+  margin-left: 10px;
+}
+.wcs_chat_cls .wcs_Chats .chatOnline {
+  flex: 3;
+}
+.wcs_chat_cls .wcs_Chats .chatOnline .chatOnlineWrapper {
+  padding: 10px;
+  height: 100%;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Conversations/conversation.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+.conversation {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.conversation:hover {
+  background-color: #e6e6e6;
+}
+.conversation .conversationImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 20px;
+}
+.conversation .conversationName {
+  font-weight: 500;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Message/message.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+.message {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.message .messageTop {
+  display: flex;
+  align-items: center;
+}
+.message .messageTop .messageImg {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 10px;
+}
+.message .messageTop .messageText {
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #6c3ae9;
+  color: white;
+  max-width: 300px;
+}
+.message .messageBottom {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.message.own {
+  align-items: flex-end;
+}
+.message.own .messageText {
+  background-color: rgb(214, 214, 214);
+  color: #000;
+}
 /*!***********************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Tab/tab.scss ***!
   \***********************************************************************************************************************************************************************************************************************************************/
@@ -3071,7 +3252,7 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 .wcs_sidebar {
   flex: 1;
   border-right: 0.5px solid rgb(230, 227, 227);
-  min-height: 88vh;
+  max-height: 95vh;
   background-color: white;
 }
 .wcs_sidebar .wcs_top {

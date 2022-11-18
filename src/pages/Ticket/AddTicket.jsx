@@ -90,7 +90,9 @@ const AddTicket = () => {
           <div className="wcs_bottom" id='wcs_bottom'>
               <div className="wcs_left">
                 <div className="wcs_editor">
-                <ReactQuill theme="snow" className="editor_filed" name="description" value={description} onChange={setDescription} />
+                <ReactQuill theme="snow" className="editor_filed" name="description" value={description} onChange={setDescription} 
+                // modules={{ toolbar: [['picker-label','align','strike','list','clean','code-block','bold', 'italic','underline'], ['link', 'image']] }}
+                />
                 </div>
               </div>
               <div className="wcs_right">

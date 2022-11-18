@@ -6,6 +6,27 @@
     .wcs_ticket_container{
         flex: 5;
         padding: 10px;
+        
+        // scroll description 
+        .wcs_issues_container {
+            overflow-y: scroll;
+            height: 500px;
+            &::-webkit-scrollbar {
+                width: 5px;
+              }
+            &::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 5px grey; 
+                border-radius: 10px;
+              }
+            &::-webkit-scrollbar-thumb {
+                background: teal;
+                border-radius: 10px;
+              }
+            &::-webkit-scrollbar-thumb:hover {
+                background: teal;
+              }
+        }
+
 
         // inner style start 
         .wcs_tickets{
@@ -67,7 +88,6 @@
                         color: white;
                         font-weight: bold;
                         cursor: pointer;
-                        margin-top: 25px;
                         float: left;
                     }
                 }

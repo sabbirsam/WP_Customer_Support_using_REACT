@@ -97,6 +97,8 @@ const TicketView = ({ticketNum}) => {
                         <span className="sp_email">To: { ticketNum.row.email}</span>
                       </div>
                   </div>
+
+                  <div className='wcs_issues_container'>
                   {/* User desc */}
                   <div className='wcs_tickets'>
                       <div className="wcs_title_class">
@@ -124,6 +126,7 @@ const TicketView = ({ticketNum}) => {
                         </div>
                     </div>
                   }
+                  </div>
         
               {/* END  */}
 
