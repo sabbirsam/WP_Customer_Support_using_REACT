@@ -2,7 +2,8 @@
     flex: 1;
     border-right: 0.5px solid rgb(230,227,227);
     // min-height: 88vh; // it create scroll 
-    max-height: 95vh; // it create scroll 
+    // max-height: 95vh; // it create scroll 
+    max-height: initial; // it create scroll 
     background-color: white;
     //logo
     .wcs_top{
@@ -24,6 +25,13 @@
     //list 
     .wcs_center{
         padding-left: 20px;
+        // sticky 
+        position: sticky;
+        align-self: start;
+        top: 35px;
+        right: 0px;
+    
+
         ul{
             list-style: none;
             margin: 0;

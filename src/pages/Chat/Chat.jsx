@@ -39,7 +39,7 @@ const Chat = () => {
                   {/* <textarea className="chatMessageImput" placeholder="write message...."></textarea>
                   <button className="chatSubmitBtn">Send</button> */}
                   <ReactQuill theme="snow" className="chatMessageImput" name="description" value={message} onChange={setMessage}
-                    modules={{ toolbar: [['align','strike','code-block','bold', 'italic','underline'], ['link', 'image']] }}
+                    modules={{ toolbar: [['align','strike','code-block','bold', 'italic','underline','clean'], ['link', 'image']] }}
                   />
                   <button className="chatSubmitBtn">Send</button>
                 </div>

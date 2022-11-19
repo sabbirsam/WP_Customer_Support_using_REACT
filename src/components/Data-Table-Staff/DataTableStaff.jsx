@@ -75,7 +75,8 @@ const DataTableStaff = () => {
       function getUsers() {
             // setLoading=true;
             // {setLoading === true ?? <Spinner/>}
-          axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/staff').then(function(response) {
+          // axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/staff').then(function(response) {
+          axios.get(`${appLocalizer.apiUrl}/wcs/v1/staff`).then(function(response) {
             // setLoading=false;
             setstaff(response.data);
       });

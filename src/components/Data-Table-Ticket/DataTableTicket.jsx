@@ -68,7 +68,8 @@ const DataTableTicket = () => {
       }, [getUsers()]);
       
       function getUsers() {
-          axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/tickets').then(function(response) {
+          // axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/tickets').then(function(response) {
+          axios.get(`${appLocalizer.apiUrl}/wcs/v1/tickets`).then(function(response) {
             setUsers(response.data);
       });
   }

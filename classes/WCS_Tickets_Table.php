@@ -39,6 +39,10 @@ class WCS_Tickets_Table{
             PRIMARY KEY (`id`)
         ) ENGINE=InnoDB ".$collate."";
 
+//         SELECT wp_usermeta.umeta_id, wp_usermeta.meta_key='wp_capabilities', wp_usermeta.meta_value, wp_users.ID,wp_users.user_email 
+// FROM wp_usermeta 
+// INNER JOIN wp_users ON wp_usermeta.umeta_id=wp_users.ID;
+
         /**
          * Tickets response
          */

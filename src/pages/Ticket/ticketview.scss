@@ -10,7 +10,7 @@
         // scroll description 
         .wcs_issues_container {
             overflow-y: scroll;
-            height: 500px;
+            max-height: 500px;
             &::-webkit-scrollbar {
                 width: 5px;
               }
@@ -63,8 +63,13 @@
                     margin-left: 6px;
                 }
                 .Icon_description_user{
+                    // font-size: 35px;
+                    // color: #92b588; 
                     font-size: 35px;
-                    color: #92b588;   
+                    color: #92b588;
+                    left: 4px;
+                    top: 0px;
+                    position: absolute;  
                 }
 
                 .Icon_description_user_res{
@@ -74,7 +79,11 @@
                     color: #92b588;  
                 }
                 .wcs_description {
-                    margin-left: 15px;
+                    margin-left: 48px;
+                    
+                    // .wcs_descriptions p {
+                    //     line-height: 0.9 !important;
+                    // }
                 }
 
                 .wcs_editor_button{

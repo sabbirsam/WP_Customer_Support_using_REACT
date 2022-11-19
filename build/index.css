@@ -2839,6 +2839,9 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 .wcs_add_ticket .wcs_tickets_container .wcs_top .wcs_left .wcs_editor .editor_filed, .wcs_add_ticket .wcs_tickets_container .wcs_bottom .wcs_left .wcs_editor .editor_filed {
   height: 400px;
 }
+.wcs_add_ticket .wcs_tickets_container .wcs_top .wcs_left .wcs_editor .editor_filed .ql-snow .ql-editor img, .wcs_add_ticket .wcs_tickets_container .wcs_bottom .wcs_left .wcs_editor .editor_filed .ql-snow .ql-editor img {
+  max-width: 20%;
+}
 .wcs_add_ticket .wcs_tickets_container .wcs_top .wcs_left .formInput .title_name, .wcs_add_ticket .wcs_tickets_container .wcs_top .wcs_left .formInput .title_email, .wcs_add_ticket .wcs_tickets_container .wcs_top .wcs_left .formInput .title_num, .wcs_add_ticket .wcs_tickets_container .wcs_bottom .wcs_left .formInput .title_name, .wcs_add_ticket .wcs_tickets_container .wcs_bottom .wcs_left .formInput .title_email, .wcs_add_ticket .wcs_tickets_container .wcs_bottom .wcs_left .formInput .title_num {
   color: #737373;
 }
@@ -2898,7 +2901,7 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   margin-top: 10px;
 }
 .wcs_add_ticket .wcs_tickets_container #wcs_bottom {
-  height: 100%;
+  height: 82%;
 }
 /*!*********************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Ticket/ticketview.scss ***!
@@ -2914,7 +2917,7 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 }
 .wcs_ticket_view .wcs_ticket_container .wcs_issues_container {
   overflow-y: scroll;
-  height: 500px;
+  max-height: 500px;
 }
 .wcs_ticket_view .wcs_ticket_container .wcs_issues_container::-webkit-scrollbar {
   width: 5px;
@@ -2965,6 +2968,9 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 .wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .Icon_description_user {
   font-size: 35px;
   color: #92b588;
+  left: 4px;
+  top: 0px;
+  position: absolute;
 }
 .wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .Icon_description_user_res {
   position: absolute;
@@ -2973,7 +2979,7 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   color: #92b588;
 }
 .wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .wcs_description {
-  margin-left: 15px;
+  margin-left: 48px;
 }
 .wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .wcs_editor_button {
   margin-left: 35px;
@@ -3252,7 +3258,7 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 .wcs_sidebar {
   flex: 1;
   border-right: 0.5px solid rgb(230, 227, 227);
-  max-height: 95vh;
+  max-height: initial;
   background-color: white;
 }
 .wcs_sidebar .wcs_top {
@@ -3271,6 +3277,10 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 }
 .wcs_sidebar .wcs_center {
   padding-left: 20px;
+  position: sticky;
+  align-self: start;
+  top: 35px;
+  right: 0px;
 }
 .wcs_sidebar .wcs_center ul {
   list-style: none;
