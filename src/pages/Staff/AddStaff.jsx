@@ -51,14 +51,39 @@ const AddStaff = () => {
           setAddress("");
           setCountry("");
 
-         Swal.fire({
-           toast: true,
-           position: 'bottom-right',
-           icon: 'success',
-           title: 'User has been saved',
-           showConfirmButton: false,
-           timer: 1500
-         })
+          if(res.data === 0){
+
+            Swal.fire({
+            toast: true,
+            position: 'bottom-right',
+            icon: 'error',
+            title: "Failed to create! Unauthorize access",
+            showConfirmButton: false,
+            timer: 1500
+          })
+  
+          }else if(res.data === 1){
+            
+              Swal.fire({
+              toast: true,
+              position: 'bottom-right',
+              icon: 'success',
+              title: "Support agent created successfully",
+              showConfirmButton: false,
+              timer: 1500
+            })
+  
+        }else{
+            Swal.fire({
+            toast: true,
+            position: 'bottom-right',
+            icon: 'info',
+            title: "Failed to create as email exist",
+            showConfirmButton: false,
+            timer: 1500
+            })
+  
+          }
          
  
        });

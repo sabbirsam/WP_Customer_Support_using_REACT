@@ -252,18 +252,37 @@ class WCS_React_Rest_Route{
      * get User
      */
     public function get_users(){
-    
+        // $table_name = $wpdb->prefix . 'wcs_users';
+        // $results = $wpdb->get_results("SELECT * FROM $table_name");
+        // return rest_ensure_response($results);
+
         global $wpdb;
-        // $table_name = $wpdb->prefix . 'users';
-        $table_name = $wpdb->prefix . 'wcs_users';
-        $results = $wpdb->get_results("SELECT * FROM $table_name");
-        return rest_ensure_response($results);
-        
+        $capabilities_field=$wpdb->prefix.'capabilities';
+        $qargs=[
+            'role' => ['subscriber'], // subscriber:  use this if you need to query by role at the same time
+            'meta_query'=>
+                [
+                   'relation' => 'OR', // optional if you'll need to select more than
+                    [
+                       'key' => $capabilities_field,
+                       'value' => 'subscriber',
+                       'compare' => 'LIKE',
+                    ],
+                ],
+            'number'=> -1 // to select all users
+        ];
+
+        $usersQuery=new \WP_User_Query($qargs); // instantiate UserQuery with $qargs
+
+        $users=$usersQuery->get_results();
+        return rest_ensure_response($users);  
     } 
     //set permission for fetch
     public function get_users_permission(){
         return true;
     } 
+
+    
     //add Users-----
     public function save_users( $req ){
             /**
@@ -286,53 +305,51 @@ class WCS_React_Rest_Route{
             }           
             //
             $username = sanitize_text_or_array_field($req ['username'])?? '';
-            $fullname = sanitize_text_or_array_field($req ['fullname']) ?? '';
             $email = sanitize_text_or_array_field($req ['email'])?? '';
+            $n_password = sanitize_text_or_array_field($req ['password'])?? '';
+            
+            $fullname = sanitize_text_or_array_field($req ['fullname']) ?? '';
             $mobile = sanitize_text_or_array_field($req ['mobile']) ?? '';
             $country = sanitize_text_or_array_field($req ['country']) ?? '';
             $address = sanitize_text_or_array_field($req ['address'])?? '';
-
-            $n_password = sanitize_text_or_array_field($req ['password'])?? '';
-            // $password = wp_hash_password($n_password);
-            $password = md5($n_password);
-            
             $file = sanitize_text_or_array_field($req ['file']) ?? '';
-
             
-            $date = date('Y-m-d H:i:s');
-            global $wpdb;
-            $table=$wpdb->prefix. 'wcs_users';
+            // $password = wp_hash_password($n_password);
+            // $password = md5($n_password);
+            
 
-            $gmail_found = $wpdb->get_results("SELECT `email` FROM $table"); //SELECT `password` FROM `wp_wcs_users` WHERE id = '1'
+            global $wpdb;
+            $table=$wpdb->prefix.'users';
+
+            $gmail_found = $wpdb->get_results("SELECT `user_email` FROM $table"); //SELECT `user_email` FROM wp_users 
+            // print_r($gmail_found);
+            
             $expected = [];
             foreach ($gmail_found as $key=>$obj){
-                $expected[] = $obj->email; 
+                $expected[] = $obj->user_email; 
             }
+            // print_r($expected);
             
             if (!in_array($email, $expected)) {
-                
-                $data = array( 'full_name' => $fullname, 'mobile_number' => $mobile,'address' => $address,'email' => $email,'user_name' => $username,'password' => $password,'country' => $country,'file' => $file ,'date_created' => $date);
-                $format = array('%s','%s','%s','%s','%s','%s','%s','%s','%s');
-                $wpdb->insert($table,$data,$format);
-                $save = $wpdb->insert_id;
-            
-                if($save){
-                    // return rest_ensure_response('successfully inserted data'); 
-                    return rest_ensure_response(1); 
+                $user_name= $username;
+                $user_password= $n_password;
+                $user_email= $email;
+                $user_id = wp_create_user( $user_name, $user_password, $user_email );
+                $user = new \WP_User( $user_id );
+                $user->set_role( 'subscriber' );
+
+                if($user){
+                    return rest_ensure_response(1);  // success
                     wp_die();
                 }else{
-                    // return rest_ensure_response('Failed inserted data');
-                    return rest_ensure_response(0);
+                    return rest_ensure_response(0); // failed
                     wp_die();
                 }
 
               } else {
-                    return rest_ensure_response(3);
-                    // return rest_ensure_response('Failed to save as email exist');
+                    return rest_ensure_response(3); // email exist
                     wp_die();
               }
-  
-       
     } 
     //add users permission
     public function save_users_permission(){
@@ -346,10 +363,32 @@ class WCS_React_Rest_Route{
      * get Staff
      */
     public function get_staff(){
+        // global $wpdb;
+        // $table_name = $wpdb->prefix . 'wcs_staff';
+        // $results = $wpdb->get_results("SELECT * FROM $table_name");
+        // return rest_ensure_response($results);
+        
         global $wpdb;
-        $table_name = $wpdb->prefix . 'wcs_staff';
-        $results = $wpdb->get_results("SELECT * FROM $table_name");
-        return rest_ensure_response($results);
+        $capabilities_field=$wpdb->prefix.'capabilities';
+        $qargs=[
+            'role' => ['editor'], // subscriber:  use this if you need to query by role at the same time
+            'meta_query'=>
+                [
+                   'relation' => 'OR', // optional if you'll need to select more than
+                    [
+                       'key' => $capabilities_field,
+                       'value' => 'editor',
+                       'compare' => 'LIKE',
+                    ],
+                ],
+            'number'=> -1 // to select all users
+        ];
+
+        $editorQuery=new \WP_User_Query($qargs); // instantiate UserQuery with $qargs
+
+        $editor=$editorQuery->get_results();
+        return rest_ensure_response($editor); 
+
     } 
     //set permission for fetch
     public function get_staff_permission(){
@@ -362,56 +401,70 @@ class WCS_React_Rest_Route{
     
     public function save_staff( $req ){
         /**
-         * Sanitize function for array || object from the admin drag and drop data
-         */
-        function sanitize_text_or_array_field($array_or_string) {
-            if( is_string($array_or_string) ){
-                $array_or_string = sanitize_text_field($array_or_string);
-            }elseif( is_array($array_or_string) ){
-                foreach ( $array_or_string as $key => &$value ) {
-                    if ( is_array( $value ) ) {
-                        $value = sanitize_text_or_array_field($value);
+             * Sanitize function for array || object from the admin drag and drop data
+             */
+            function sanitize_text_or_array_field($array_or_string) {
+                if( is_string($array_or_string) ){
+                    $array_or_string = sanitize_text_field($array_or_string);
+                }elseif( is_array($array_or_string) ){
+                    foreach ( $array_or_string as $key => &$value ) {
+                        if ( is_array( $value ) ) {
+                            $value = sanitize_text_or_array_field($value);
+                        }
+                        else {
+                            $value = sanitize_text_field( $value );
+                        }
                     }
-                    else {
-                        $value = sanitize_text_field( $value );
-                    }
+                } 
+                return $array_or_string;
+            }           
+            //
+            $username = sanitize_text_or_array_field($req ['username'])?? '';
+            $email = sanitize_text_or_array_field($req ['email'])?? '';
+            $n_password = sanitize_text_or_array_field($req ['password'])?? '';
+            
+            $fullname = sanitize_text_or_array_field($req ['fullname']) ?? '';
+            $mobile = sanitize_text_or_array_field($req ['mobile']) ?? '';
+            $country = sanitize_text_or_array_field($req ['country']) ?? '';
+            $address = sanitize_text_or_array_field($req ['address'])?? '';
+            $file = sanitize_text_or_array_field($req ['file']) ?? '';
+            
+            // $password = wp_hash_password($n_password);
+            // $password = md5($n_password);
+            
+
+            global $wpdb;
+            $table=$wpdb->prefix.'users';
+
+            $gmail_found = $wpdb->get_results("SELECT `user_email` FROM $table"); //SELECT `user_email` FROM wp_users 
+            // print_r($gmail_found);
+            
+            $expected = [];
+            foreach ($gmail_found as $key=>$obj){
+                $expected[] = $obj->user_email; 
+            }
+            // print_r($expected);
+            
+            if (!in_array($email, $expected)) {
+                $user_name= $username;
+                $user_password= $n_password;
+                $user_email= $email;
+                $user_id = wp_create_user( $user_name, $user_password, $user_email );
+                $user = new \WP_User( $user_id );
+                $user->set_role( 'editor' );
+
+                if($user){
+                    return rest_ensure_response(1);  // success
+                    wp_die();
+                }else{
+                    return rest_ensure_response(0); // failed
+                    wp_die();
                 }
-            } 
-            return $array_or_string;
-        }
 
-        //
-        $username = sanitize_text_or_array_field($req ['username'])?? '';
-        $fullname = sanitize_text_or_array_field($req ['fullname']) ?? '';
-        $email = sanitize_text_or_array_field($req ['email'])?? '';
-        $mobile = sanitize_text_or_array_field($req ['mobile']) ?? '';
-        $country = sanitize_text_or_array_field($req ['country']) ?? '';
-        $address = sanitize_text_or_array_field($req ['address'])?? '';
-        $password = sanitize_text_or_array_field($req ['password'])?? '';
-        $file = sanitize_text_or_array_field($req ['file']) ?? '';
-
-         // $user_id = get_the_author_meta($email);
-        // $getImg=  get_avatar($user_id);
-        // $user_email = get_the_author_meta( $email );  
-        // $url = 'http://gravatar.com/avatar/' . md5( $user_email );
-        // $file = sanitize_text_or_array_field($req ['file']) ?? $url;
-
-
-        $date = date('Y-m-d H:i:s');
-        global $wpdb;
-        $table=$wpdb->prefix. 'wcs_staff';
-        $data = array( 'full_name' => $fullname, 'mobile_number' => $mobile,'address' => $address,'email' => $email,'user_name' => $username,'password' => $password,'country' => $country,'file' => $file ,'date_created' => $date);
-        $format = array('%s','%s','%s','%s','%s','%s','%s','%s','%s');
-        $wpdb->insert($table,$data,$format);
-        $save = $wpdb->insert_id;
-    
-        if($save){
-            return rest_ensure_response('successfully inserted data'); 
-            wp_die();
-        }else{
-            return rest_ensure_response('Failed inserted data');
-            wp_die();
-        }
+              } else {
+                    return rest_ensure_response(3); // email exist
+                    wp_die();
+              }
    
     } 
     // permission

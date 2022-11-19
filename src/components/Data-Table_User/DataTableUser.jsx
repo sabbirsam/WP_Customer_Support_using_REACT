@@ -4,16 +4,14 @@ import { DataGrid } from '@mui/x-data-grid';
 // import Spinner from '../../components/Spinner/Spinner';
 import './data-table-user.scss'
 import image from '../../../assets/img/no_img.png'
+import { format } from "date-fns";
 
 export const userColumns = [
-  // { field: "ID", headerName: "ID", width: 70 },
-  { field: "id", headerName: "ID", width: 70 },
- 
+  { field: "ID", headerName: "ID", width: 70 }, 
   {
-    field: "name",
-    // field: "user_login",
-    headerName: "Name",
-    width: 280,
+    field: "user_login",
+    headerName: "Username",
+    width: 200,
     renderCell: (params) => {
       return (
         <div className="wcs_cellWithImg">
@@ -21,47 +19,51 @@ export const userColumns = [
           params.row.file && <img className="wcs_cellImg" src={params.row.file} alt="staff" /> 
           ||  <img className="wcs_cellImg" src={image} alt="staff" /> 
          }
-         {params.row.user_name}
+         {params.row.data.user_login}
         </div>
       );
     },
   },
 
-  // {
-  //   field: "display_name",
-  //   headerName: "Display Name",
-  //   width: 200,
-  // },
-  // {
-  //   field: "user_email",
-  //   headerName: "Email",
-  //   width: 300,
-  // },
-  // {
-  //   field: "user_registered",
-  //   headerName: "Register date",
-  //   width: 160,
-  // },
   {
-    field: "email",
-    headerName: "Email",
-    width: 300,
+    // field: "user_status",
+    field: "display_name",
+    headerName: "Name",
+    width: 250,
+    renderCell: (params) => {
+      return (params.row.data.display_name);
+    },
   },
 
   {
-    field: "mobile_number",
-    headerName: "Mobile",
-    width: 200,
+    // field: "user_status",
+    field: "user_email",
+    headerName: "Email",
+    width: 280,
+    renderCell: (params) => {
+      return (params.row.data.user_email);
+    },
   },
+  
+  {
+
+    field: "user_registered",
+    headerName: "Registered",
+    width: 200,
+    renderCell: (params) => {
+      return (format(new Date(params.row.data.user_registered), "MMMM do, yyyy H:mma"));
+    },
+  },
+
   {
     // field: "user_status",
-    field: "status",
+    field: "user_status",
     headerName: "Status",
     width: 160,
     renderCell: (params) => {
       return (
-        <div className={`cellWithStatus id-${params.row.status}`}>
-          {params.row.status ==="1" ? "Active" : "Inactive"}
+        <div className={`cellWithStatus id-${params.row.data.user_status}`}>
+          {params.row.data.user_status ==="1" ? "Active" : "Inactive"}
         </div>
       );
     },
@@ -111,7 +113,8 @@ const DataTableStaff = () => {
         rowsPerPageOptions={[8]}
         checkboxSelection
         disableSelectionOnClick
-        getRowId={row => row.id}
+        // getRowId={row => row.id}
+        getRowId={row => row.ID}
       />
     </div>
   )
