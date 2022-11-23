@@ -3188,6 +3188,12 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   font-size: 25px;
   color: gray;
 }
+@media only screen and (max-width: 1366px) {
+  .wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .noConversation {
+    left: 12%;
+    font-size: 20px;
+  }
+}
 .wcs_chat_cls .wcs_Chats .chatOnline {
   flex: 3;
 }

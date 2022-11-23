@@ -253,17 +253,20 @@ class WCS_React_Rest_Route{
      * User-------------------------------------------------------
      * get User
      */
-    public function get_users(){
+    public function get_users(\WP_REST_Request $request ){
+        $capabilitiesId = $request->get_param('capabilitiesId') ?? 'subscriber';
         global $wpdb;
         $capabilities_field=$wpdb->prefix.'capabilities';
         $qargs=[
-            'role' => ['subscriber'], // subscriber:  use this if you need to query by role at the same time
+            // 'role' => ['subscriber'], // subscriber:  use this if you need to query by role at the same time 'administrator','editor'
+            'role' => ["$capabilitiesId"], 
             'meta_query'=>
                 [
                    'relation' => 'OR', // optional if you'll need to select more than
                     [
                        'key' => $capabilities_field,
-                       'value' => 'subscriber',
+                    //    'value' => 'subscriber',
+                       'value' => "$capabilitiesId",
                        'compare' => 'LIKE',
                     ],
                 ],
@@ -430,10 +433,6 @@ class WCS_React_Rest_Route{
             $country = sanitize_text_or_array_field($req ['country']) ?? '';
             $address = sanitize_text_or_array_field($req ['address'])?? '';
             $file = sanitize_text_or_array_field($req ['file']) ?? '';
-            
-            // $password = wp_hash_password($n_password);
-            // $password = md5($n_password);
-            
 
             global $wpdb;
             $table=$wpdb->prefix.'users';
@@ -508,7 +507,6 @@ class WCS_React_Rest_Route{
             return rest_ensure_response($results);
     } 
     public function get_conversation_permission(){return true; } 
-
 
     //save conversation -------------------------------------------------------------------
     public function save_conversation( $req ){

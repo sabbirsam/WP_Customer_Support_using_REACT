@@ -4,7 +4,10 @@ import Message from "../../components/Message/Message";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import React, {useState, useEffect, useRef } from "react"
-import axios from 'axios'
+import {Box, TextField, MenuItem} from '@mui/material';
+import axios from "axios";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 const Chat = () => {
   const [chatting, setChatting] = useState("");
@@ -13,6 +16,14 @@ const Chat = () => {
   const [chatconversationUsers, setChatConversationUsers] = useState([]);
   const [currentconversationID, setCurrentConversationID] = useState(null);
   const scrollRef = useRef();
+  const [capabilitiesId, setCapabilities] = useState('subscriber');
+
+  const handleChange = (event) => {
+    setCapabilities(event.target.value);
+  };
+  // console.log(capabilitiesId)
+  
+
 
   /**
    * Current logged in user information-----------------------------------------------------------------------------------------
@@ -38,11 +49,11 @@ const Chat = () => {
    */
    useEffect(() => {
        getUsers();
-   }, []);
+   }, [capabilitiesId]);
   //  }, [getUsers()]);
 
    function getUsers() { //http://localhost/wppool/chatbox/wp-json/wcs/v1/users
-       axios.get(`${appLocalizer.apiUrl}/wcs/v1/users`,{
+       axios.get(`${appLocalizer.apiUrl}/wcs/v1/users?capabilitiesId=${capabilitiesId}`,{
         headers:{
           'content-type': 'application/json',
           'X-WP-NONCE':appLocalizer.nonce
@@ -76,10 +87,11 @@ const Chat = () => {
     // console.log(chatconversationUsers)
 
 // Using the below method create porblem----------------------------------
+
       // useEffect(() => {
       //   getConversations();
-      // }, [currentconversationID, getConversations()]);
-  
+      // }, [currentconversationID]); 
+      // // }, [currentconversationID, getConversations()]); 
       // function getConversations() {
       //     axios.get(`${appLocalizer.apiUrl}/wcs/v1/conversation?receiverId=${currentconversationID}`,{
       //       headers:{
@@ -89,6 +101,7 @@ const Chat = () => {
       //         setChatConversationUsers(response.data);
       //   });
       // }
+
 // end -----------------------------------
 
     useEffect(()=>{
@@ -168,7 +181,13 @@ const Chat = () => {
           </div>
           <div className="chatOnline">
             <div className="chatOnlineWrapper">
-              {/* THREE */}
+              <Box width='250px' className='selectFields'>
+                  <TextField label="Select Capabilities" select value={capabilitiesId} onChange={handleChange} fullWidth>
+                      <MenuItem value="subscriber">User</MenuItem>
+                      <MenuItem value="editor">Staff</MenuItem>
+                      <MenuItem value="administrator">Admin</MenuItem>
+                  </TextField>
+                </Box>
               <h1 className="pluginName"></h1>
             </div>
           </div>
