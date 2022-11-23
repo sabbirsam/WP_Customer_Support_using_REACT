@@ -1787,6 +1787,11 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   height: 600px;
   padding: 20px;
 }
+@media only screen and (max-width: 1366px) {
+  .wcs_datatable_staff {
+    height: 380px;
+  }
+}
 .wcs_datatable_staff .wcs_cellWithImg {
   display: flex;
   align-items: center;
@@ -3118,14 +3123,15 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 .wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxTop {
-  height: 500px;
+  height: 520px;
   overflow-y: scroll;
   padding-right: 10px;
 }
 .wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxTop::-webkit-scrollbar {
-  width: 5px;
+  width: 0px;
 }
 .wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxTop::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey;
@@ -3138,6 +3144,11 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 .wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxTop::-webkit-scrollbar-thumb:hover {
   background: teal;
 }
+@media only screen and (max-width: 1366px) {
+  .wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxTop {
+    height: 220px;
+  }
+}
 .wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxBottom {
   margin-top: 20px;
   align-items: center;
@@ -3145,7 +3156,7 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 }
 .wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .chatBoxBottom .chatMessageImput {
   width: 95%;
-  height: 140px;
+  height: 85px;
   padding: 10px;
   border: none;
 }
@@ -3170,12 +3181,44 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   margin-top: 45px;
   margin-left: 10px;
 }
+.wcs_chat_cls .wcs_Chats .chatBox .chatBoxWrapper .noConversation {
+  position: absolute;
+  top: 150px;
+  left: 20%;
+  font-size: 25px;
+  color: gray;
+}
 .wcs_chat_cls .wcs_Chats .chatOnline {
   flex: 3;
 }
 .wcs_chat_cls .wcs_Chats .chatOnline .chatOnlineWrapper {
   padding: 10px;
   height: 100%;
+}
+.wcs_chat_cls .wcs_Chats .chatOnline .chatOnlineWrapper .pluginName {
+  font-size: 25px;
+  margin-top: 28vh;
+  margin-left: 9px;
+  line-height: 41px;
+  color: white;
+  font-family: "Merienda", cursive;
+  animation-name: glow;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes glow {
+  from {
+    text-shadow: 0px 0px 5px #fff, 0px 0px 5px #614ad3;
+  }
+  to {
+    text-shadow: 0px 0px 20px #fff, 0px 0px 20px #614ad3;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  .wcs_chat_cls .wcs_Chats .chatOnline .chatOnlineWrapper .pluginName {
+    font-size: 15px;
+  }
 }
 /*!***********************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Conversations/conversation.scss ***!

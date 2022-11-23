@@ -24,10 +24,13 @@ class WCS_Enqueue extends WCS_BaseController{
             'nonce' => wp_create_nonce( 'wp_rest'),
         ] );
         wp_enqueue_script('wcs_min_js');  
+        
+        /**get user role
+         * 
+            $user = new \WP_User(get_current_user_id());
+            echo $user->roles[0];
+         */
     
     }
-
-    //http://localhost/wppool/chatbox/wp-json/wcs/v1/settings
-
 }
         

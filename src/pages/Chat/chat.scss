@@ -40,13 +40,15 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
+                position: relative;
                 
                 .chatBoxTop{
-                    height: 500px;
+                    height: 520px;
+                    // height: 300px;
                     overflow-y:scroll ;
                     padding-right: 10px;
                     &::-webkit-scrollbar {
-                        width: 5px;
+                        width: 0px;
                       }
                     &::-webkit-scrollbar-track {
                         box-shadow: inset 0 0 5px grey; 
@@ -59,6 +61,10 @@
                     &::-webkit-scrollbar-thumb:hover {
                         background: teal;
                       }
+                      @media only screen and (max-width: 1366px){
+                        height: 220px;
+                      }
+                      
                 }
 
                 .chatBoxBottom{
@@ -71,7 +77,8 @@
                     .chatMessageImput{
                         width: 95%;
                         // height: 80%;
-                        height: 140px;
+                        // height: 140px;
+                        height: 85px;
                         padding: 10px;
                         border: none;
 
@@ -100,6 +107,13 @@
                         margin-left: 10px;
                     }
                 }
+                .noConversation{
+                    position: absolute;
+                    top: 150px;
+                    left: 20%;
+                    font-size: 25px;
+                    color: gray;
+                }
 
             }
         }
@@ -108,6 +122,26 @@
             .chatOnlineWrapper{
                 padding: 10px;
                 height: 100%;
+                .pluginName{
+                    font-size: 25px;
+                    margin-top: 28vh;
+                    margin-left: 9px;
+                    line-height: 41px;
+                    color: white;
+                    font-family: "Merienda", cursive;
+                    animation-name: glow;
+                    animation-duration: 1s;
+                    animation-iteration-count: infinite;
+                    animation-direction: alternate;
+
+                    @keyframes glow{
+                        from{text-shadow:0px 0px 5px #fff,0px 0px 5px #614ad3;}
+                        to{text-shadow:0px 0px 20px #fff,0px 0px 20px #614ad3;}
+                      }
+                      @media only screen and (max-width: 1366px){
+                        font-size:15px;
+                      }
+                }
             }
         }
     }

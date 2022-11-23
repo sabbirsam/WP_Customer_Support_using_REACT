@@ -42,6 +42,18 @@ const TicketView = ({ticketNum}) => {
   // const [priority, setPriority] = useState(ticketNum.row.priority);
   // const [agent, setAgent] = useState(ticketNum.row.customer_id);
   // const [group, setGroup] = useState(ticketNum.row.groups);
+
+  // JUST ADD BACKUP  
+  // axios.get(`${appLocalizer.apiUrl}/wcs/v1/conversation`,{
+  //   headers:{
+  //     'content-type': 'application/json',
+  //     'X-WP-NONCE':appLocalizer.nonce
+  //   }
+  // }).then(function(response) {
+  //   // setLoading=false;
+  //   setConversation(response.data);
+  // });
+
   
  const handleSubmit = async e => {
     e.preventDefault();

@@ -1,14 +1,20 @@
 import "./message.scss";
 import Noimage from "../../../assets/img/no_img.png"
+import {format} from "timeago.js";
 
-const Message = ({own}) => {
+
+
+const Message = ({own,chatconversationUsers,time,currentconversationID,loggedUserId}) => {
+  // console.log(currentconversationID)
+
   return (
     <div className={own ? "message own" : "message"}>
         <div className="messageTop">
-            <img className="messageImg" src={Noimage} alt="" />
-            <p className="messageText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus possimus</p>
+           {own ?"" : <img className="messageImg" src={Noimage} alt="" /> }
+            <input type="hidden" id={loggedUserId} />
+            <p className="messageText" id={currentconversationID}>{chatconversationUsers}</p>
         </div>
-        <div className="messageBottom">1 Hour ago</div>
+        <div className="messageBottom">{format(time)}</div>
     </div>
   )
 }

@@ -6,11 +6,15 @@ defined('ABSPATH') or die('Hey, what are you doing here? You silly human!');
  * Admin dashboard created 
  */
 class WCS_React_Rest_Route{
+   
+    
     function __construct(){
         add_action( 'rest_api_init', array( $this, 'create_rest_route' ) ); 
     }
 
     public function create_rest_route(){
+
+        
         /**
          * Fetch Tickets from DB
          */
@@ -40,32 +44,16 @@ class WCS_React_Rest_Route{
             'permission_callback' => [$this, 'edit_tickets_permission']
         ] );
 
-        /**
-         * Fetch Tickets from DB
-         */
-        // register_rest_route( 'wcs/v1', '/tickets_res',[
-        //     'methods'=>'GET',
-        //     'callback'=>[$this, 'get_tickets_res'],
-        //     'permission_callback' => [$this, 'get_tickets_res_permission']
-        // ] );
-         /**
-         * Add tickets in DB
-         */
-        // register_rest_route( 'wcs/v1', '/tickets_res',[
-        //     'methods'=>'POST',
-        //     'callback'=>[$this, 'save_tickets_res'],
-        //     'permission_callback' => [$this, 'save_tickets_res_permission']
-        // ] );
-
-        
         /**--------------------------------------------------------------
          * Fetch User from DB
          */
+        
         register_rest_route( 'wcs/v1', '/users',[
             'methods'=>'GET',
             'callback'=>[$this, 'get_users'],
             'permission_callback' => [$this, 'get_users_permission']
         ] );
+        
         /**
          * Add user in DB
          */
@@ -92,9 +80,38 @@ class WCS_React_Rest_Route{
             'permission_callback' => [$this, 'save_staff_permission']
         ] );
 
+
+        /**
+         * Get current logged in users Id and all info
+         */
+        register_rest_route( 'wcs/v1', '/uid',[
+            'methods'=>'GET',
+            'callback'=>[$this, 'get_uid'],
+            'permission_callback' => [$this, 'get_uid_permission']
+        ] );
+
+        /**-------------------------------------------------------------
+         * Fetch conversation from DB
+         * http://localhost/wppool/chatbox/wp-json/wcs/v1/conversation
+         * 
+         */
+        register_rest_route( 'wcs/v1', '/conversation',[
+            'methods'=>'GET',
+            'callback'=>[$this, 'get_conversation'],
+            'permission_callback' => [$this, 'get_conversation_permission']
+        ] );
+        
+         /**
+         * Add conversation in DB
+         */
+        register_rest_route( 'wcs/v1', '/conversation',[
+            'methods'=>'POST',
+            'callback'=>[$this, 'save_conversation'],
+            'permission_callback' => [$this, 'save_conversation_permission']
+        ] );
     }
 
-    /**----------------------------------------------------------
+    /**-------------------------------------------------------------------------------
      * Tickets
      * get Tickets
      */
@@ -106,21 +123,8 @@ class WCS_React_Rest_Route{
     } 
     //set permission for fetch
     public function get_tickets_permission(){return true; } 
-    /**----------------------------------------------------------
-     * Tickets response
-     * get Tickets Response
-     */
-    // public function get_tickets_res(){
-    //     global $wpdb;
-    //     $table_name = $wpdb->prefix . 'wcs_tickets_response';
-    //     $results = $wpdb->get_results("SELECT * FROM $table_name");
-    //     return rest_ensure_response($results);
-    // } 
-    //set permission for fetch tickets response
-    // public function get_tickets_res_permission(){return true; } 
 
-
-   //add tickets
+   //add tickets------------------------------------------------------------------------------
     public function save_tickets( $req ){
         function sanitize_text_or_array_field($array_or_string) {
             if( is_string($array_or_string) ){
@@ -149,8 +153,6 @@ class WCS_React_Rest_Route{
         // $d = array($description);
         // $desc = json_encode($d);
 
-
-
         $date = date('Y-m-d H:i:s');
         global $wpdb;
         $table=$wpdb->prefix.'wcs_tickets';
@@ -171,7 +173,7 @@ class WCS_React_Rest_Route{
     //add tickets permission
     public function save_tickets_permission(){ return current_user_can( 'publish_posts' ); } 
 
-    //delete
+    //delete------------------------------------------------------------------------------
     public function delete_tickets( $req ){
 
         $id = $req ['id']?? '';
@@ -252,10 +254,6 @@ class WCS_React_Rest_Route{
      * get User
      */
     public function get_users(){
-        // $table_name = $wpdb->prefix . 'wcs_users';
-        // $results = $wpdb->get_results("SELECT * FROM $table_name");
-        // return rest_ensure_response($results);
-
         global $wpdb;
         $capabilities_field=$wpdb->prefix.'capabilities';
         $qargs=[
@@ -275,6 +273,14 @@ class WCS_React_Rest_Route{
         $usersQuery=new \WP_User_Query($qargs); // instantiate UserQuery with $qargs
 
         $users=$usersQuery->get_results();
+        
+        // foreach ($users as $x => $val){
+        //     foreach ($val as $z => $v){
+        //         $image= get_avatar_url($v->ID);                
+        //     }
+        //     return rest_ensure_response([$users,$image]); 
+        // }
+        
         return rest_ensure_response($users);  
     } 
     //set permission for fetch
@@ -362,12 +368,7 @@ class WCS_React_Rest_Route{
      * Staff
      * get Staff
      */
-    public function get_staff(){
-        // global $wpdb;
-        // $table_name = $wpdb->prefix . 'wcs_staff';
-        // $results = $wpdb->get_results("SELECT * FROM $table_name");
-        // return rest_ensure_response($results);
-        
+    public function get_staff(){        
         global $wpdb;
         $capabilities_field=$wpdb->prefix.'capabilities';
         $qargs=[
@@ -387,6 +388,7 @@ class WCS_React_Rest_Route{
         $editorQuery=new \WP_User_Query($qargs); // instantiate UserQuery with $qargs
 
         $editor=$editorQuery->get_results();
+        
         return rest_ensure_response($editor); 
 
     } 
@@ -473,33 +475,78 @@ class WCS_React_Rest_Route{
         return current_user_can( 'publish_posts' );
 
     } 
+
+    /**
+     * Current user UID------------------------------------------------------------------------------
+     */
+    public function get_uid(){
+        $details_info = wp_get_current_user();
+        $user_id = $details_info->ID;
+        $user_name = $details_info->display_name;
+        $image= get_avatar_url( $details_info->ID );
+        $user_email = $details_info->user_email;
+        $user_role = $details_info->roles[0];
+
+        $uid =array(
+           $user_id, $user_name, $image,  $user_email, $user_role,  $details_info
+        );
+        
+        return rest_ensure_response($uid);
+    } 
+    public function get_uid_permission(){return true; } 
+
+    /**----------------------------------------------------------
+     * Conversation
+     * get Conversation
+     */
+    public function get_conversation( \WP_REST_Request $request ){
+            $receiverId = $request->get_param('receiverId');
+            $logedinId = get_current_user_id();
+            global $wpdb;
+            $table_name = $wpdb->prefix . 'wcs_conversation';
+            $results = $wpdb->get_results("SELECT * FROM $table_name WHERE senderId= $logedinId AND `receiverId` = $receiverId OR `senderId` =$receiverId AND `receiverId` = $logedinId ORDER BY id ASC ");
+            return rest_ensure_response($results);
+    } 
+    public function get_conversation_permission(){return true; } 
+
+
+    //save conversation -------------------------------------------------------------------
+    public function save_conversation( $req ){
+        function sanitize_text_or_array_field($array_or_string) {
+            if( is_string($array_or_string) ){
+                $array_or_string = sanitize_text_field($array_or_string);
+            }elseif( is_array($array_or_string) ){
+                foreach ( $array_or_string as $key => &$value ) {
+                    if ( is_array( $value ) ) {
+                        $value = sanitize_text_or_array_field($value);
+                    }
+                    else {
+                        $value = sanitize_text_field( $value );
+                    }
+                }
+            } 
+            return $array_or_string;
+        }
+        
+        $senderId = sanitize_text_or_array_field($req ['cuid']) ?? '';
+        $receiverId = sanitize_text_or_array_field($req ['currentconversationID'])?? '';
+        $message = sanitize_text_or_array_field($req ['chatting']) ?? '';
+
+        global $wpdb;
+        $table=$wpdb->prefix.'wcs_conversation';
+        $data = array( 'senderId' => $senderId,'receiverId' => $receiverId,'message' => $message);
+        $format = array('%s','%s', '%s');
+        $wpdb->insert($table,$data,$format);
+        $save = $wpdb->insert_id;
+        
+        return rest_ensure_response('successfully conversation added'); 
+        wp_die();
+        
+    }
+    public function save_conversation_permission(){ 
+        // return current_user_can( 'publish_posts' ); 
+        return true;
+    } 
+
   
-    
-
 }
-
-            // global $wpdb;
-            // $table=$wpdb->prefix. 'wcs_users';
-            // $n_password = sanitize_text_or_array_field($req ['password'])?? '';
-            // // $password = wp_hash_password($n_password);
-            // $password = $wp_hasher->HashPassword($n_password);
-
-            // $password_hashed = $wpdb->get_results("SELECT `password` FROM $table  WHERE id = '5' "); //SELECT `password` FROM `wp_wcs_users` WHERE id = '1'
-            //             // // print_r($password_hashed->password);
-            // foreach ($password_hashed as $item){
-            //     $hash = $item->password; 
-            // }
-            // print_r($hash);
-            // print_r($n_password);
-            
-            // require_once( ABSPATH . 'wp-includes/class-phpass.php');
-            // $wp_hasher = new PasswordHash(8, TRUE);
-            // $check = $wp_hasher->CheckPassword($n_password, $hash);
-            //             //// $check = $wp_hasher->CheckPassword($n_password, $hash);
-            //             //// return $wp_hasher->HashPassword($password);
-            // if( $check ) {
-            //     return rest_ensure_response('Matched'); 
-            // } else {
-            //     return rest_ensure_response('No, Wrong Password'); 
-            //     echo "No, Wrong Password";
-            // }
