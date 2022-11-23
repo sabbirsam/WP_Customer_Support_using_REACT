@@ -73,7 +73,24 @@ const Chat = () => {
       getConversations();
     },[currentconversationID]);
 
-    
+    // console.log(chatconversationUsers)
+
+// Using the below method create porblem----------------------------------
+      // useEffect(() => {
+      //   getConversations();
+      // }, [currentconversationID, getConversations()]);
+  
+      // function getConversations() {
+      //     axios.get(`${appLocalizer.apiUrl}/wcs/v1/conversation?receiverId=${currentconversationID}`,{
+      //       headers:{
+      //         'content-type': 'application/json',
+      //         'X-WP-NONCE':appLocalizer.nonce
+      //       }},).then(function(response) {
+      //         setChatConversationUsers(response.data);
+      //   });
+      // }
+// end -----------------------------------
+
     useEffect(()=>{
       setTimeout(() =>scrollRef.current?.scrollIntoView({ behavior: 'smooth' }), 100);
     },[chatconversationUsers])
@@ -129,9 +146,10 @@ const Chat = () => {
                 <div className="chatBoxTop">
 
                   {
-                    chatconversationUsers.map((m)=>(
+                    chatconversationUsers.map(m=>(
                       <div ref={scrollRef}>
-                        <Message own={m.senderId !== currentuser[0]} chatconversationUsers={m.message} time={m.date_created} currentconversationID={currentconversationID} loggedUserId={currentuser[0]}/>
+                        <Message own={m.senderId == currentuser[0]} chatconversationUsers={m.message} time={m.date_created} currentconversationID={currentconversationID} loggedUserId={currentuser[0]}/>
+                        {/* <Message own={m.senderId !== currentuser[0]} chatconversationUsers={chatconversationUsers} time={m.date_created} currentconversationID={currentconversationID} loggedUserId={currentuser[0]}/> */}
                       </div>
                     ))
                   }
