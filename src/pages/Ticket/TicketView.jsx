@@ -8,6 +8,7 @@ import BadgeIcon from '@mui/icons-material/Badge';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
+import DnsIcon from '@mui/icons-material/Dns';
 import React, {useState,useEffect} from 'react';
 import axios from "axios";
 import Tags from "../../components/Tags/Tags";
@@ -98,7 +99,8 @@ const TicketView = ({ticketNum}) => {
                   </div>
                   <div className='wcs_tickets'>
                       <div className="wcs_title_info">
-                        <div  className="user_title">{ticketNum.row.user_name[0]}</div>
+                        {<DnsIcon className="wcs_user_title_info"/>}
+                        {/* <div  className="user_title">{ticketNum.row.user_name[0]}</div> */}
                         <span>{ticketNum.row.user_name}</span>
                         <span  className="sp_title">{ticketNum.row.date_created}</span>
                       </div>

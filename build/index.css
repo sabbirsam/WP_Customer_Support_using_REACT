@@ -244,7 +244,7 @@
   justify-content: space-between;
   padding: 10px;
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-  height: 100px;
+  height: 120px;
 }
 .wcs_widget .wcs_left, .wcs_widget .wcs_right {
   display: flex;
@@ -1779,6 +1779,7 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   color: rgb(5, 139, 0);
   border: 1px dotted rgba(0, 139, 39, 0.596);
   cursor: pointer;
+  font-size: 10px;
 }
 /*!********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Data-Table-Ticket/data-table-ticket.scss ***!
@@ -2949,7 +2950,8 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   position: relative;
 }
 .wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .title_icon {
-  font-size: 35px;
+  font-size: 25px;
+  margin-left: 6px;
   color: #92b588;
 }
 .wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .sp_title {
@@ -2971,7 +2973,8 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   margin-left: 6px;
 }
 .wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_class .Icon_description_user {
-  font-size: 35px;
+  font-size: 25px;
+  margin-left: 3px;
   color: #92b588;
   left: 4px;
   top: 0px;
@@ -3003,17 +3006,27 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 30px;
+  height: 60px;
 }
 .wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_info .user_title {
   border: 7px dotted #cdebc4;
   background-color: #cdebc4;
-  width: 19px;
+  width: 28px;
+  height: 33px;
   font-size: 23px;
   border-radius: 7px;
   text-align: center;
   color: rgba(0, 0, 0, 0.3);
   margin-left: 2px;
+  margin-top: 11px;
+  align-items: center;
+  display: flex;
+}
+.wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_info .wcs_user_title_info {
+  font-size: 25px;
+  font-weight: bold;
+  color: #92b588;
+  margin-left: 6px;
 }
 .wcs_ticket_view .wcs_ticket_container .wcs_tickets .wcs_title_info span {
   position: relative;
@@ -3070,7 +3083,7 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   flex: 6;
 }
 .wcs_home .wcs_homeContainer .add_ticket {
-  width: 95px;
+  width: 100px;
   height: 22px;
   text-align: center;
   margin-left: 20px;
@@ -3080,6 +3093,70 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   color: rgb(5, 139, 0);
   border: 1px dotted rgba(0, 139, 39, 0.596);
   cursor: pointer;
+  font-size: 10px;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Conversations/conversation.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+.conversation {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.conversation:hover {
+  background-color: #e6e6e6;
+}
+.conversation .conversationImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 20px;
+}
+.conversation .conversationName {
+  font-weight: 500;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Message/message.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+.message {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.message .messageTop {
+  display: flex;
+  align-items: center;
+}
+.message .messageTop .messageImg {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 10px;
+}
+.message .messageTop .messageText {
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #6c3ae9;
+  color: white;
+  max-width: 300px;
+}
+.message .messageBottom {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.message.own {
+  align-items: flex-end;
+}
+.message.own .messageText {
+  background-color: rgb(214, 214, 214);
+  color: #000;
 }
 /*!*************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Chat/chat.scss ***!
@@ -3113,6 +3190,18 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 .wcs_chat_cls .wcs_Chats .chatMenu .chatMenuWrapper .ChatMenuInput::placeholder {
   font-size: 12px;
   margin-left: 15px;
+}
+.wcs_chat_cls .wcs_Chats .chatMenu .chatMenuWrapper .chatBoxUser {
+  height: 620px;
+  overflow-y: scroll;
+}
+.wcs_chat_cls .wcs_Chats .chatMenu .chatMenuWrapper .chatBoxUser::-webkit-scrollbar {
+  width: 0px;
+}
+@media only screen and (max-width: 1366px) {
+  .wcs_chat_cls .wcs_Chats .chatMenu .chatMenuWrapper .chatBoxUser {
+    height: 380px;
+  }
 }
 .wcs_chat_cls .wcs_Chats .chatBox {
   flex: 5.5;
@@ -3225,69 +3314,6 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   .wcs_chat_cls .wcs_Chats .chatOnline .chatOnlineWrapper .pluginName {
     font-size: 15px;
   }
-}
-/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Conversations/conversation.scss ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************/
-.conversation {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  margin-top: 15px;
-  cursor: pointer;
-}
-.conversation:hover {
-  background-color: #e6e6e6;
-}
-.conversation .conversationImage {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  margin-right: 20px;
-}
-.conversation .conversationName {
-  font-weight: 500;
-}
-/*!************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/components/Message/message.scss ***!
-  \************************************************************************************************************************************************************************************************************************************************************/
-.message {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-}
-.message .messageTop {
-  display: flex;
-  align-items: center;
-}
-.message .messageTop .messageImg {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  margin-right: 10px;
-}
-.message .messageTop .messageText {
-  padding: 10px;
-  border-radius: 20px;
-  background-color: #6c3ae9;
-  color: white;
-  max-width: 300px;
-}
-.message .messageBottom {
-  font-size: 12px;
-  margin-top: 10px;
-}
-
-.message.own {
-  align-items: flex-end;
-}
-.message.own .messageText {
-  background-color: rgb(214, 214, 214);
-  color: #000;
 }
 /*!***********************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Tab/tab.scss ***!

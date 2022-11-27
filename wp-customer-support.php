@@ -35,6 +35,7 @@ use WCS\classes\WCS_AdminDashboard;
 use WCS\classes\WCS_Deactivate;
 use WCS\classes\WCS_Tickets_Table;
 use WCS\classes\WCS_React_Rest_Route;
+use WCS\classes\WCS_Shortcode;
 
 /**
  * Main Class
@@ -72,6 +73,8 @@ if(!class_exists('WCS_WPCustomerSupport')){
             new WCS_BaseController();
             new WCS_Tickets_Table();
             new WCS_React_Rest_Route();
+            new WCS_Shortcode();
+            
        
         }
         /**
@@ -83,6 +86,7 @@ if(!class_exists('WCS_WPCustomerSupport')){
                 die();
             }
         }
+        
         /**
          * Activation Hook
          */

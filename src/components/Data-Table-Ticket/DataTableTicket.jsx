@@ -65,11 +65,16 @@ const DataTableTicket = () => {
   const [users, setUsers] = useState([]);
       useEffect(() => {
           getUsers();
-      }, [getUsers()]);
+      }, [users]);
+      // }, [getUsers()]);
       
       function getUsers() {
           // axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/tickets').then(function(response) {
-          axios.get(`${appLocalizer.apiUrl}/wcs/v1/tickets`).then(function(response) {
+          axios.get(`${appLocalizer.apiUrl}/wcs/v1/tickets`,{
+            headers:{
+              'content-type': 'application/json',
+              'X-WP-NONCE':appLocalizer.nonce
+            }},).then(function(response) {
             setUsers(response.data);
       });
   }

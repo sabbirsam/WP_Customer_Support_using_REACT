@@ -1,6 +1,7 @@
 <?php
 /**
- * @package  
+ * @package 
+ * All URL 
  */
 namespace WCS\classes;
 
@@ -16,5 +17,4 @@ class WCS_BaseController
 	    $this->plugin_url = plugin_dir_url( dirname( __FILE__, 1 ) ); //admin-chat-box/
         $this->plugin = plugin_dir_url(__FILE__); // classes/
     }
-
 }

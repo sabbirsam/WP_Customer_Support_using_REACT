@@ -78,8 +78,10 @@ export const actionColumns = [
     renderCell:(params)=>{
       return(
         <div className="wcs_cellAction">
-         <div className="wcs_viewButton">VIEW</div>
-         <div className="wcs_deleteButton">DELETE</div>
+         <div className="wcs_viewButton" id={params.row.data.ID}>
+            <a href={'user-edit.php?user_id=' + params.row.data.ID} style={{textDecoration:"none"}}>EDIT</a>
+         </div>
+         {/* <div className="wcs_deleteButton">DELETE</div> */}
         </div>
       );
     },

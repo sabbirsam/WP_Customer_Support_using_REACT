@@ -39,7 +39,8 @@
                 position: relative;
 
                 .title_icon{
-                    font-size: 35px;
+                    font-size: 25px;
+                    margin-left: 6px;
                     color: #92b588;
                 }
               
@@ -63,9 +64,8 @@
                     margin-left: 6px;
                 }
                 .Icon_description_user{
-                    // font-size: 35px;
-                    // color: #92b588; 
-                    font-size: 35px;
+                    font-size: 25px;
+                    margin-left: 3px;
                     color: #92b588;
                     left: 4px;
                     top: 0px;
@@ -105,16 +105,28 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                height: 30px;
+                // height: 30px;
+                height: 60px;
                 .user_title{
                     border: 7px dotted #cdebc4;
                     background-color: #cdebc4;
-                    width: 19px;
+                    width: 28px;
+                    height: 33px;
                     font-size: 23px;
                     border-radius: 7px;
                     text-align: center;
                     color: rgba(0, 0, 0, 0.3);
                     margin-left: 2px;
+                    margin-top: 11px;
+                    align-items: center;
+                    display: flex;
+
+                }
+                .wcs_user_title_info{
+                    font-size: 25px;
+                    font-weight: bold;
+                    color: #92b588;
+                    margin-left: 6px;
                 }
                 span{
                     position: relative;

@@ -6,7 +6,7 @@ import {format} from "timeago.js";
 
 const Message = ({own,chatconversationUsers,time,currentconversationID,loggedUserId}) => {
   // console.log(currentconversationID)
-  console.log(own)
+  // console.log(own)
 
   return (
     <div className={own ? "message own" : "message"}>

@@ -1,4 +1,3 @@
-import "./chat.scss";
 import Conversation from '../../components/Conversations/conversation';
 import Message from "../../components/Message/Message";
 import ReactQuill from 'react-quill';
@@ -8,31 +7,35 @@ import {Box, TextField, MenuItem} from '@mui/material';
 import axios from "axios";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
+import "./chat.scss";
 
 const Chat = () => {
   const [chatting, setChatting] = useState("");
   const [currentuser, setCurrentUserinfo] = useState([]);
   const [alluser, setALLUser] = useState([]);
   const [chatconversationUsers, setChatConversationUsers] = useState([]);
+  const [shownewmessage, setShownewmessage] = useState([]);
   const [currentconversationID, setCurrentConversationID] = useState(null);
   const scrollRef = useRef();
   const [capabilitiesId, setCapabilities] = useState('subscriber');
 
+  /**
+   * 
+   * @param {Check cuttent user capabilities} event 
+   */
   const handleChange = (event) => {
     setCapabilities(event.target.value);
   };
   // console.log(capabilitiesId)
   
 
-
   /**
-   * Current logged in user information-----------------------------------------------------------------------------------------
+   * Current logged in user information
+   * 0:ID,1:name,2:gravatar,3:mail,4:capabilities,5:DATA[]
    */
   useEffect(() => {
     getLogedInUsers();
-  }, []);
-  // }, [getLogedInUsers()]);
-
+  }, [currentuser]);
   function getLogedInUsers() {
       axios.get(`${appLocalizer.apiUrl}/wcs/v1/uid`,{
         headers:{
@@ -42,18 +45,17 @@ const Chat = () => {
         setCurrentUserinfo(response.data);
     });
     }
-  // console.log(currentuser[0]) // id
+    
 
   /**
-   * Get all usets-----------------------------------------------------------------------------------------
+   * Get all users based on selected capabilites but not for users. 
+   * Under condition
    */
    useEffect(() => {
        getUsers();
    }, [capabilitiesId]);
-  //  }, [getUsers()]);
-
    function getUsers() { //http://localhost/wppool/chatbox/wp-json/wcs/v1/users
-       axios.get(`${appLocalizer.apiUrl}/wcs/v1/users?capabilitiesId=${capabilitiesId}`,{
+       axios.get(`${appLocalizer.apiUrl}/wcs/v1/chat_users?capabilitiesId=${capabilitiesId}`,{
         headers:{
           'content-type': 'application/json',
           'X-WP-NONCE':appLocalizer.nonce
@@ -61,55 +63,65 @@ const Chat = () => {
          setALLUser(response.data);
     });
   }
-  // console.log(alluser)
+
+
 
   /**
    * Fetch conversation by selected user and chat owner
    */
   
-    useEffect(()=>{
-      const getConversations = async () =>{
-        try{
-          const res = await axios.get(`${appLocalizer.apiUrl}/wcs/v1/conversation?receiverId=${currentconversationID}`,{
+    // useEffect(()=>{
+    //   const getConversations = async () =>{
+    //     try{
+    //       const res = await axios.get(`${appLocalizer.apiUrl}/wcs/v1/conversation?receiverId=${currentconversationID}`,{
+    //         headers:{
+    //           'content-type': 'application/json',
+    //           'X-WP-NONCE':appLocalizer.nonce
+    //         }},).then(function(response) {
+    //           setChatConversationUsers(response.data);
+    //             setShownewmessage(c)
+    //       });
+    //     } catch(err){
+    //       console.log(err)
+    //     }
+    //   };
+    //   getConversations();
+    // },[currentconversationID,shownewmessage]);
+
+    // console.log(chatconversationUsers)
+
+
+  /**
+   * Fetch conversation by selected user and chat owner
+   */
+      useEffect(() => {
+        getConversations();
+      }, [currentconversationID,shownewmessage]); 
+      function getConversations() {
+        const c = axios.get(`${appLocalizer.apiUrl}/wcs/v1/conversation?receiverId=${currentconversationID}`,{
             headers:{
               'content-type': 'application/json',
               'X-WP-NONCE':appLocalizer.nonce
             }},).then(function(response) {
               setChatConversationUsers(response.data);
-          });
-        } catch(err){
-          console.log(err)
-        }
-      };
-      getConversations();
-    },[currentconversationID]);
+              setShownewmessage(c)
+        });
+      }
 
-    // console.log(chatconversationUsers)
+    /**
+     * To Get the last message makesure getConversations || get_conversation is ASC selected
+     */
 
-// Using the below method create porblem----------------------------------
+    // useEffect(()=>{
+    //   setTimeout(() =>scrollRef.current?.scrollIntoView({ behavior: 'smooth' }), 100);
+    // },[chatconversationUsers])
 
-      // useEffect(() => {
-      //   getConversations();
-      // }, [currentconversationID]); 
-      // // }, [currentconversationID, getConversations()]); 
-      // function getConversations() {
-      //     axios.get(`${appLocalizer.apiUrl}/wcs/v1/conversation?receiverId=${currentconversationID}`,{
-      //       headers:{
-      //         'content-type': 'application/json',
-      //         'X-WP-NONCE':appLocalizer.nonce
-      //       }},).then(function(response) {
-      //         setChatConversationUsers(response.data);
-      //   });
-      // }
 
-// end -----------------------------------
 
-    useEffect(()=>{
-      setTimeout(() =>scrollRef.current?.scrollIntoView({ behavior: 'smooth' }), 100);
-    },[chatconversationUsers])
 
   /**
     * On submit the conversation
+    * Reply chat
     */
    const handleSubmit = async e => {
     e.preventDefault();
@@ -142,6 +154,7 @@ const Chat = () => {
           <div className="chatMenu">
             <div className="chatMenuWrapper">
               <input type="text" placeholder="Search for users...." className="ChatMenuInput" />
+              <div className="chatBoxUser">
               {
                 alluser.map(c=>(
                   <div onClick={()=> setCurrentConversationID(c.data.ID)}>
@@ -149,6 +162,7 @@ const Chat = () => {
                   </div>
                 ))
               }
+            </div>
             </div>
           </div>
           <div className="chatBox">
@@ -162,7 +176,6 @@ const Chat = () => {
                     chatconversationUsers.map(m=>(
                       <div ref={scrollRef}>
                         <Message own={m.senderId == currentuser[0]} chatconversationUsers={m.message} time={m.date_created} currentconversationID={currentconversationID} loggedUserId={currentuser[0]}/>
-                        {/* <Message own={m.senderId !== currentuser[0]} chatconversationUsers={chatconversationUsers} time={m.date_created} currentconversationID={currentconversationID} loggedUserId={currentuser[0]}/> */}
                       </div>
                     ))
                   }

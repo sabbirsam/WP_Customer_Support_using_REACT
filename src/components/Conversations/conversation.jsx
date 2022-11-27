@@ -9,7 +9,20 @@ const conversation = ({users}) => {
         <img className="conversationImage" src={Noimage} alt="" />
         <span className="conversationName" id={users.data.ID}>{users.data.display_name}</span>
     </div>
-    
+
+    // <div className="conversation">
+    //   {users.data.ID ?
+    //   <>
+    //     <img className="conversationImage" src={Noimage} alt="" />
+    //     <span className="conversationName" id={users.data.ID}>{users.data.display_name}</span>
+    //   </> : 
+    //   <>
+    //     <img className="conversationImage" src={Noimage} alt="" />
+    //     <span className="conversationName" id={users.data.ID}>No user found</span>
+    //   </>
+    //   }
+    // </div>
+
   )
 }
 

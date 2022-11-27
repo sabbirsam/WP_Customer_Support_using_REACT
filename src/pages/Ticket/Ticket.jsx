@@ -10,7 +10,8 @@ import {TicketeditContext} from "../../contexts/TicketeditContext"
 import "./ticket.scss";
 
 const Ticket = () => {
-
+  let current_page = window.location.origin + window.location.pathname
+  // console.log(current_page)
  
   /**
    * View ticket
@@ -20,7 +21,7 @@ const Ticket = () => {
    * Edit ticket
    */
     const [edit, setEdit] = useState(null); 
-    console.log("From tickets: "+ edit);
+    // console.log("From tickets: "+ edit);
    
   /**
    * Add ticket

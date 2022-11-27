@@ -19,6 +19,37 @@ import "./sidebar.scss";
 let current_page = window.location.pathname;
 
 const WCSTab = () => {
+    /**
+    useEffect(()=>{
+        let isClean = true
+         const getTabstatus = async () =>{
+                 const res = await axios.get(`${appLocalizer.apiUrl}/wcs/v1/uid`,{
+                     headers:{
+                     'content-type': 'application/json',
+                     'X-WP-NONCE':appLocalizer.nonce
+                     }},).then(function(response) {
+                         if(!isClean){
+                             setCurrentUserinfo(response.data);
+                             return;
+                         }
+                 });
+             }; 
+             
+             return()=>{
+                 isClean = false
+                 getTabstatus()
+             }
+             
+     },[currentuser[4]]);
+
+
+    let c = currentuser[4]
+    console.log(c)
+    let a = (c =='subscriber' ? 4  : 1);
+    console.log(a)
+
+     */
+
   const [toggleState, setToggleState] = useState(1);
 
   const toggleTab = (index) => {

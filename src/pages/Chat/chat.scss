@@ -27,6 +27,18 @@
                         margin-left: 15px;
                     }
                 }
+                .chatBoxUser{
+                    height: 620px;
+                    overflow-y:scroll ;
+
+                    &::-webkit-scrollbar {
+                        width: 0px;
+                      }
+                    @media only screen and (max-width: 1366px){
+                    height: 380px;
+                    }
+
+                }
             }
            
         }

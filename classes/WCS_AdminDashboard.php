@@ -8,19 +8,13 @@ defined('ABSPATH') or die('Hey, what are you doing here? You silly human!');
  */
 class WCS_AdminDashboard{
     function __construct(){
-        add_action("admin_menu", array($this, 'add_admin_pages'));
-       
+        add_action("admin_menu", array($this, 'add_admin_pages')); 
     }
-
-   
-
     public function add_admin_pages(){
-    
         $user = wp_get_current_user();
-        // $allowed_roles = array( 'editor', 'administrator', 'author' );
+        // $allowed_roles = array( 'editor', 'administrator', 'author','subscriber );
         $allowed_roles = array( 'editor', 'administrator' );
         if ( array_intersect( $allowed_roles, $user->roles ) ) {
-            
         $icon = plugin_dir_url(__FILE__).'../assets/img/white-support_16x16.png';
         $get_pro = plugin_dir_url(__FILE__).'../assets/img/pro-icon.svg';
         add_menu_page( 
@@ -35,7 +29,6 @@ class WCS_AdminDashboard{
             'dashboard_status', 'Dashboard', 'Dashboard', 'read', 'dashboard_status', 
             array( $this, 'wcs_dashboard' )
         );
-        
         add_submenu_page(
             'dashboard_status', 'Settings', 'Settings', 'manage_options', 'wcs_setting', 
             array( $this, 'wcs_Setting' )
@@ -44,17 +37,17 @@ class WCS_AdminDashboard{
             'dashboard_status', 'Documentation', 'Documentation', 'manage_options', 'wcs_documentation', 
             array( $this, 'wcs_Documentation' )
         );
-        
         add_submenu_page('dashboard_status', __('Get PRO - WP Customer Support System', 'wcs'), "<span id='wcs-get-pro-menu'> <img src='".$get_pro."' alt=''>
 				GET <span>PRO </span> </span>", 'manage_options', '#'); // use link in # 
         }
     }
-  
+    /**
+     * All template loads here
+     */
     public function wcs_dashboard()
     {
         require_once plugin_dir_path(__FILE__).'../template/wcs_dashboard.php';
     }
-    
     public function wcs_Setting()
     {
         require_once plugin_dir_path(__FILE__).'../template/wcs_setting.php';
