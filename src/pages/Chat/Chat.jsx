@@ -27,7 +27,7 @@ const Chat = () => {
     setCapabilities(event.target.value);
   };
   // console.log(capabilitiesId)
-  
+
 
   /**
    * Current logged in user information
@@ -63,34 +63,6 @@ const Chat = () => {
          setALLUser(response.data);
     });
   }
-
-
-
-  /**
-   * Fetch conversation by selected user and chat owner
-   */
-  
-    // useEffect(()=>{
-    //   const getConversations = async () =>{
-    //     try{
-    //       const res = await axios.get(`${appLocalizer.apiUrl}/wcs/v1/conversation?receiverId=${currentconversationID}`,{
-    //         headers:{
-    //           'content-type': 'application/json',
-    //           'X-WP-NONCE':appLocalizer.nonce
-    //         }},).then(function(response) {
-    //           setChatConversationUsers(response.data);
-    //             setShownewmessage(c)
-    //       });
-    //     } catch(err){
-    //       console.log(err)
-    //     }
-    //   };
-    //   getConversations();
-    // },[currentconversationID,shownewmessage]);
-
-    // console.log(chatconversationUsers)
-
-
   /**
    * Fetch conversation by selected user and chat owner
    */

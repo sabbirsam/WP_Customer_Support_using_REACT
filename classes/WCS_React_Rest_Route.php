@@ -43,6 +43,16 @@ class WCS_React_Rest_Route{
             'callback'=>[$this, 'edit_tickets'],
             'permission_callback' => [$this, 'edit_tickets_permission']
         ] );
+
+         /**
+         * Tickets Status: POST Method::Status of the Tickets
+         */
+        register_rest_route( 'wcs/v1', '/tickets_status',[
+            'methods'=>'POST',
+            'callback'=>[$this, 'status_tickets'],
+            'permission_callback' => [$this, 'status_tickets_permission']
+        ] );
+
         /**--------------------------------------------------------------
          * USER: GET Method::View Users
          */
@@ -289,39 +299,23 @@ class WCS_React_Rest_Route{
             $res_description = $req ['res_description']?? '';
             $file = sanitize_text_or_array_field($req ['file']) ?? '';
             $date = date('Y-m-d H:i:s');
-            /**
-             * Get status value
-             */
-            $status = sanitize_text_or_array_field($req ['status'])?? '';
-            $agent = sanitize_text_or_array_field($req ['agent'])?? '';
-            $group = sanitize_text_or_array_field($req ['group'])?? '';
-            $priority = sanitize_text_or_array_field($req ['priority'])?? '';
-            
-            if($id &&  $description){
+
                 global $wpdb;
                 $table=$wpdb->prefix.'wcs_tickets';
                 $data_update = array('user_name' => $username,'title' => $title,'description' => $description,'res_description' => $res_description,'email' => $email,'file' => $file ,'date_created' => $date);
                 $data_where = array('id' => $id);
                 $update = $wpdb->update($table , $data_update, $data_where);
-            }else if($id && $status || $priority ||  $staff_id || $group){
-                global $wpdb;
-                $table=$wpdb->prefix.'wcs_tickets';
-                $data_update = array('status' => $status,'staff_id' => $agent,'groups' => $group,'priority' => $priority);
-                $data_where = array('id' => $id);
-                $update = $wpdb->update($table , $data_update, $data_where);  
-            }
-           
-           
-            /**
-             * Confirmation
-             */
-            if($update){
-                return rest_ensure_response(1); 
-                wp_die();
-            }else{
-                return rest_ensure_response(0);
-                wp_die();
-            }
+
+                /**
+                 * Confirmation
+                 */
+                if($update){
+                    return rest_ensure_response(1); 
+                    wp_die();
+                }else{
+                    return rest_ensure_response(0);
+                    wp_die();
+                }
         } 
         //Edit tickets permission
         public function edit_tickets_permission(){
@@ -334,6 +328,66 @@ class WCS_React_Rest_Route{
                  return false;
             }
         } 
+
+        /**
+         * Status tickets
+         */
+        public function status_tickets( $req ){
+            /**
+             * Sanitization
+             */
+            function sanitize_text_or_array_field($array_or_string) {
+                if( is_string($array_or_string) ){
+                    $array_or_string = sanitize_text_field($array_or_string);
+                }elseif( is_array($array_or_string) ){
+                    foreach ( $array_or_string as $key => &$value ) {
+                        if ( is_array( $value ) ) {
+                            $value = sanitize_text_or_array_field($value);
+                        }
+                        else {
+                            $value = sanitize_text_field( $value );
+                        }
+                    }
+                } 
+                return $array_or_string;
+            }
+            /**
+             * Get status value
+             */
+            $id = sanitize_text_or_array_field($req ['id'])?? '';
+            $status = sanitize_text_or_array_field($req ['status'])?? '';
+            $agent = sanitize_text_or_array_field($req ['agent'])?? '';
+            $group = sanitize_text_or_array_field($req ['group'])?? '';
+            $priority = sanitize_text_or_array_field($req ['priority'])?? '';
+                global $wpdb;
+                $table=$wpdb->prefix.'wcs_tickets';
+                $data_update = array('staff_id' => $agent,'status' => $status,'groups' => $group,'priority' => $priority);
+                $data_where = array('id' => $id);
+                $update = $wpdb->update($table , $data_update, $data_where);  
+        
+                /**
+                 * Confirmation
+                 */
+                if($update){
+                    return rest_ensure_response(1); 
+                    wp_die();
+                }else{
+                    return rest_ensure_response(0);
+                    wp_die();
+                }
+        } 
+        //Edit tickets permission
+        public function status_tickets_permission(){
+            // return current_user_can( 'publish_posts' );
+            $details_info = wp_get_current_user();
+            $allowed_roles = array( 'editor', 'administrator','subscriber' );
+            if ( array_intersect( $allowed_roles, $details_info->roles ) ) {
+                return true;
+            }else {
+                 return false;
+            }
+        } 
+
 
         /**
          * User------------------------------------------------------------------------------------

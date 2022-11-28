@@ -6,11 +6,11 @@ import 'sweetalert2/src/sweetalert2.scss'
 import "./tag.scss"
 
 const Tags = ({ticketNum}) => {
+  const id = ticketNum.row.id;
     const [status, setStatus] = useState(ticketNum.row.status);
     const [priority, setPriority] = useState(ticketNum.row.priority);
     const [agent, setAgent] = useState(ticketNum.row.staff_id);
     const [group, setGroup] = useState(ticketNum.row.groups);
-    const id = ticketNum.row.id;
    
       const handleChange = (event) => {
         setStatus(event.target.value);
@@ -25,7 +25,7 @@ const Tags = ({ticketNum}) => {
         setGroup(event.target.value);
       };
       const handleSubmit = async e => {
-        const url = `${appLocalizer.apiUrl}/wcs/v1/tickets_edit`;
+        const url = `${appLocalizer.apiUrl}/wcs/v1/tickets_status`;
           try{
             const res = await axios.post(url, {
               id,status,priority,agent,group
