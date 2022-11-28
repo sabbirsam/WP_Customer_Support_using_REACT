@@ -1812,22 +1812,26 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 .wcs_datatable_staff .cellWithStatus.id-0 {
   background-color: rgba(7, 166, 224, 0.745);
   color: rgb(1, 13, 2);
-  width: 51px;
+  width: 57px;
   text-align: center;
 }
 .wcs_datatable_staff .cellWithStatus.id-1 {
-  background-color: rgba(0, 128, 0, 0.05);
-  color: crimson;
-  width: 53px;
+  background-color: rgba(225, 11, 11, 0.8);
+  color: white;
+  width: 57px;
   text-align: center;
 }
 .wcs_datatable_staff .cellWithStatus.id-2 {
-  background-color: rgba(0, 128, 0, 0.05);
-  color: green;
+  background-color: rgb(31, 101, 31);
+  color: white;
+  width: 57px;
+  text-align: center;
 }
 .wcs_datatable_staff .cellWithStatus.id-3 {
-  background-color: rgba(200, 225, 0, 0.3);
-  color: rgb(255, 0, 219);
+  background-color: rgba(20, 225, 0, 0.3);
+  color: rgb(8, 101, 14);
+  width: 57px;
+  text-align: center;
 }
 .wcs_datatable_staff .wcs_cellAction {
   display: flex;
