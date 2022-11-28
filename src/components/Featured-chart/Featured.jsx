@@ -32,7 +32,7 @@ const percentage = 66;
                     </div>
                 </div>
                 <div className="wcs_item">
-                    <div className="itemTitle">Last week solved</div>
+                    <div className="itemTitle">This week solved</div>
                     <div className="itemResult positive">
                         <KeyboardArrowUpIcon fontSize='small'/>
                         <div className="resultAmount">160 Tickets</div>

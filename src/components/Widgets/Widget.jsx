@@ -8,19 +8,98 @@ import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import StickyNote2Icon from '@mui/icons-material/StickyNote2';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 
 
 const Widget = ( {type} ) => {
-    //distinguished all 
-    let data;
-    //temporary person
-    const percentage = 20;
+    /**
+     * Calculations
+     */
+    const [user, setUser] = useState([]);
+    const [staff, setStaff] = useState([]);
+    const [tickets, setTickets] = useState([]);
+    
 
+    /**
+     * User count
+     */
+     useEffect(() => {
+         getUsers();
+     }, [user]);
+        function getUsers() {
+            axios.get(`${appLocalizer.apiUrl}/wcs/v1/users`,{
+                headers:{
+                  'content-type': 'application/json',
+                  'X-WP-NONCE':appLocalizer.nonce
+                }},).then(function(response) {
+            setUser(response.data);
+        });
+    }
+    /**
+     * Staff count
+     */
+        useEffect(() => {
+        getStaff();
+          }, [staff]);
+          function getStaff() {
+              axios.get(`${appLocalizer.apiUrl}/wcs/v1/staff`,{
+                headers:{
+                  'content-type': 'application/json',
+                  'X-WP-NONCE':appLocalizer.nonce
+                }},).then(function(response) {
+              setStaff(response.data);
+          });
+      }
+    /**
+     * Tickets count
+     */
+        useEffect(() => {
+        getTickets();
+          }, [tickets]);
+          function getTickets() {
+              axios.get(`${appLocalizer.apiUrl}/wcs/v1/tickets`,{
+                headers:{
+                  'content-type': 'application/json',
+                  'X-WP-NONCE':appLocalizer.nonce
+                }},).then(function(response) {
+                setTickets(response.data);
+          });
+      }
+
+     
+      tickets.forEach(TicketsBrekdown); //abstraction
+    //   var getTic;
+      function TicketsBrekdown(insideticket, ticketrootkeys, arr) { //declaration
+         const getTic = insideticket.status;
+         console.log(getTic);
+      }
+      
+
+        // let target = 3;
+        // let counter = 0;
+        // for (x of getTic) {
+        //     if (x == target) {
+        //             counter++;
+        //     }
+        // };
+        // console.log(counter);
+
+        
+
+
+ 
+    /**
+     * Switch 
+     */
+    let data;
+    const percentage = 20;
     switch(type){
         case "total_staffs":
             data ={
                 title: "Total Staff",
-                total: '3',
+                // total: '3',
+                total: staff.length,
                 isPercantage:false,
                 link: "See all staff info",
                 icon:(
@@ -31,7 +110,8 @@ const Widget = ( {type} ) => {
         case "total_users":
             data ={
                 title: "Total Users",
-                total: "1500",
+                // total: "1500",
+                total: user.length,
                 isPercantage:false,
                 link: "See all users",
                 icon:(
@@ -41,8 +121,8 @@ const Widget = ( {type} ) => {
             break;
         case "total_ticket_close":
             data ={
-                title: "Total Resolved",
-                total: "5000",
+                title: "Total Tickets",
+                total: tickets.length,
                 isPercantage:true,
                 link: "Visit ticket panel",
                 icon:(
@@ -52,8 +132,8 @@ const Widget = ( {type} ) => {
             break;
         case "todays_new_ticket":
             data ={
-                title: "New Tickets",
-                total: "95",
+                title: "Total Resolved",
+                total: '10',
                 isPercantage:true,
                 link: "Check all",
                 icon:(

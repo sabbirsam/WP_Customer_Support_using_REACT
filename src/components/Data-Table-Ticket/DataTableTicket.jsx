@@ -66,10 +66,8 @@ const DataTableTicket = () => {
       useEffect(() => {
           getUsers();
       }, [users]);
-      // }, [getUsers()]);
-      
       function getUsers() {
-          // axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/tickets').then(function(response) {
+          // wp-json/wcs/v1/tickets
           axios.get(`${appLocalizer.apiUrl}/wcs/v1/tickets`,{
             headers:{
               'content-type': 'application/json',
@@ -84,8 +82,8 @@ const DataTableTicket = () => {
       <DataGrid
         columns={ticketColumns}
         rows={users}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        pageSize={8}
+        rowsPerPageOptions={[8]}
         checkboxSelection
         disableSelectionOnClick
       />

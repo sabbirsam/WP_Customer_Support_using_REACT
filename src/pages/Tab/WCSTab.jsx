@@ -47,7 +47,7 @@ const WCSTab = () => {
 
 
     const TabIndex = (currentuser[4] =='subscriber' ? 4  : 1);
-    console.log(TabIndex)
+    // console.log(TabIndex)
     
     const [toggleState, setToggleState] = useState(1);
 
