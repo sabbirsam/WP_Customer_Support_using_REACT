@@ -30,7 +30,7 @@ const TicketView = ({ticketNum}) => {
     /**
     * On submit on ticket view. not complete yet
     */
-
+  const [currentuser, setCurrentUserinfo] = useState([]);
   const id = ticketNum.row.id;
   const [file, setFile] = useState(ticketNum.row.file);
   const [username, setUsername] = useState(ticketNum.row.user_name);
@@ -55,6 +55,21 @@ const TicketView = ({ticketNum}) => {
   //   setConversation(response.data);
   // });
 
+  useEffect(() => {
+    getLogedInUsers();
+  }, [currentuser]);
+  function getLogedInUsers() {
+      axios.get(`${appLocalizer.apiUrl}/wcs/v1/uid`,{
+        headers:{
+          'content-type': 'application/json',
+          'X-WP-NONCE':appLocalizer.nonce
+        }},).then(function(response) {
+        setCurrentUserinfo(response.data);
+    });
+    }
+    const capability = currentuser[4]
+
+
   
  const handleSubmit = async e => {
     e.preventDefault();
@@ -68,17 +83,27 @@ const TicketView = ({ticketNum}) => {
           'X-WP-NONCE':appLocalizer.nonce
         }
       }).then(function(res) {
-
           setDescription("");
-
-          Swal.fire({
+          if(res.data === 1){  
+            Swal.fire({
             toast: true,
             position: 'bottom-right',
             icon: 'success',
-            title: 'Data Updated',
+            title: "Added.....",
             showConfirmButton: false,
             timer: 1500
           })
+        }
+        else{
+            Swal.fire({
+            toast: true,
+            position: 'bottom-right',
+            icon: 'info',
+            title: "Failed to add",
+            showConfirmButton: false,
+            timer: 1500
+            })
+        }
       });
       
     } catch(err){
@@ -164,12 +189,15 @@ const TicketView = ({ticketNum}) => {
 
               {/* END  */}
           </div>
-          <div className='wcs_ticket_widgets'>    
-            <div className="properties">
-              <h2 className="properties_title">PROPERTIES</h2>
-              <Tags {...{ticketNum}}/>
-            </div>  
-          </div>
+          {capability =='administrator' || capability =='editor' ? 
+          <>
+            <div className='wcs_ticket_widgets'>    
+              <div className="properties">
+                <h2 className="properties_title">PROPERTIES</h2>
+                <Tags {...{ticketNum}}/>
+              </div>  
+            </div>
+          </>: ""}
       </div>
 
 

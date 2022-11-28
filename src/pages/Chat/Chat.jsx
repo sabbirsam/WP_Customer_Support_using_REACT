@@ -45,7 +45,7 @@ const Chat = () => {
         setCurrentUserinfo(response.data);
     });
     }
-    
+    const capability = currentuser[4]
 
   /**
    * Get all users based on selected capabilites but not for users. 
@@ -192,18 +192,21 @@ const Chat = () => {
                 </> :  <div className="chatBoxTop"> <div className="noConversation">Open a conversation to start chat</div></div> } 
               </div>
           </div>
-          <div className="chatOnline">
-            <div className="chatOnlineWrapper">
-              <Box width='250px' className='selectFields'>
-                  <TextField label="Select Capabilities" select value={capabilitiesId} onChange={handleChange} fullWidth>
-                      <MenuItem value="subscriber">User</MenuItem>
-                      <MenuItem value="editor">Staff</MenuItem>
-                      <MenuItem value="administrator">Admin</MenuItem>
-                  </TextField>
-                </Box>
-              <h1 className="pluginName"></h1>
+          {capability =='administrator' || capability =='editor' ? 
+          <>
+            <div className="chatOnline">
+              <div className="chatOnlineWrapper">
+                <Box width='250px' className='selectFields'>
+                    <TextField label="Select Capabilities" select value={capabilitiesId} onChange={handleChange} fullWidth>
+                        <MenuItem value="subscriber">User</MenuItem>
+                        <MenuItem value="editor">Staff</MenuItem>
+                        <MenuItem value="administrator">Admin</MenuItem>
+                    </TextField>
+                  </Box>
+                <h1 className="pluginName"></h1>
+              </div>
             </div>
-          </div>
+          </> : ""}
       </div>
   </div>
   )

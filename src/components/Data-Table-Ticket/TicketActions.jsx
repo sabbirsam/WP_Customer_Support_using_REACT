@@ -28,40 +28,52 @@ const TicketActions = ({params}) => {
     const handleReset=(e)=>{
       setAction(null);
     }
-
-
     /**
      * 
      * @param {Delete functionality} e 
      */
-    const handleDelete = async e => {
+    const handleDelete = (e) => {
         var id = { "id": e }; 
         const url = `${appLocalizer.apiUrl}/wcs/v1/tickets_delete`;
-
-        try{
-            const res = await axios.post(url, id, {
-              headers:{
-                'content-type': 'application/json',
-                'X-WP-NONCE':appLocalizer.nonce
-              }
-            }).then(function(res) {
-      
-              Swal.fire({
-                // position: 'top-end',
-                toast: true,
-                position: 'bottom-right',
-                icon: 'success',
-                title: 'Ticket has been deleted',
-                showConfirmButton: false,
-                timer: 1500
-              })
-
-            });// .then can add here
+        Swal.fire({
+              title: 'Are you sure to?',
+              text: "You won't be able to revert this ticket!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+            }).then((result) =>  {
+          if (result.isConfirmed) {
+              try{
+                const res = axios.post(url, id, {
+                  headers:{
+                    'content-type': 'application/json',
+                    'X-WP-NONCE':appLocalizer.nonce
+                    }
+                  }).then(function(res) {
             
-          } catch(err){
-            console.log(err);
-        }
+                      Swal.fire({
+                        // position: 'top-end',
+                        toast: true,
+                        position: 'bottom-right',
+                        icon: 'success',
+                        title: 'Ticket has been deleted',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
 
+                    });// .then can add here
+                  
+                  } catch(err){
+                    console.log(err);
+                } //end
+        
+            }
+
+		    });
+
+   
     }   
   return (
       <>

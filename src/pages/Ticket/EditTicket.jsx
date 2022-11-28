@@ -42,19 +42,28 @@ const EditTicket = ({ticketNum}) => {
             setEmail("");
             setDescription("");
 
- 
-          // console.log(res);
- 
-          Swal.fire({
-            toast: true,
-            position: 'bottom-right',
-            icon: 'success',
-            title: 'User has been update',
-            showConfirmButton: false,
-            timer: 1500
-          })
+            if(res.data === 1){
+                
+              Swal.fire({
+              toast: true,
+              position: 'bottom-right',
+              icon: 'success',
+              title: "Tickets updated successfully",
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+          else{
+              Swal.fire({
+              toast: true,
+              position: 'bottom-right',
+              icon: 'info',
+              title: "Failed to update",
+              showConfirmButton: false,
+              timer: 1500
+              })
+          }
           
-  
         });
         
       } catch(err){

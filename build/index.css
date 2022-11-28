@@ -3327,6 +3327,17 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 .content-tabs .active-content {
   display: block;
 }
+
+.content-tabs .wcs_welcome {
+  text-align: center;
+  align-items: center;
+  display: inherit;
+  margin-top: 25px;
+  font-size: 50px;
+}
+.content-tabs .wcs_welcome a {
+  text-decoration: none;
+}
 /*!***************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/pages/Tab/sidebar.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************/

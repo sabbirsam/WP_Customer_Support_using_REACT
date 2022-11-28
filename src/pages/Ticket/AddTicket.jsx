@@ -68,7 +68,7 @@ const AddTicket = () => {
             toast: true,
             position: 'bottom-right',
             icon: 'success',
-            title: 'User has been saved',
+            title: 'Ticket has been created',
             showConfirmButton: false,
             timer: 1500
           })

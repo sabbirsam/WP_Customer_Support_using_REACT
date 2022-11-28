@@ -218,7 +218,14 @@ class WCS_React_Rest_Route{
         } 
         //Tickets permission
         public function save_tickets_permission(){ 
-            return true;  // return current_user_can( 'publish_posts' ); 
+              // return current_user_can( 'publish_posts' ); //edit_posts
+            $details_info = wp_get_current_user();
+            $allowed_roles = array( 'editor', 'administrator','subscriber' );
+            if ( array_intersect( $allowed_roles, $details_info->roles ) ) {
+                return true;
+            }else {
+                 return false;
+            }
         } 
         /**
          * Delete tickets from the frontend
@@ -239,7 +246,16 @@ class WCS_React_Rest_Route{
             }
         } 
         //delete tickets permission
-        public function delete_tickets_permission(){return current_user_can( 'publish_posts' );} 
+        public function delete_tickets_permission(){
+            // return current_user_can( 'publish_posts' );
+            $details_info = wp_get_current_user();
+            $allowed_roles = array( 'editor', 'administrator','subscriber' );
+            if ( array_intersect( $allowed_roles, $details_info->roles ) ) {
+                return true;
+            }else {
+                 return false;
+            }
+        } 
         /**
          * Edit tickets
          */
@@ -273,24 +289,51 @@ class WCS_React_Rest_Route{
             $res_description = $req ['res_description']?? '';
             $file = sanitize_text_or_array_field($req ['file']) ?? '';
             $date = date('Y-m-d H:i:s');
-            global $wpdb;
-            $table=$wpdb->prefix.'wcs_tickets';
-            $data_update = array('user_name' => $username,'title' => $title,'description' => $description,'res_description' => $res_description,'email' => $email,'file' => $file ,'date_created' => $date);
-            $data_where = array('id' => $id);
-            $update = $wpdb->update($table , $data_update, $data_where);
+            /**
+             * Get status value
+             */
+            $status = sanitize_text_or_array_field($req ['status'])?? '';
+            $agent = sanitize_text_or_array_field($req ['agent'])?? '';
+            $group = sanitize_text_or_array_field($req ['group'])?? '';
+            $priority = sanitize_text_or_array_field($req ['priority'])?? '';
+            
+            if($id &&  $description){
+                global $wpdb;
+                $table=$wpdb->prefix.'wcs_tickets';
+                $data_update = array('user_name' => $username,'title' => $title,'description' => $description,'res_description' => $res_description,'email' => $email,'file' => $file ,'date_created' => $date);
+                $data_where = array('id' => $id);
+                $update = $wpdb->update($table , $data_update, $data_where);
+            }else if($id && $status || $priority ||  $staff_id || $group){
+                global $wpdb;
+                $table=$wpdb->prefix.'wcs_tickets';
+                $data_update = array('status' => $status,'staff_id' => $agent,'groups' => $group,'priority' => $priority);
+                $data_where = array('id' => $id);
+                $update = $wpdb->update($table , $data_update, $data_where);  
+            }
+           
+           
             /**
              * Confirmation
              */
             if($update){
-                return rest_ensure_response('successfully Update data'); 
+                return rest_ensure_response(1); 
                 wp_die();
             }else{
-                return rest_ensure_response('Failed update data');
+                return rest_ensure_response(0);
                 wp_die();
             }
         } 
         //Edit tickets permission
-        public function edit_tickets_permission(){return current_user_can( 'publish_posts' );} 
+        public function edit_tickets_permission(){
+            // return current_user_can( 'publish_posts' );
+            $details_info = wp_get_current_user();
+            $allowed_roles = array( 'editor', 'administrator','subscriber' );
+            if ( array_intersect( $allowed_roles, $details_info->roles ) ) {
+                return true;
+            }else {
+                 return false;
+            }
+        } 
 
         /**
          * User------------------------------------------------------------------------------------
@@ -577,7 +620,14 @@ class WCS_React_Rest_Route{
         }
         public function save_conversation_permission(){ 
             // return current_user_can( 'publish_posts' ); 
-            return true;
+            // return true;
+            $details_info = wp_get_current_user();
+            $allowed_roles = array( 'editor', 'administrator','subscriber' );
+            if ( array_intersect( $allowed_roles, $details_info->roles ) ) {
+                return true;
+            }else {
+                 return false;
+            }
         } 
 
         /**

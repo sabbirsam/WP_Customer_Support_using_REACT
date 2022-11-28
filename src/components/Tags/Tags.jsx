@@ -8,72 +8,59 @@ import "./tag.scss"
 const Tags = ({ticketNum}) => {
     const [status, setStatus] = useState(ticketNum.row.status);
     const [priority, setPriority] = useState(ticketNum.row.priority);
-    const [staff_id, setAgent] = useState(ticketNum.row.customer_id);
+    const [agent, setAgent] = useState(ticketNum.row.staff_id);
     const [group, setGroup] = useState(ticketNum.row.groups);
-
-    // const id = ticketNum.row.id;
-    // const file = ticketNum.row.file;
-    // const username = ticketNum.row.user_name;
-    // const title = ticketNum.row.title;
-    // const email= ticketNum.row.email;
-    // const description = ticketNum.row.description;
-    // const res_description = ticketNum.row.res_description;
-
+    const id = ticketNum.row.id;
    
-    // console.log(ticketNum);
-
-    const handleChange = (event) => {
+      const handleChange = (event) => {
         setStatus(event.target.value);
       };
-      
-
       const handlePriority = (event) => {
         setPriority(event.target.value);
       };
-      
-
       const handleAgent = (event) => {
         setAgent(event.target.value);
       };
-      
-
       const handleGroup = (event) => {
         setGroup(event.target.value);
       };
-      
-
       const handleSubmit = async e => {
-        // console.log(status)
-        // console.log(priority)
-        // console.log(agent)
-        // console.log(group)
-
         const url = `${appLocalizer.apiUrl}/wcs/v1/tickets_edit`;
           try{
             const res = await axios.post(url, {
-              status,priority,staff_id,group
-              // id, file,username,title,email,description,res_description,status,priority,staff_id,group
+              id,status,priority,agent,group
             }, {
               headers:{
                 'content-type': 'application/json',
                 'X-WP-NONCE':appLocalizer.nonce
               }
             }).then(function(res) {
-                Swal.fire({
+              if(res.data === 1){
+                
+                  Swal.fire({
                   toast: true,
                   position: 'bottom-right',
                   icon: 'success',
-                  title: 'Data Updated',
+                  title: "Status updated successfully",
                   showConfirmButton: false,
                   timer: 1500
                 })
+              }
+              else{
+                  Swal.fire({
+                  toast: true,
+                  position: 'bottom-right',
+                  icon: 'info',
+                  title: "Failed to change status",
+                  showConfirmButton: false,
+                  timer: 1500
+                  })
+              }
             });
             
           } catch(err){
             console.log(err);
           } 
-
-
       }
 
  
@@ -98,7 +85,7 @@ const Tags = ({ticketNum}) => {
                 </TextField>
               </Box>
             <Box width='250px' className='selectFields'>
-                <TextField label="Agent" select value={staff_id} onChange={handleAgent} fullWidth>
+                <TextField label="Agent" select value={agent} onChange={handleAgent} fullWidth>
                     <MenuItem value="0">SABBIR SAM</MenuItem>
                     <MenuItem value="1">TOUKIR</MenuItem>
                     <MenuItem value="2">ADNANA</MenuItem>

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
@@ -19,42 +20,41 @@ import "./sidebar.scss";
 let current_page = window.location.pathname;
 
 const WCSTab = () => {
-    /**
+    const [currentuser, setCurrentUserinfo] = useState([]);
+    const [frontview, setFrontView] = useState(true);
     useEffect(()=>{
-        let isClean = true
+        // let isClean = true
          const getTabstatus = async () =>{
                  const res = await axios.get(`${appLocalizer.apiUrl}/wcs/v1/uid`,{
                      headers:{
                      'content-type': 'application/json',
                      'X-WP-NONCE':appLocalizer.nonce
                      }},).then(function(response) {
-                         if(!isClean){
-                             setCurrentUserinfo(response.data);
-                             return;
-                         }
+                        setCurrentUserinfo(response.data);
+                        //  if(!isClean){
+                        //      setCurrentUserinfo(response.data);
+                        //      return;
+                        //  }
                  });
              }; 
-             
-             return()=>{
-                 isClean = false
-                 getTabstatus()
-             }
-             
+            //  return()=>{
+            //      isClean = false
+            //      getTabstatus()
+            //  }   
+            getTabstatus()          
      },[currentuser[4]]);
+    const capability = currentuser[4]
 
 
-    let c = currentuser[4]
-    console.log(c)
-    let a = (c =='subscriber' ? 4  : 1);
-    console.log(a)
+    const TabIndex = (currentuser[4] =='subscriber' ? 4  : 1);
+    console.log(TabIndex)
+    
+    const [toggleState, setToggleState] = useState(1);
 
-     */
-
-  const [toggleState, setToggleState] = useState(1);
-
-  const toggleTab = (index) => {
-    setToggleState(index);
-  };
+    const toggleTab = (index) => {
+        setToggleState(index);
+        setFrontView(false);
+    };
 
   return (
       <div className='wcs_home'>
@@ -66,6 +66,8 @@ const WCSTab = () => {
                 <hr />
                 <div className="wcs_center">
                   <ul>
+                 {/* Check condition  */}       
+                {  capability =='administrator' ?<>
                       <p className="wcs_title">
                           MAIN
                       </p>
@@ -92,6 +94,7 @@ const WCSTab = () => {
                               <span >Customer</span>
                           </li>
                       </a>
+                </>:"" } 
                       <a className={toggleState === 4 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(4)}>
                           <li className={toggleState === 4 ? "active" : "tabs"}>
                               <ConfirmationNumberIcon className='wcs_icon'/>
@@ -114,6 +117,7 @@ const WCSTab = () => {
           <div className="wcs_homeContainer">
             <Navbar/>
               <div className="content-tabs">
+              {  capability =='administrator' ?<>
                 <div className={toggleState === 1 ? "content  active-content" : "content"}>
                     {toggleState === 1 && <Dashboard/>}
                     {/* <Dashboard/> */}
@@ -125,6 +129,9 @@ const WCSTab = () => {
                 <div className={toggleState === 3 ? "content  active-content" : "content"}>
                      {toggleState === 3 && <Customer/>}
                 </div>
+                </>
+                : <div className={frontview === true ? "wcs_welcome  active-content" : "content"}><a>WELCOME</a></div> //Extra
+                } 
                 <div className={toggleState === 4 ? "content  active-content" : "content"}>
                     {toggleState === 4 &&  <Ticket/>}
                 </div>
