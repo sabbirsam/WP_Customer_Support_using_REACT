@@ -89,22 +89,31 @@ export const actionColumns = [
 ]
 
 const DataTableStaff = () => {
-  // let  setLoading = false;
 
-  const [staff, setstaff] = useState([]);
-      useEffect(() => {
-          getUsers();
-      }, [getUsers()]);
+        const [staff, setstaff] = useState([]);
+            useEffect(() => {
+                getUsers();
+            }, []);
 
-      function getUsers() {
-            // setLoading=true;
-            // {setLoading === true ?? <Spinner/>}
-          // axios.get('http://localhost/wppool/chatbox/wp-json/wcs/v1/staff').then(function(response) {
-          axios.get(`${appLocalizer.apiUrl}/wcs/v1/staff`).then(function(response) {
-            // setLoading=false;
-            setstaff(response.data);
-      });
-  }
+            function getUsers() {
+                axios.get(`${appLocalizer.apiUrl}/wcs/v1/staff`).then(function(response) {
+                  setstaff(response.data);
+            });
+        }
+
+
+          // function getUsers() {
+          //   axios.get(`${appLocalizer.apiUrl}/wcs/v1/staff`,{
+          //       headers:{
+          //       'content-type': 'application/json',
+          //       'X-WP-NONCE':appLocalizer.nonce
+          //       }},).then(function(response) {
+          //         setstaff(response.data);
+          //       });
+          //   }
+          //   getUsers();
+          //   console.log(staff)
+          console.log(staff)
 
   return (
     <div className='wcs_datatable_staff'>

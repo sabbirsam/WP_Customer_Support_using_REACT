@@ -3,6 +3,7 @@ import axios from "axios";
 import { DataGrid } from '@mui/x-data-grid';
 import './data-table-ticket.scss'
 import TicketActions from './TicketActions';
+// import UseFullPageLoader from '../../hooks/UseFullPageLoader';
 
 const getText = (html) => {
   const doc = new DOMParser().parseFromString(html, "text/html");
@@ -62,23 +63,28 @@ const DataTableTicket = () => {
   /**
    * Ticket fetch
    */
+  // const [loader, showLoader, hideLoader] = UseFullPageLoader();
   const [users, setUsers] = useState([]);
+
       useEffect(() => {
           getUsers();
       }, [users]);
       function getUsers() {
-          // wp-json/wcs/v1/tickets
-          axios.get(`${appLocalizer.apiUrl}/wcs/v1/tickets`,{
+
+          // showLoader();
+          axios.get(`${appLocalizer.apiUrl}/wcs/v1/tickets`,{ // wp-json/wcs/v1/tickets
             headers:{
               'content-type': 'application/json',
               'X-WP-NONCE':appLocalizer.nonce
-            }},).then(function(response) {
-            setUsers(response.data);
+            }},).then(function(response) { 
+              // hideLoader();
+              setUsers(response.data);
       });
   }
 
   return (
     <div className='wcs_datatable_staff'>
+      {/* {loader} */}
       <DataGrid
         columns={ticketColumns}
         rows={users}

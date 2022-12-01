@@ -20,7 +20,6 @@ const Widget = ( {type} ) => {
     const [staff, setStaff] = useState([]);
     const [tickets, setTickets] = useState([]);
     
-
     /**
      * User count
      */
@@ -57,38 +56,32 @@ const Widget = ( {type} ) => {
         useEffect(() => {
         getTickets();
           }, [tickets]);
-          function getTickets() {
-              axios.get(`${appLocalizer.apiUrl}/wcs/v1/tickets`,{
-                headers:{
-                  'content-type': 'application/json',
-                  'X-WP-NONCE':appLocalizer.nonce
-                }},).then(function(response) {
-                setTickets(response.data);
-          });
-      }
+            function getTickets() {
+                axios.get(`${appLocalizer.apiUrl}/wcs/v1/tickets`,{
+                    headers:{
+                    'content-type': 'application/json',
+                    'X-WP-NONCE':appLocalizer.nonce
+                    }},).then(function(response) {
+                    setTickets(response.data);
+            });
+        }
+  
+      /**
+       * Calculations of tickets > status from the wp_wcs_tickets table
+       */
+        const statusval = [];
+        tickets.forEach(TicketsBrekdown); //abstraction
+        function TicketsBrekdown(insideticket, ticketrootkeys, arr) { //declaration
+            const getTic = insideticket.status;
+            statusval.push(getTic);    
+        }
+        let elementCnt ={};
+        statusval.forEach(val => elementCnt[val] = (elementCnt[val] || 0) + 1);
+        const TicketOpen = (elementCnt[0]);
+        const TicketPending = (elementCnt[1]);
+        const TicketResolve = (elementCnt[2]);
+        const TicketClose = (elementCnt[3]);
 
-     
-      tickets.forEach(TicketsBrekdown); //abstraction
-    //   var getTic;
-      function TicketsBrekdown(insideticket, ticketrootkeys, arr) { //declaration
-         const getTic = insideticket.status;
-         console.log(getTic);
-      }
-      
-
-        // let target = 3;
-        // let counter = 0;
-        // for (x of getTic) {
-        //     if (x == target) {
-        //             counter++;
-        //     }
-        // };
-        // console.log(counter);
-
-        
-
-
- 
     /**
      * Switch 
      */
@@ -133,7 +126,7 @@ const Widget = ( {type} ) => {
         case "todays_new_ticket":
             data ={
                 title: "Total Resolved",
-                total: '10',
+                total: TicketResolve ? TicketResolve : "0",
                 isPercantage:true,
                 link: "Check all",
                 icon:(
@@ -143,8 +136,8 @@ const Widget = ( {type} ) => {
             break;
         case "ongoing":
             data ={
-                title: "Ongoing",
-                total: "50",
+                title: "Ongoing Tickets",
+                total: TicketOpen ? TicketOpen : "0",
                 isPercantage:true,
                 link: "See all tickets",
                 icon:(
@@ -154,8 +147,8 @@ const Widget = ( {type} ) => {
             break;
         case "pending":
             data ={
-                title: "Pending message",
-                total: "45",
+                title: "Pending Tickets",
+                total: TicketPending ? TicketPending : "0",
                 isPercantage:true,
                 link: "See all message",
                 icon:(
@@ -165,8 +158,8 @@ const Widget = ( {type} ) => {
             break;
         case "chatting":
             data ={
-                title: "Conversation rate",
-                total: "100%",
+                title: "Ticket Close",
+                total: TicketClose ? TicketClose : "0",
                 isPercantage:true,
                 link: "Check chat list",
                 icon:(

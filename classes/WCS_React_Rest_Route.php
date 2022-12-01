@@ -19,6 +19,11 @@ class WCS_React_Rest_Route{
             'callback'=>[$this, 'get_tickets'],
             'permission_callback' => [$this, 'get_tickets_permission']
         ] );
+        register_rest_route( 'wcs/v1', '/todays_tickets',[
+            'methods'=>'GET',
+            'callback'=>[$this, 'get_todays_tickets'],
+            'permission_callback' => [$this, 'get_todays_tickets_permission']
+        ] );
         /**
          * Tickets POST Method:: Save tickets
          */
@@ -155,6 +160,24 @@ class WCS_React_Rest_Route{
         } 
         //Permission for fetch all the tickets
         public function get_tickets_permission(){return true; } 
+
+        public function get_todays_tickets(){
+            /**
+             * Checking tickets view permission
+             */
+            $details_info = wp_get_current_user();
+            $user_id = $details_info->ID;
+            $user_role = $details_info->roles[0];
+            $email = $details_info->user_email;
+
+            global $wpdb;
+            $table_name = $wpdb->prefix . 'wcs_tickets';
+            $results = $wpdb->get_results("SELECT * FROM $table_name WHERE DATE(`date_created`) = CURDATE()");
+            return rest_ensure_response($results);
+            wp_die();
+            
+        } 
+        public function get_todays_tickets_permission(){return true; } 
 
         /**
          * Add tickets from the frontend

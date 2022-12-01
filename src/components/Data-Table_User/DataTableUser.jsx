@@ -94,7 +94,8 @@ const DataTableStaff = () => {
   const [user, setUser] = useState([]);
       useEffect(() => {
           getUsers();
-      }, [getUsers()]);
+      // }, [getUsers()]);
+      }, []);
 
       function getUsers() {
             // setLoading=true;
