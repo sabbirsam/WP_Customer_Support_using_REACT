@@ -100,20 +100,7 @@ const DataTableStaff = () => {
                   setstaff(response.data);
             });
         }
-
-
-          // function getUsers() {
-          //   axios.get(`${appLocalizer.apiUrl}/wcs/v1/staff`,{
-          //       headers:{
-          //       'content-type': 'application/json',
-          //       'X-WP-NONCE':appLocalizer.nonce
-          //       }},).then(function(response) {
-          //         setstaff(response.data);
-          //       });
-          //   }
-          //   getUsers();
-          //   console.log(staff)
-          console.log(staff)
+          // console.log(staff)
 
   return (
     <div className='wcs_datatable_staff'>

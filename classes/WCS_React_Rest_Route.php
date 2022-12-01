@@ -24,10 +24,15 @@ class WCS_React_Rest_Route{
             'callback'=>[$this, 'get_todays_tickets'],
             'permission_callback' => [$this, 'get_todays_tickets_permission']
         ] );
+        register_rest_route( 'wcs/v1', '/dashboard_tickets',[
+            'methods'=>'GET',
+            'callback'=>[$this, 'get_dashboard_tickets'],
+            'permission_callback' => [$this, 'get_dashboard_tickets_permission']
+        ] );
         /**
          * Tickets POST Method:: Save tickets
          */
-        register_rest_route( 'wcs/v1', '/tickets',[
+        register_rest_route( 'wcs/v1', '/add_tickets',[
             'methods'=>'POST',
             'callback'=>[$this, 'save_tickets'],
             'permission_callback' => [$this, 'save_tickets_permission']
@@ -66,6 +71,11 @@ class WCS_React_Rest_Route{
             'callback'=>[$this, 'get_users'],
             'permission_callback' => [$this, 'get_users_permission']
         ] );
+        register_rest_route( 'wcs/v1', '/dashboard_users',[
+            'methods'=>'GET',
+            'callback'=>[$this, 'get_dashboard_users'],
+            'permission_callback' => [$this, 'get_dashboard_users_permission']
+        ] );
         /**
          * USER: POST Method::SAVE Users
          */
@@ -82,10 +92,15 @@ class WCS_React_Rest_Route{
             'callback'=>[$this, 'get_staff'],
             'permission_callback' => [$this, 'get_staff_permission']
         ] );
+        register_rest_route( 'wcs/v1', '/dashboard_staff',[
+            'methods'=>'GET',
+            'callback'=>[$this, 'get_dashboard_staff'],
+            'permission_callback' => [$this, 'get_dashboard_staff_permission']
+        ] );
         /**
          * STAFF/SUPPORT Agent: POST Method::SAVE staff
          */
-        register_rest_route( 'wcs/v1', '/staff',[
+        register_rest_route( 'wcs/v1', '/add_staff',[
             'methods'=>'POST',
             'callback'=>[$this, 'save_staff'],
             'permission_callback' => [$this, 'save_staff_permission']
@@ -154,22 +169,10 @@ class WCS_React_Rest_Route{
                 return rest_ensure_response($results);
                 wp_die();
             }
-            
-            
-            // return rest_ensure_response($user_role);
         } 
-        //Permission for fetch all the tickets
         public function get_tickets_permission(){return true; } 
 
         public function get_todays_tickets(){
-            /**
-             * Checking tickets view permission
-             */
-            $details_info = wp_get_current_user();
-            $user_id = $details_info->ID;
-            $user_role = $details_info->roles[0];
-            $email = $details_info->user_email;
-
             global $wpdb;
             $table_name = $wpdb->prefix . 'wcs_tickets';
             $results = $wpdb->get_results("SELECT * FROM $table_name WHERE DATE(`date_created`) = CURDATE()");
@@ -178,6 +181,17 @@ class WCS_React_Rest_Route{
             
         } 
         public function get_todays_tickets_permission(){return true; } 
+
+        public function get_dashboard_tickets(){
+            global $wpdb;
+            $table_name = $wpdb->prefix . 'wcs_tickets';
+            $results = $wpdb->get_results("SELECT * FROM $table_name");
+            return rest_ensure_response($results);
+            wp_die();
+            
+        } 
+        public function get_dashboard_tickets_permission(){return true; } 
+
 
         /**
          * Add tickets from the frontend
@@ -453,6 +467,30 @@ class WCS_React_Rest_Route{
         public function get_users_permission(){
             return true;
         } 
+
+        public function get_dashboard_users(){
+           
+            global $wpdb;
+            $capabilities_field=$wpdb->prefix.'capabilities';
+            $qargs=[
+                'role' => ['subscriber'],
+                'meta_query'=>
+                    [
+                    'relation' => 'OR', 
+                        [
+                        'key' => $capabilities_field,
+                           'value' => 'subscriber',
+                        'compare' => 'LIKE',
+                        ],
+                    ],
+                'number'=> -1 
+            ];
+            $usersQuery=new \WP_User_Query($qargs); 
+            $users=$usersQuery->get_results();
+            return rest_ensure_response($users);              
+        } 
+        public function get_dashboard_users_permission(){ return true;} 
+
         /**
          * Add/Save users
          */
@@ -555,6 +593,31 @@ class WCS_React_Rest_Route{
         public function get_staff_permission(){
             return true;
         } 
+
+        public function get_dashboard_staff(){        
+            global $wpdb;
+            $capabilities_field=$wpdb->prefix.'capabilities';
+            $qargs=[
+                'role' => ['editor'],
+                'meta_query'=>
+                    [
+                    'relation' => 'OR',
+                        [
+                        'key' => $capabilities_field,
+                        'value' => 'editor',
+                        'compare' => 'LIKE',
+                        ],
+                    ],
+                'number'=> -1 
+            ];
+
+            $editorQuery=new \WP_User_Query($qargs);
+            $editor=$editorQuery->get_results();
+            return rest_ensure_response($editor); 
+        } 
+        public function get_dashboard_staff_permission(){  return true; }
+
+
         /**
          * Add Staff to DB
          */

@@ -17,16 +17,6 @@ import 'sweetalert2/src/sweetalert2.scss'
 
 
 const TicketView = ({ticketNum}) => {
-  // const [description, setDescription] = useState([]);
- 
-
-  // if(ticketNum.row.description.length>0){
-  //   var myDesc = JSON.parse(ticketNum.row.description);
-  // }
-  // if(ticketNum.row.res_description.length>0){
-  //   var myResdesc = JSON.parse(ticketNum.row.res_description);
-  // }  
-
     /**
     * On submit on ticket view. not complete yet
     */
@@ -38,22 +28,6 @@ const TicketView = ({ticketNum}) => {
   const [email, setEmail] = useState(ticketNum.row.email);
   const [description, setDescription] = useState(ticketNum.row.description);
   const [res_description, setResemail] = useState(ticketNum.row.res_description);
-
-  // const [status, setStatus] = useState(ticketNum.row.status);
-  // const [priority, setPriority] = useState(ticketNum.row.priority);
-  // const [agent, setAgent] = useState(ticketNum.row.customer_id);
-  // const [group, setGroup] = useState(ticketNum.row.groups);
-
-  // JUST ADD BACKUP  
-  // axios.get(`${appLocalizer.apiUrl}/wcs/v1/conversation`,{
-  //   headers:{
-  //     'content-type': 'application/json',
-  //     'X-WP-NONCE':appLocalizer.nonce
-  //   }
-  // }).then(function(response) {
-  //   // setLoading=false;
-  //   setConversation(response.data);
-  // });
 
   useEffect(() => {
     getLogedInUsers();

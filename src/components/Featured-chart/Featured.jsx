@@ -10,18 +10,14 @@ import axios from "axios";
 import Spinner from "../Spinner/Spinner";
 
 const Featured = () => {
-    
     const [tickets, setTickets] = useState([]);
-    const [consoles, setConsole] = useState(true);
     /**
      * Tickets count
      */
      useEffect(() => {
          getTickets();
-         setConsole(false)
           }, [tickets]);
           function getTickets() {
-            setConsole(true)
               axios.get(`${appLocalizer.apiUrl}/wcs/v1/todays_tickets`,{  //const Todayticketcreated = statusval.length;
                 headers:{
                   'content-type': 'application/json',
@@ -31,10 +27,6 @@ const Featured = () => {
                 
           });
       }
-
-    //   consoles == true ? <Spinner/> : ""
-
-     
       /**
        * Calculations of tickets > status from the wp_wcs_tickets table
        */
@@ -63,10 +55,12 @@ const Featured = () => {
         const roundup = percentageVal.toFixed(0); // no floating point, 2 means 2 floating
         const percentage = +roundup || 0; //NaN removed + 
 
+        const remaning = Todayticketcreated - TodaysTicketResolve;
+
   return (
     <div className='wcs_featured'>
         <div className="wcs_top">
-            <h1 className="wcs_title"> Today's Created Ticket Information </h1>
+            <h1 className="wcs_title">Today's Created Ticket Information</h1>
             <MoreVertTwoTone fontSize='small'/>
         </div>
         <div className="wcs_bottom">
@@ -86,10 +80,10 @@ const Featured = () => {
                     </div>
                 </div>
                 <div className="wcs_item">
-                    <div className="itemTitle">Close</div>
+                    <div className="itemTitle">Remaning</div>
                     <div className="itemResult positive">
                         <KeyboardArrowUpIcon fontSize='small'/>
-                        <div className="resultAmount">{TodaysTicketClose ? TodaysTicketClose: "0"} Tickets</div>
+                        <div className="resultAmount">{remaning ? remaning: "0"} Tickets</div>
                     </div>
                 </div>
                 <div className="wcs_item">

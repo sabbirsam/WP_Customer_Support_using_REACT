@@ -16,10 +16,25 @@ const Widget = ( {type} ) => {
     /**
      * Calculations
      */
+    const [tickets, setTickets] = useState([]);
     const [user, setUser] = useState([]);
     const [staff, setStaff] = useState([]);
-    const [tickets, setTickets] = useState([]);
-    
+
+    /**
+     * Tickets count
+     */
+         useEffect(() => {
+            getTickets();
+              }, [tickets]);
+                function getTickets() {
+                    axios.get(`${appLocalizer.apiUrl}/wcs/v1/dashboard_tickets`,{
+                        headers:{
+                        'content-type': 'application/json',
+                        'X-WP-NONCE':appLocalizer.nonce
+                        }},).then(function(response) {
+                        setTickets(response.data);
+                });
+            }
     /**
      * User count
      */
@@ -27,7 +42,7 @@ const Widget = ( {type} ) => {
          getUsers();
      }, [user]);
         function getUsers() {
-            axios.get(`${appLocalizer.apiUrl}/wcs/v1/users`,{
+            axios.get(`${appLocalizer.apiUrl}/wcs/v1/dashboard_users`,{
                 headers:{
                   'content-type': 'application/json',
                   'X-WP-NONCE':appLocalizer.nonce
@@ -42,7 +57,7 @@ const Widget = ( {type} ) => {
         getStaff();
           }, [staff]);
           function getStaff() {
-              axios.get(`${appLocalizer.apiUrl}/wcs/v1/staff`,{
+              axios.get(`${appLocalizer.apiUrl}/wcs/v1/dashboard_staff`,{
                 headers:{
                   'content-type': 'application/json',
                   'X-WP-NONCE':appLocalizer.nonce
@@ -50,22 +65,7 @@ const Widget = ( {type} ) => {
               setStaff(response.data);
           });
       }
-    /**
-     * Tickets count
-     */
-        useEffect(() => {
-        getTickets();
-          }, [tickets]);
-            function getTickets() {
-                axios.get(`${appLocalizer.apiUrl}/wcs/v1/tickets`,{
-                    headers:{
-                    'content-type': 'application/json',
-                    'X-WP-NONCE':appLocalizer.nonce
-                    }},).then(function(response) {
-                    setTickets(response.data);
-            });
-        }
-  
+
       /**
        * Calculations of tickets > status from the wp_wcs_tickets table
        */

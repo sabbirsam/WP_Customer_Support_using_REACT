@@ -8,11 +8,9 @@ import 'sweetalert2/src/sweetalert2.scss'
 import "./addstaff.scss";
 
 const AddStaff = () => {
-
   /**
    * Input
    */
-
    const [file,setFile] = useState()
    const [image, setImage] = useState("");
    const [username, setUsername] = useState("");
@@ -22,14 +20,12 @@ const AddStaff = () => {
    const [password, setPassword] = useState("");
    const [address, setAddress] = useState("");
    const [country, setCountry] = useState("");
-  
    /**
     * On submit
     */
    const handleSubmit = async e => {
      e.preventDefault()
- 
-     const url = `${appLocalizer.apiUrl}/wcs/v1/staff`;
+     const url = `${appLocalizer.apiUrl}/wcs/v1/add_staff`;
      try{
        const res = await axios.post(url, {
         file,username,fullname,email,mobile, password, address,country
@@ -39,8 +35,6 @@ const AddStaff = () => {
            'X-WP-NONCE':appLocalizer.nonce
          }
        }).then(function(res) {
-
-        //  console.log(res);
           setFile()
           setImage("");
           setUsername("");
@@ -50,9 +44,7 @@ const AddStaff = () => {
           setPassword("");
           setAddress("");
           setCountry("");
-
           if(res.data === 0){
-
             Swal.fire({
             toast: true,
             position: 'bottom-right',
@@ -61,9 +53,7 @@ const AddStaff = () => {
             showConfirmButton: false,
             timer: 1500
           })
-  
           }else if(res.data === 1){
-            
               Swal.fire({
               toast: true,
               position: 'bottom-right',
@@ -82,10 +72,7 @@ const AddStaff = () => {
             showConfirmButton: false,
             timer: 1500
             })
-  
           }
-         
- 
        });
        
      } catch(err){
@@ -95,7 +82,6 @@ const AddStaff = () => {
   return (
     <div className="wcs_add_staff" id="wcs_add_staff">
       <div className="wcs_staff_container">
-    
         {/* Start  */}
           <div className="wcs_top">
               <h1>Add New Staff</h1>
@@ -108,7 +94,6 @@ const AddStaff = () => {
                 <form action="">
                   <div className="formInput">
                     <label htmlFor="file">Image: <DriveFolderUploadIcon className="wcs_icon"/></label>
-              
                     {/* <input type="file" id="file" name="file" style={{display:"none"}} onChange={(e) =>{setImage(e.target.files[0]), setFile(e.target.value) }}/> */}
                     <input type="file" id="file" name="file" style={{display:"none"}} onChange={(e) =>{setImage(e.target.files[0]); let c = e.target.files[0]; setFile(URL.createObjectURL(c)) }}/>
                   </div>

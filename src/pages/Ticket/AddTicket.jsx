@@ -40,7 +40,7 @@ const AddTicket = () => {
     const handleSubmit = async e => {
       e.preventDefault();
 
-      const url = `${appLocalizer.apiUrl}/wcs/v1/tickets`;
+      const url = `${appLocalizer.apiUrl}/wcs/v1/add_tickets`;
       try{
         const res = await axios.post(url, {
          file,username,title,email,description
@@ -50,20 +50,15 @@ const AddTicket = () => {
             'X-WP-NONCE':appLocalizer.nonce
           }
         }).then(function(res) {
-
             setFile("");
             setImage("");
             setUsername("");
             setTitle("");
             setEmail("");
             setDescription("");
-
             setEValidation(true)
             setBgcolor("#cccccc")
             setColor("#666666")
- 
-          // console.log(res);
- 
           Swal.fire({
             toast: true,
             position: 'bottom-right',
@@ -72,8 +67,6 @@ const AddTicket = () => {
             showConfirmButton: false,
             timer: 1500
           })
-          
-  
         });
         
       } catch(err){
