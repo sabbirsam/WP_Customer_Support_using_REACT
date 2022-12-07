@@ -1,4 +1,3 @@
-import './featured.scss'
 import  MoreVertTwoTone  from '@mui/icons-material/MoreVert'
 //Progreebar below
 import { CircularProgressbar } from 'react-circular-progressbar';
@@ -7,7 +6,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import Spinner from "../Spinner/Spinner";
+import './featured.scss'
 
 const Featured = () => {
     const [tickets, setTickets] = useState([]);
@@ -18,7 +17,8 @@ const Featured = () => {
          getTickets();
           }, [tickets]);
           function getTickets() {
-              axios.get(`${appLocalizer.apiUrl}/wcs/v1/todays_tickets`,{  //const Todayticketcreated = statusval.length;
+              axios.get(`${appLocalizer.apiUrl}/wcspro/v1/todays_tickets`,{  //PRO
+            //   axios.get(`${appLocalizer.apiUrl}/wcs/v1/todays_tickets`,{  //FREE
                 headers:{
                   'content-type': 'application/json',
                   'X-WP-NONCE':appLocalizer.nonce
@@ -58,7 +58,7 @@ const Featured = () => {
         const remaning = Todayticketcreated - TodaysTicketResolve;
 
   return (
-    <div className='wcs_featured'>
+    <div className='wcs_featured' id="wcs_featureds">
         <div className="wcs_top">
             <h1 className="wcs_title">Today's Created Ticket Information</h1>
             <MoreVertTwoTone fontSize='small'/>
@@ -69,7 +69,10 @@ const Featured = () => {
             </div>
             <p className="wcs_title">Resolved</p>
             <p className="wcs_amount">{TodaysTicketResolve ? TodaysTicketResolve: "0"}</p>
-            <p className="wcs_desc">All pending tickets need to solve urgently</p>
+            {percentage === 0 ? 
+                <p className="wcs_desc">For today, no additional tickets have been added.</p>
+                :  <p className="wcs_desc">All pending tickets need to solve urgently</p>
+                }
             <div className="wcs_summary">
                 
                 <div className="wcs_item">

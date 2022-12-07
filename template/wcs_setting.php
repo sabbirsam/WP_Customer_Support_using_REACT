@@ -1,1 +1,1 @@
-<div id="wcs_setting">Setting page</div>
+<div id="wcs_setting">Setting page from template</div>

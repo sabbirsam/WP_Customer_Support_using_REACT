@@ -22,10 +22,6 @@ const TicketView = ({ticketNum}) => {
     */
   const [currentuser, setCurrentUserinfo] = useState([]);
   const id = ticketNum.row.id;
-  const [file, setFile] = useState(ticketNum.row.file);
-  const [username, setUsername] = useState(ticketNum.row.user_name);
-  const [title, setTitle] = useState(ticketNum.row.title);
-  const [email, setEmail] = useState(ticketNum.row.email);
   const [description, setDescription] = useState(ticketNum.row.description);
   const [res_description, setResemail] = useState(ticketNum.row.res_description);
 
@@ -47,10 +43,11 @@ const TicketView = ({ticketNum}) => {
   
  const handleSubmit = async e => {
     e.preventDefault();
-    const url = `${appLocalizer.apiUrl}/wcs/v1/tickets_edit`;
+    const url = `${appLocalizer.apiUrl}/wcs/v1/tickets_response_update`;
+
     try{
       const res = await axios.post(url, {
-        id, file,username,title,email,description,res_description
+        id,description,res_description
       }, {
         headers:{
           'content-type': 'application/json',
@@ -112,7 +109,7 @@ const TicketView = ({ticketNum}) => {
                   </div>
 
                   <div className='wcs_issues_container'>
-                  {/* User desc */}
+                  {/* User desc  */}
                   <div className='wcs_tickets'>
                       <div className="wcs_title_class">
                         {<BadgeIcon className="Icon_description_user"/>}
@@ -125,7 +122,7 @@ const TicketView = ({ticketNum}) => {
                           </div>      
                       </div>
                   </div>
-                  {/* Second desc */}
+                  {/* Second desc  staff*/}
 
                   {ticketNum.row.res_description && 
                     <div className='wcs_tickets'>
@@ -148,8 +145,11 @@ const TicketView = ({ticketNum}) => {
                   <div className="wcs_title_class">
                     {<BorderColorIcon className="Icon_description_user"/>}
                     <div className="wcs_editor">
-                    <ReactQuill theme="snow" className="editor_filed" value={description} onChange={setDescription} />
-                    {/* <div dangerouslySetInnerHTML={{__html: ticketNum.row.description}}></div> */}
+                    {capability =='administrator' || capability =='editor' ? 
+                    <ReactQuill theme="snow" className="editor_filed" value={res_description} onChange={setResemail} />
+                    : 
+                    <ReactQuill theme="snow" className="editor_filed" value={description} onChange={setDescription}/>
+                    }
                     </div>
                   </div>
               </div>

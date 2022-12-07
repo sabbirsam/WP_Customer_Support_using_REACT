@@ -13,17 +13,31 @@ import Staff from "../../pages/Staff/Staff";
 import Customer from "../../pages/Customer/Customer";
 import Ticket from "../../pages/Ticket/Ticket";
 import Chat from "../../pages/Chat/Chat";
+// import Chat from "../../../../wp_customer_support_pro/src/pages/Chat/Chat";
 import "./tab.scss";
 import "./sidebar.scss";
-
+import WCSChat from "../../pages/Chat/WCSChat";
 
 let current_page = window.location.pathname;
-
 const WCSTab = () => {
+    const [proactive, setProactive] = useState('inactive');
     const [currentuser, setCurrentUserinfo] = useState([]);
     const [frontview, setFrontView] = useState(true);
+    useEffect(() => {
+        getProactiveConfirmation();
+        }, []);
+        
+        function getProactiveConfirmation() {
+            axios.get(`${appLocalizer.apiUrl}/wcs/v1/wcs_pro_active`,{ 
+              headers:{
+                'content-type': 'application/json',
+                'X-WP-NONCE':appLocalizer.nonce
+              }},).then(function(response) {
+                setProactive(response.data);
+          });
+        }
+
     useEffect(()=>{
-        // let isClean = true
          const getTabstatus = async () =>{
                  const res = await axios.get(`${appLocalizer.apiUrl}/wcs/v1/uid`,{
                      headers:{
@@ -31,26 +45,18 @@ const WCSTab = () => {
                      'X-WP-NONCE':appLocalizer.nonce
                      }},).then(function(response) {
                         setCurrentUserinfo(response.data);
-                        //  if(!isClean){
-                        //      setCurrentUserinfo(response.data);
-                        //      return;
-                        //  }
                  });
              }; 
-            //  return()=>{
-            //      isClean = false
-            //      getTabstatus()
-            //  }   
-            getTabstatus()          
-     },[currentuser[4]]);
+            getTabstatus()   
+
+    //  },[currentuser[4]]); // it run 3 to 4.... times
+     },[frontview]); //it run 2 times
+
     const capability = currentuser[4]
-
-
     const TabIndex = (currentuser[4] =='subscriber' ? 4  : 1);
     // console.log(TabIndex)
-    
-    const [toggleState, setToggleState] = useState(1);
 
+    const [toggleState, setToggleState] = useState(TabIndex);
     const toggleTab = (index) => {
         setToggleState(index);
         setFrontView(false);
@@ -130,13 +136,21 @@ const WCSTab = () => {
                      {toggleState === 3 && <Customer/>}
                 </div>
                 </>
-                : <div className={frontview === true ? "wcs_welcome  active-content" : "content"}><a>WELCOME</a></div> //Extra
+                
+                // : "" 
+
+                // : <div className={frontview === true ? "wcs_welcome  active-content" : "content"}><a>WELCOME</a></div> //Extra
+                : <div className={frontview === true ? "wcs_welcome  active-content" : "content"}>{ <Ticket/> }</div> //Extra
                 } 
                 <div className={toggleState === 4 ? "content  active-content" : "content"}>
                     {toggleState === 4 &&  <Ticket/>}
                 </div>
                 <div className={toggleState === 5 ? "content  active-content" : "content"}>
-                    {toggleState === 5 &&  <Chat/>}
+                {  proactive =='active' ?
+                    toggleState === 5 &&  <Chat/>
+                    :
+                    toggleState === 5 &&  <WCSChat/>
+                } 
                 </div>
               </div>
           </div>

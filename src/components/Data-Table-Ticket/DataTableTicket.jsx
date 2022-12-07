@@ -11,27 +11,35 @@ const getText = (html) => {
 }
 
 export const ticketColumns = [
-    { field: "id", headerName: "ID", width: 70 },
+    { field: "id", 
+    headerName: "ID", 
+    // width: 70 
+    flex: 0.1,
+  },
     {
       field: "user_name",
       headerName: "Name",
-      width: 150,
+      // width: 150,
+      flex: 0.5,
     },
     {
       field: "email",
       headerName: "Email",
-      width: 220,
+      // width: 220,
+      flex: 0.6,
     },
   
     {
       field: "title",
       headerName: "Title",
-      width: 300,
+      // width: 300,
+      flex: 0.6,
     },
     {
       field: "description",
       headerName: "Description",
-      width: 350,
+      // width: 350,
+      flex: 1.1,
       renderCell: (params) => {
         return ( getText (params.row.description) );
       },
@@ -40,7 +48,8 @@ export const ticketColumns = [
     {
       field: "status",
       headerName: "Status",
-      width: 100,
+      // width: 100,
+      flex: 0.5,
       renderCell: (params) => {
         return (
           <div className={`cellWithStatus id-${params.row.status}`}>
@@ -52,7 +61,8 @@ export const ticketColumns = [
     {
       field: "action",
       headerName: "ACTION",
-      width: 200,
+      // width: 200,
+      flex: 1,
       renderCell:params=> <TicketActions {...{params}} />     
     },
 

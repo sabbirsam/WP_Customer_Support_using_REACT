@@ -1,5 +1,4 @@
 // import React from 'react'
-import './widgets.scss'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
@@ -8,8 +7,12 @@ import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import StickyNote2Icon from '@mui/icons-material/StickyNote2';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import Tippy from '@tippy.js/react';
+import 'tippy.js/dist/tippy.css'
+import './widgets.scss'
 
 
 const Widget = ( {type} ) => {
@@ -27,7 +30,8 @@ const Widget = ( {type} ) => {
             getTickets();
               }, [tickets]);
                 function getTickets() {
-                    axios.get(`${appLocalizer.apiUrl}/wcs/v1/dashboard_tickets`,{
+                    axios.get(`${appLocalizer.apiUrl}/wcspro/v1/dashboard_tickets`,{ //PRO
+                    // axios.get(`${appLocalizer.apiUrl}/wcs/v1/dashboard_tickets`,{ //FREE
                         headers:{
                         'content-type': 'application/json',
                         'X-WP-NONCE':appLocalizer.nonce
@@ -42,7 +46,8 @@ const Widget = ( {type} ) => {
          getUsers();
      }, [user]);
         function getUsers() {
-            axios.get(`${appLocalizer.apiUrl}/wcs/v1/dashboard_users`,{
+            axios.get(`${appLocalizer.apiUrl}/wcspro/v1/dashboard_users`,{ //PRO
+            // axios.get(`${appLocalizer.apiUrl}/wcs/v1/dashboard_users`,{ //FREE
                 headers:{
                   'content-type': 'application/json',
                   'X-WP-NONCE':appLocalizer.nonce
@@ -57,7 +62,8 @@ const Widget = ( {type} ) => {
         getStaff();
           }, [staff]);
           function getStaff() {
-              axios.get(`${appLocalizer.apiUrl}/wcs/v1/dashboard_staff`,{
+              axios.get(`${appLocalizer.apiUrl}/wcspro/v1/dashboard_staff`,{ //PRO
+            //   axios.get(`${appLocalizer.apiUrl}/wcs/v1/dashboard_staff`,{ //FREE
                 headers:{
                   'content-type': 'application/json',
                   'X-WP-NONCE':appLocalizer.nonce
@@ -92,8 +98,10 @@ const Widget = ( {type} ) => {
             data ={
                 title: "Total Staff",
                 // total: '3',
-                total: staff.length,
+                total:staff.length,
                 isPercantage:false,
+                activeContent:true,
+                content:"Editor are act as staff. So to give staff access please set capability to editor",
                 link: "See all staff info",
                 icon:(
                     <SupportAgentIcon className='wcs_staff_icon' style={{color:"black"}}/>
@@ -106,6 +114,8 @@ const Widget = ( {type} ) => {
                 // total: "1500",
                 total: user.length,
                 isPercantage:false,
+                activeContent:true,
+                content:"Your users are your subscribers. Anyone who creates an account is initially considered as a subscriber.",
                 link: "See all users",
                 icon:(
                     <Person3Icon className='wcs_users_icon' style={{color:"black"}}/>
@@ -117,6 +127,8 @@ const Widget = ( {type} ) => {
                 title: "Total Tickets",
                 total: tickets.length,
                 isPercantage:true,
+                activeContent:false,
+                content:"Total Ticket close",
                 link: "Visit ticket panel",
                 icon:(
                     <BookmarkAddedIcon className='wcs_resolve_icon' style={{color:"#31522a"}}/>
@@ -129,6 +141,8 @@ const Widget = ( {type} ) => {
                 total: TicketResolve ? TicketResolve : "0",
                 isPercantage:true,
                 link: "Check all",
+                activeContent:false,
+                content:"Total Ticket resolved",
                 icon:(
                     <ConfirmationNumberIcon className='wcs_icon' style={{color:"#464587"}}/>
                 )
@@ -140,6 +154,8 @@ const Widget = ( {type} ) => {
                 total: TicketOpen ? TicketOpen : "0",
                 isPercantage:true,
                 link: "See all tickets",
+                activeContent:false,
+                content:"",
                 icon:(
                     <StickyNote2Icon className='wcs_icon' />
                 )
@@ -151,6 +167,8 @@ const Widget = ( {type} ) => {
                 total: TicketPending ? TicketPending : "0",
                 isPercantage:true,
                 link: "See all message",
+                activeContent:false,
+                content:"",
                 icon:(
                     <PendingActionsIcon className='wcs_pending_icon' style={{color:"crimson"}}/>
                 )
@@ -162,6 +180,8 @@ const Widget = ( {type} ) => {
                 total: TicketClose ? TicketClose : "0",
                 isPercantage:true,
                 link: "Check chat list",
+                activeContent:false,
+                content:"",
                 icon:(
                     <FactCheckIcon className='wcs_resolve_icon' />
                 )
@@ -172,12 +192,18 @@ const Widget = ( {type} ) => {
     }
   return (
     <div className='wcs_widget'>
-        <div className="wcs_left">
-            <span className="wcs_title">{data.title}</span>
-            <span className="wcs_counter">{data.total}</span>
-            <span className="wcs_link">{data.link}</span>
-        </div>
-        <div className="wcs_right">
+            <div className="wcs_left">
+                {data.activeContent ===true && 
+                <Tippy content={data.content}>
+                    <span className="wcs_title">{data.title}<HelpOutlineIcon className='wcs_tooltip_icon'/></span>
+                </Tippy>}
+                {data.activeContent ===false && 
+                    <span className="wcs_title">{data.title}</span>
+                }
+                    <span className="wcs_counter">{data.total}</span>
+                    <span className="wcs_link">{data.link}</span>
+                </div>
+            <div className="wcs_right">
 
             {data.isPercantage &&
             <div className="wcs_percentage wcs_positive">

@@ -25,6 +25,7 @@ else if(current_page === '?page=wcs_documentation'){
 else if(path === 'get-support'){
     render(<App />, document.getElementById('wcs_dashboard'));
 }
+
 // else{
 //     render(<App />, document.getElementById('wcs_dashboard'));
 // }

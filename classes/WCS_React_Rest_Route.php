@@ -19,16 +19,18 @@ class WCS_React_Rest_Route{
             'callback'=>[$this, 'get_tickets'],
             'permission_callback' => [$this, 'get_tickets_permission']
         ] );
-        register_rest_route( 'wcs/v1', '/todays_tickets',[
+        /* register_rest_route( 'wcs/v1', '/todays_tickets',[
             'methods'=>'GET',
             'callback'=>[$this, 'get_todays_tickets'],
             'permission_callback' => [$this, 'get_todays_tickets_permission']
-        ] );
-        register_rest_route( 'wcs/v1', '/dashboard_tickets',[
+        ] ); */
+
+        /* register_rest_route( 'wcs/v1', '/dashboard_tickets',[
             'methods'=>'GET',
             'callback'=>[$this, 'get_dashboard_tickets'],
             'permission_callback' => [$this, 'get_dashboard_tickets_permission']
-        ] );
+        ] ); */
+        
         /**
          * Tickets POST Method:: Save tickets
          */
@@ -37,6 +39,16 @@ class WCS_React_Rest_Route{
             'callback'=>[$this, 'save_tickets'],
             'permission_callback' => [$this, 'save_tickets_permission']
         ] );
+
+        /**
+         * Tickets POST Method:: update tickets response from users
+         */
+        register_rest_route( 'wcs/v1', '/tickets_response_update',[
+            'methods'=>'POST',
+            'callback'=>[$this, 'save_user_update_tickets_response'],
+            'permission_callback' => [$this, 'save_user_update_tickets_response_permission']
+        ] );
+
         /**
          * Tickets: POST Method::Delete Tickets
          */
@@ -71,11 +83,11 @@ class WCS_React_Rest_Route{
             'callback'=>[$this, 'get_users'],
             'permission_callback' => [$this, 'get_users_permission']
         ] );
-        register_rest_route( 'wcs/v1', '/dashboard_users',[
+        /* register_rest_route( 'wcs/v1', '/dashboard_users',[
             'methods'=>'GET',
             'callback'=>[$this, 'get_dashboard_users'],
             'permission_callback' => [$this, 'get_dashboard_users_permission']
-        ] );
+        ] ); */
         /**
          * USER: POST Method::SAVE Users
          */
@@ -92,11 +104,11 @@ class WCS_React_Rest_Route{
             'callback'=>[$this, 'get_staff'],
             'permission_callback' => [$this, 'get_staff_permission']
         ] );
-        register_rest_route( 'wcs/v1', '/dashboard_staff',[
+        /* register_rest_route( 'wcs/v1', '/dashboard_staff',[
             'methods'=>'GET',
             'callback'=>[$this, 'get_dashboard_staff'],
             'permission_callback' => [$this, 'get_dashboard_staff_permission']
-        ] );
+        ] ); */
         /**
          * STAFF/SUPPORT Agent: POST Method::SAVE staff
          */
@@ -138,6 +150,15 @@ class WCS_React_Rest_Route{
             'permission_callback' => [$this, 'get_chat_users_permission']
         ] );
 
+        /**
+         * Check If pro activate
+         */
+        register_rest_route( 'wcs/v1', '/wcs_pro_active',[
+            'methods'=>'GET',
+            'callback'=>[$this, 'get_wcs_pro_active'],
+            'permission_callback' => [$this, 'get_wcs_pro_active_permission']
+        ] );
+
     } 
         /**
          * Routing declaration-------------------------------------------------------------------------------
@@ -159,13 +180,13 @@ class WCS_React_Rest_Route{
             if ( array_intersect( $allowed_roles, $details_info->roles ) ) {
                 global $wpdb;
                 $table_name = $wpdb->prefix . 'wcs_tickets';
-                $results = $wpdb->get_results("SELECT * FROM $table_name");
+                $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY id DESC");
                 return rest_ensure_response($results);
                 wp_die();
             }else if( $user_role == 'subscriber'){
                 global $wpdb;
                 $table_name = $wpdb->prefix . 'wcs_tickets';
-                $results = $wpdb->get_results("SELECT * FROM $table_name WHERE email = '$email'");
+                $results = $wpdb->get_results("SELECT * FROM $table_name WHERE email = '$email' ORDER BY id DESC");
                 return rest_ensure_response($results);
                 wp_die();
             }
@@ -185,7 +206,7 @@ class WCS_React_Rest_Route{
         public function get_dashboard_tickets(){
             global $wpdb;
             $table_name = $wpdb->prefix . 'wcs_tickets';
-            $results = $wpdb->get_results("SELECT * FROM $table_name");
+            $results = $wpdb->get_results("SELECT * FROM $table_name"); //ORDER BY date_field ASC | DESC
             return rest_ensure_response($results);
             wp_die();
             
@@ -274,6 +295,79 @@ class WCS_React_Rest_Route{
                  return false;
             }
         } 
+
+         /**
+         *  Tickets response status update
+         */
+        public function save_user_update_tickets_response( $req ){
+            /**
+             * Sanitization
+             */
+            function sanitize_text_or_array_field($array_or_string) {
+                if( is_string($array_or_string) ){
+                    $array_or_string = sanitize_text_field($array_or_string);
+                }elseif( is_array($array_or_string) ){
+                    foreach ( $array_or_string as $key => &$value ) {
+                        if ( is_array( $value ) ) {
+                            $value = sanitize_text_or_array_field($value);
+                        }
+                        else {
+                            $value = sanitize_text_field( $value );
+                        }
+                    }
+                } 
+                return $array_or_string;
+            }
+            /**
+             * Get status value
+             */
+                $id = sanitize_text_or_array_field($req ['id'])?? '';
+                $description = $req ['description']?? '';
+                $res_description = $req ['res_description']?? '';
+
+                $details_info = wp_get_current_user();
+                $allowed_roles_admin = array( 'editor', 'administrator');
+                $allowed_roles_subs = array( 'subscriber' );
+
+                $allowed_roles = array( 'editor', 'administrator' );
+                if ( array_intersect( $allowed_roles_admin, $details_info->roles ) ) {
+                    global $wpdb;
+                    $table=$wpdb->prefix.'wcs_tickets';
+                    $data_update = array('res_description' => $res_description);
+                    $data_where = array('id' => $id);
+                    $update = $wpdb->update($table , $data_update, $data_where);
+                    
+                }elseif(array_intersect( $allowed_roles_subs, $details_info->roles )){
+                    global $wpdb;
+                    $table=$wpdb->prefix.'wcs_tickets';
+                    $data_update = array('description' => $description);
+                    $data_where = array('id' => $id);
+                    $update = $wpdb->update($table , $data_update, $data_where);
+                }
+
+                /**
+                 * Confirmation
+                 */
+                if($update){
+                    return rest_ensure_response(1); 
+                    wp_die();
+                }else{
+                    return rest_ensure_response(0);
+                    wp_die();
+                }
+        } 
+        //response tickets permission
+        public function save_user_update_tickets_response_permission(){
+            // return true;
+            $details_info = wp_get_current_user();
+            $allowed_roles = array( 'editor', 'administrator','subscriber' );
+            if ( array_intersect( $allowed_roles, $details_info->roles ) ) {
+                return true;
+            }else {
+                 return false;
+            }
+        } 
+
         /**
          * Delete tickets from the frontend
          */
@@ -424,7 +518,6 @@ class WCS_React_Rest_Route{
                  return false;
             }
         } 
-
 
         /**
          * User------------------------------------------------------------------------------------
@@ -850,6 +943,18 @@ class WCS_React_Rest_Route{
         //set permission for fetch
         public function get_chat_users_permission(){
             return true;
-        } 
+        }
+        
+        /**
+         * 
+         */
+        public function get_wcs_pro_active(){
+            $isProActive = get_option('wcs_pro_options_value');
+            return rest_ensure_response( $isProActive ); 
+            wp_die();
+        }
+        public function get_wcs_pro_active_permission(){
+            return true;
+        }
 
 }

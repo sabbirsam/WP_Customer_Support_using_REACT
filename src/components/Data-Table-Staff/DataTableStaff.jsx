@@ -7,11 +7,12 @@ import image from '../../../assets/img/no_img.png'
 import { format } from "date-fns";
 
 export const userColumns = [
-  { field: "ID", headerName: "ID", width: 70 }, 
+  // { field: "ID", headerName: "ID", width: 70 }, 
   {
     field: "user_login",
     headerName: "Username",
-    width: 200,
+    // width: 150//200,
+    flex: 1,
     renderCell: (params) => {
       return (
         <div className="wcs_cellWithImg">
@@ -29,7 +30,8 @@ export const userColumns = [
     // field: "user_status",
     field: "display_name",
     headerName: "Name",
-    width: 250,
+    // width:170//250,
+    flex: 1,
     renderCell: (params) => {
       return (params.row.data.display_name);
     },
@@ -39,7 +41,8 @@ export const userColumns = [
     // field: "user_status",
     field: "user_email",
     headerName: "Email",
-    width: 280,
+    // width: 210//280,
+    flex: 1,
     renderCell: (params) => {
       return (params.row.data.user_email);
     },
@@ -49,9 +52,11 @@ export const userColumns = [
 
     field: "user_registered",
     headerName: "Registered",
-    width: 200,
+    // width: 150// 200,
+    flex: 1,
     renderCell: (params) => {
-      return (format(new Date(params.row.data.user_registered), "MMMM do, yyyy H:mma"));
+      // return (format(new Date(params.row.data.user_registered), "MMMM do, yyyy H:mma")); //December 1st, 2022 13:14PM In
+      return (format(new Date(params.row.data.user_registered), "dd-MMM-yy,  H:mm a"));
     },
   },
 
@@ -59,7 +64,9 @@ export const userColumns = [
     // field: "user_status",
     field: "user_status",
     headerName: "Status",
-    width: 160,
+    // width: 160,
+    // width: 80,
+    flex: 0.5,
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus id-${params.row.data.user_status}`}>
@@ -74,7 +81,9 @@ export const actionColumns = [
   {
     field: "action",
     headerName: "ACTION",
-    width: 150,
+    // width: 150,
+    // width: 80,
+    flex: 0.5,
     renderCell:(params)=>{
       return(
         <div className="wcs_cellAction">

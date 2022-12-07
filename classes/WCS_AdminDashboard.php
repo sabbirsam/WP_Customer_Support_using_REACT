@@ -11,6 +11,7 @@ class WCS_AdminDashboard{
         add_action("admin_menu", array($this, 'add_admin_pages')); 
     }
     public function add_admin_pages(){
+        $isProActive = get_option('wcs_pro_options_value');
         $user = wp_get_current_user();
         // $allowed_roles = array( 'editor', 'administrator', 'author','subscriber );
         $allowed_roles = array( 'editor', 'administrator' );
@@ -37,8 +38,10 @@ class WCS_AdminDashboard{
             'dashboard_status', 'Documentation', 'Documentation', 'manage_options', 'wcs_documentation', 
             array( $this, 'wcs_Documentation' )
         );
-        add_submenu_page('dashboard_status', __('Get PRO - WP Customer Support System', 'wcs'), "<span id='wcs-get-pro-menu'> <img src='".$get_pro."' alt=''>
-				GET <span>PRO </span> </span>", 'manage_options', '#'); // use link in # 
+        if( $isProActive == 'inactive' ){
+            add_submenu_page('dashboard_status', __('Get PRO - WP Customer Support System', 'wcs'), "<span id='wcs-get-pro-menu'> <img src='".$get_pro."' alt=''>
+                    GET <span>PRO </span> </span>", 'manage_options', '#'); // use link in # 
+            }
         }
     }
     /**

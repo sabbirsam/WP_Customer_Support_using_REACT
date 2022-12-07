@@ -22,7 +22,7 @@ const App = () => {
     }else if(current_page === '?page=wcs_setting'){
         return (
         <div className="wcs_plug" id='wcs_plug_start'>
-            Settings from React
+            Settings from React free version
         </div>
      );
     }
