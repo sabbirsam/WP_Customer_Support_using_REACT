@@ -30,9 +30,6 @@ const Chat = () => {
                 <div className="chatBoxTop chatfreeWrapper">
                   <Message/>
                   <Message own={true}/>
-                  <Message/>
-                  <Message own={true}/>
-                  <Message/>
                 </div>
                 <div className="chatBoxBottom">
                   <ReactQuill theme="snow" className="chatMessageImput" name="description" readOnly
@@ -57,7 +54,8 @@ const Chat = () => {
               </div>
             </div>
           </div>
-          {modalOpen && <Modal setOpenModal={setModalOpen} />}
+          {/* {modalOpen && <Modal setOpenModal={setModalOpen} />} */}
+          {modalOpen && <><div class="wcs_popup_overlay"></div> <Modal setOpenModal={setModalOpen} /> </> }
       </div>
   )
 }

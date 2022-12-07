@@ -5,6 +5,7 @@ import './modal.scss'
 const Modal = ({ setOpenModal }) => {
   return (
     <div className="wcsmodalBackground">
+   {/* <div class="wcs_popup_overlay"></div> */}
       <div className="wcsmodalContainer">
         <div className="wcstitleCloseBtn">
           <button
@@ -27,7 +28,7 @@ const Modal = ({ setOpenModal }) => {
           }
         </div>
         <div className="wcsmodalbody">
-          <p>Upgrade to get access to all featur!</p>
+          <p>Upgrade to get access to all feature!</p>
         </div>
         <div className="wcsmodalfooter">
           <button

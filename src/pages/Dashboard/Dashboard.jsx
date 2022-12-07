@@ -70,7 +70,7 @@ const Dashboard = () => {
               <WCSChart />
             </div>
           </div>
-          {modalOpen && <Modal setOpenModal={setModalOpen} />}
+          {modalOpen && <><div class="wcs_popup_overlay"></div> <Modal setOpenModal={setModalOpen} /> </> }
         </div>
        }
       </div>
