@@ -6,7 +6,6 @@ import { useState } from "react";
 import "./customer.scss"
 
 const Customer = () => {
-
   const [AddCustomers, setAddCustomer] = useState(0);
 
   const toggleTab = (index) => {

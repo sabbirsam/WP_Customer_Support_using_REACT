@@ -11,11 +11,15 @@ const getText = (html) => {
 }
 
 export const ticketColumns = [
+    /* { field: "1", 
+    headerName: "#", 
+    flex: 0.1,
+    }, */
     { field: "id", 
     headerName: "ID", 
     // width: 70 
     flex: 0.1,
-  },
+    },
     {
       field: "user_name",
       headerName: "Name",
@@ -102,6 +106,9 @@ const DataTableTicket = () => {
         rowsPerPageOptions={[8]}
         checkboxSelection
         disableSelectionOnClick
+
+        columnBuffer={8}
+        disableVirtualization
       />
     </div>
   )

@@ -1,3 +1,2 @@
-<div id="wcs_documentation">
-    Documentation
-</div>
+<!-- Documentation render here  -->
+<div id="wcs_documentation"></div>

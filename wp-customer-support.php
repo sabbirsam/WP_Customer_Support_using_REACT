@@ -74,8 +74,6 @@ if(!class_exists('WCS_WPCustomerSupport')){
             new WCS_Tickets_Table();
             new WCS_React_Rest_Route();
             new WCS_Shortcode();
-            
-       
         }
         /**
          * Redirection
@@ -86,7 +84,6 @@ if(!class_exists('WCS_WPCustomerSupport')){
                 die();
             }
         }
-        
         /**
          * Activation Hook
          */

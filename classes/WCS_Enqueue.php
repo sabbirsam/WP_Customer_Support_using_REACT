@@ -22,6 +22,7 @@ class WCS_Enqueue extends WCS_BaseController{
      */
     public function wcs_admin_enqueue(){
         wp_enqueue_style( 'wcs_main_scss_style', $this->plugin_url . 'build/index.css' ); 
+        wp_enqueue_script( 'wcs_smtp_js', $this->plugin_url .'assets/JS/smtp.js',array('jquery'),1.0,true );
         // wp_enqueue_script( 'wcs_min_js', $this->plugin_url .'build/index.js',array('jquery','wp-element'),wp_rand(),true ); 
         wp_enqueue_script( 'wcs_min_js', $this->plugin_url .'build/index.js',array('jquery','wp-element'),1.0,true ); 
         wp_localize_script('wcs_min_js', 'appLocalizer', [

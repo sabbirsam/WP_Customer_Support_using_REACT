@@ -6,16 +6,13 @@ defined('ABSPATH') or die('Hey, what are you doing here? You silly human!');
  * Activate class here
  */
 class WCS_Activate{
-
     /**
      * Activation hook- and It create support pages with shortcode
      */
     public static function WCS_activate(){ 
-        
         global $wpdb;
         $the_page_title = 'Get Support';
         $the_page_name = 'support';
-
         // the menu entry...
         delete_option("wcs_customer_support_system_title");
         add_option("wcs_customer_support_system_title", $the_page_title, '', 'yes');
@@ -25,11 +22,9 @@ class WCS_Activate{
         // the id...
         delete_option("wcs_customer_support_system_id");
         add_option("wcs_customer_support_system_id", '0', '', 'yes');
-
         $the_page = get_page_by_title( $the_page_title );
-
+        
         if ( ! $the_page ) {
-
             // Create post object
             $_p = array();
             $_p['post_title'] = $the_page_title;
@@ -52,6 +47,11 @@ class WCS_Activate{
 
         delete_option( 'wcs_customer_support_system_id' );
         add_option( 'wcs_customer_support_system_id', $the_page_id );
+
+        add_option( 'wcs_mail_config', "", '', 'yes' );
+
+        add_option( 'wcs_pro_options_value', "inactive", '', 'yes' );
+        update_option( 'wcs_pro_options_value', "inactive",'', 'yes'); 
         
         flush_rewrite_rules();
     }

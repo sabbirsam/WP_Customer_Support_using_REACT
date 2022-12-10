@@ -1,26 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark';
-import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import MarkUnreadChatAltIcon from '@mui/icons-material/MarkUnreadChatAlt';
 import Navbar from "../../components/Navbar/Navbar";
-import Dashboard from "../../pages/Dashboard/Dashboard";
-import Staff from "../../pages/Staff/Staff";
-import Customer from "../../pages/Customer/Customer";
-import Ticket from "../../pages/Ticket/Ticket";
-import Chat from "../../pages/Chat/Chat";
-// import Chat from "../../../../wp_customer_support_pro/src/pages/Chat/Chat";
+import Dashboard from "../Dashboard/Dashboard";
+import Staff from "../Staff/Staff";
+import Customer from "../Customer/Customer";
+import Ticket from "../Ticket/Ticket";
+import Chat from "../Chat/Chat";
+import Spinner from '../../components/Spinner/Spinner'
 import "./tab.scss";
 import "./sidebar.scss";
-import WCSChat from "../../pages/Chat/WCSChat";
+import WCSChat from "../Chat/WCSChat";
 
 let current_page = window.location.pathname;
 const WCSTab = () => {
-    const [proactive, setProactive] = useState('inactive');
+    const [proactive, setProactive] = useState();
     const [currentuser, setCurrentUserinfo] = useState([]);
     const [frontview, setFrontView] = useState(true);
     useEffect(() => {
@@ -36,6 +34,7 @@ const WCSTab = () => {
                 setProactive(response.data);
           });
         }
+    // console.log(proactive)
 
     useEffect(()=>{
          const getTabstatus = async () =>{
@@ -48,19 +47,15 @@ const WCSTab = () => {
                  });
              }; 
             getTabstatus()   
-
-    //  },[currentuser[4]]); // it run 3 to 4.... times
      },[frontview]); //it run 2 times
-
     const capability = currentuser[4]
     const TabIndex = (currentuser[4] =='subscriber' ? 4  : 1);
-    // console.log(TabIndex)
-
     const [toggleState, setToggleState] = useState(TabIndex);
     const toggleTab = (index) => {
         setToggleState(index);
         setFrontView(false);
     };
+    
 
   return (
       <div className='wcs_home'>
@@ -125,32 +120,47 @@ const WCSTab = () => {
               <div className="content-tabs">
               {  capability =='administrator' ?<>
                 <div className={toggleState === 1 ? "content  active-content" : "content"}>
-                    {toggleState === 1 && <Dashboard/>}
-                    {/* <Dashboard/> */}
+                    {/* {toggleState === 1 && <Dashboard/>} */}
+                    <Dashboard/>
                 </div>
                 <div className={toggleState === 2 ? "content  active-content" : "content"}>
-                    {toggleState === 2 &&  <Staff/>}
+                    {/* {toggleState === 2 &&  <Staff/>} */}
+                    {<Staff/>}
                 </div>
                 
                 <div className={toggleState === 3 ? "content  active-content" : "content"}>
-                     {toggleState === 3 && <Customer/>}
+                     {/* {toggleState === 3 && <Customer/>} */}
+                     {<Customer/>}
                 </div>
                 </>
-                
-                // : "" 
 
-                // : <div className={frontview === true ? "wcs_welcome  active-content" : "content"}><a>WELCOME</a></div> //Extra
-                : <div className={frontview === true ? "wcs_welcome  active-content" : "content"}>{ <Ticket/> }</div> //Extra
+                : <div className={frontview === true ? "wcs_welcome  active-content" : "content"}>{ capability !=='subscriber' ?  <Spinner/> : <Ticket/> }</div>
+                // : <div className={frontview === true && capability =='subscriber' ? "wcs_welcome  active-content" : "content"}>{ <Ticket/> }</div>
+                // : <div className={frontview === true ? "wcs_welcome  active-content" : "content"}>{ <Ticket/> }</div>
                 } 
+
                 <div className={toggleState === 4 ? "content  active-content" : "content"}>
-                    {toggleState === 4 &&  <Ticket/>}
+                    {/* {toggleState === 4 &&  <Ticket/>} */}
+                    {<Ticket/>}
                 </div>
-                <div className={toggleState === 5 ? "content  active-content" : "content"}>
-                {  proactive =='active' ?
-                    toggleState === 5 &&  <Chat/>
+
+                <div className={toggleState === 5 ? "content  active-content" : "content"}>  
+                {/* {  
+                    proactive =='active' ?  toggleState === 5 &&  <Chat/>
                     :
                     toggleState === 5 &&  <WCSChat/>
+                } */} 
+
+                {  
+                   proactive && proactive ==='active' ? <Chat/>
+                //    proactive && proactive ==='active' ? toggleState === 5 && <Chat/>
+                    : ''
                 } 
+                {  
+                    proactive && proactive ==='inactive' ?  <WCSChat/>
+                    // proactive && proactive ==='inactive' ?  toggleState === 5 &&  <WCSChat/>
+                    : ''
+                }
                 </div>
               </div>
           </div>

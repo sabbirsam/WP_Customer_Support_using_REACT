@@ -1,0 +1,134 @@
+.wcs_add_mail{
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+
+    .wcs_mails_container{
+        flex: 6;
+
+        .wcs_top, .wcs_bottom{
+            -webkit-box-shadow: 2px 4px 10px 1px rgba(0,0,0,0.47);
+            box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+            margin: 20px;
+            padding: 10px;
+            // to make side by side
+            display: flex;
+
+            h1{
+                color: lightgray;
+                font-size: 20px;
+            }
+            h1.setting_panel{flex: 3;}
+            h1.tesing_panel{flex: 3;}
+            h1.setting_panel a {
+                color: lightgray;
+                text-decoration: none;
+                cursor:pointer;
+                &:hover{
+                    color: teal;
+                }
+            }
+            .wcs_left{
+                flex: 3; 
+                text-align: center; 
+                margin: 25px;
+                // border-right: 2px solid teal;
+
+                form{
+                    display: flex;
+                    flex-direction: column;
+                    flex-wrap: wrap; // to set all inside the wrap with the given width screen
+                    gap: 20px;
+                    label{
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    }
+                    .formInput{
+                        width: 60%;
+                        textarea{
+                            height: 150px;
+                        }
+                        input,textarea{
+                            width: 100%;
+                            padding: 5px;
+                            border: none;
+                            border-bottom: 1px solid gray;
+                            background-color: #F0F0F1;
+    
+                            &:focus{
+                                outline: none;
+                                box-shadow: none;
+                            }
+    
+                        }
+                        input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3{
+                            width: 10rem;
+                            min-width: 6rem;
+                        }
+                    }
+               
+
+                    .wcs_test_mail_send{
+                        width: 160px;
+                        padding: 10px;
+                        border: none;
+                        background-color: teal;
+                        color: white;
+                        font-weight: bold;
+                        cursor: pointer;
+                        float: left;
+                    }
+                }
+                
+            }
+
+            .wcs_right{
+                flex: 3; 
+                margin: 25px;
+                // border-right: 2px solid teal;
+
+                form{
+                    display: flex;
+                    flex-direction: column;
+                    flex-wrap: wrap; // to set all inside the wrap with the given width screen
+                    gap: 20px;
+                    label{
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    }
+                    .formInput{
+                        width: 60%;
+                        textarea{
+                            height: 150px;
+                        }
+                        input,textarea{
+                            width: 100%;
+                            padding: 5px;
+                            border: none;
+                            border-bottom: 1px solid gray;
+                            background-color: #F0F0F1;
+    
+                            &:focus{
+                                outline: none;
+                                box-shadow: none;
+                            }
+    
+                        }
+                    }
+                    .wcs_test_mail_send{
+                        width: 160px;
+                        padding: 10px;
+                        border: none;
+                        background-color: teal;
+                        color: white;
+                        font-weight: bold;
+                        cursor: pointer;
+                        float: left;
+                    }
+                }
+            }
+        }
+    }
+}

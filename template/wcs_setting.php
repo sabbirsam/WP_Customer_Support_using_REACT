@@ -1,1 +1,2 @@
-<div id="wcs_setting">Setting page from template</div>
+<!-- Setting page render here  -->
+<div id="wcs_setting"></div>

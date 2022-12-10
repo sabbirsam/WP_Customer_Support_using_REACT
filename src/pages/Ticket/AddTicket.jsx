@@ -3,12 +3,14 @@ import Noimage from "../../../assets/img/no_img.png"
 import React, {useState,useEffect} from "react"
 import axios from "axios";
 import ReactQuill from 'react-quill';
+import Mail from '../Mail/Mail'
 import 'react-quill/dist/quill.snow.css';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
 import "./addticket.scss";
 
 const AddTicket = () => {
+  const [configuration, setConfiguration] = useState([]);
    const [evalidation, setEValidation] = useState(true);
    const [bgColor, setBgcolor] = useState("#cccccc");
    const [color, setColor] = useState("#666666");
@@ -34,12 +36,31 @@ const AddTicket = () => {
     }
   }, [username, email]);
 
+  /**
+   * Get Configuration 
+   */
+  useEffect(() => {
+    getLogedInUsers();
+  }, []);
+    function getLogedInUsers() {
+        axios.get(`${appLocalizer.apiUrl}/wcs/v1/wcs_mail_active`,{
+          headers:{
+            'content-type': 'application/json',
+            'X-WP-NONCE':appLocalizer.nonce
+          }},).then(function(response) {
+            setConfiguration(response.data);
+      });
+    }
+
    /**
     * On submit
     */
     const handleSubmit = async e => {
       e.preventDefault();
-
+      /**
+       * Mail
+       */
+   
       const url = `${appLocalizer.apiUrl}/wcs/v1/add_tickets`;
       try{
         const res = await axios.post(url, {
@@ -50,6 +71,40 @@ const AddTicket = () => {
             'X-WP-NONCE':appLocalizer.nonce
           }
         }).then(function(res) {
+          /**
+           * Mail
+           */
+          const config = {
+            Host : configuration.host,
+            Username : configuration.username,
+            Password : configuration.password,
+            From : configuration.ownermail,
+            To : email,
+            Subject : title,
+            Body : description
+          }
+          window.Email.send(config).then((result) => {    
+            Swal.fire({
+              toast: true,
+              position: 'bottom-right',
+              icon: 'success',
+              title: 'Mail Send......',
+              showConfirmButton: false,
+              timer: 1900
+            })
+          }).catch((err) => {
+            Swal.fire({
+              toast: true,
+              position: 'top-end',
+              icon: 'error',
+              title: "Mail send failed",
+              showConfirmButton: false,
+              timer: 1500
+              })
+          });
+          /**
+           * Reset ticket panel
+           */
             setFile("");
             setImage("");
             setUsername("");
@@ -59,6 +114,9 @@ const AddTicket = () => {
             setEValidation(true)
             setBgcolor("#cccccc")
             setColor("#666666")
+          /**
+           * Ticekt confirmation
+           */
           Swal.fire({
             toast: true,
             position: 'bottom-right',

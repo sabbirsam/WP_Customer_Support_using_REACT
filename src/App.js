@@ -1,4 +1,6 @@
 import  WCSTab  from './pages/Tab/WCSTab';
+import  WCSSettings  from './pages/Tab/WCSSettings';
+import Documentation from './pages/Documentation/Documentation';
 
 const App = () => {
     /**
@@ -22,14 +24,14 @@ const App = () => {
     }else if(current_page === '?page=wcs_setting'){
         return (
         <div className="wcs_plug" id='wcs_plug_start'>
-            Settings from React free version
+            <WCSSettings/>
         </div>
      );
     }
     else if(current_page === '?page=wcs_documentation'){
         return (
         <div className="wcs_plug" id='wcs_plug_start'>
-           Documentation from React
+           <Documentation/>
         </div>
      );
     }

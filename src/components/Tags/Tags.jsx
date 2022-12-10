@@ -11,6 +11,7 @@ const Tags = ({ticketNum}) => {
     const [priority, setPriority] = useState(ticketNum.row.priority);
     const [agent, setAgent] = useState(ticketNum.row.staff_id);
     const [group, setGroup] = useState(ticketNum.row.groups);
+    const [staff, setstaff] = useState([]);
    
       const handleChange = (event) => {
         setStatus(event.target.value);
@@ -24,6 +25,22 @@ const Tags = ({ticketNum}) => {
       const handleGroup = (event) => {
         setGroup(event.target.value);
       };
+      /**
+       * Staff name and info collect
+       */
+            useEffect(() => {
+                getUsers();
+            }, []);
+            function getUsers() {
+                axios.get(`${appLocalizer.apiUrl}/wcs/v1/staff`).then(function(response) {
+                  setstaff(response.data);
+            });
+        }
+       
+      /**
+       * 
+       * @param {Ticket Status update} e 
+       */
       const handleSubmit = async e => {
         const url = `${appLocalizer.apiUrl}/wcs/v1/tickets_status`;
           try{
@@ -86,10 +103,11 @@ const Tags = ({ticketNum}) => {
               </Box>
             <Box width='250px' className='selectFields'>
                 <TextField label="Agent" select value={agent} onChange={handleAgent} fullWidth>
-                    <MenuItem value="0">SABBIR SAM</MenuItem>
-                    <MenuItem value="1">TOUKIR</MenuItem>
-                    <MenuItem value="2">ADNANA</MenuItem>
-                    <MenuItem value="3">ZAKIR</MenuItem>
+                  {
+                    staff.map(c=>(
+                      <MenuItem value={c.ID}>{c.data.display_name}</MenuItem>
+                    ))
+                  }
                 </TextField>
               </Box>
             <Box width='250px' className='selectFields'>

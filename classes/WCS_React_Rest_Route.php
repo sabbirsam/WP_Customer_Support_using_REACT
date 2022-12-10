@@ -159,6 +159,17 @@ class WCS_React_Rest_Route{
             'permission_callback' => [$this, 'get_wcs_pro_active_permission']
         ] );
 
+        register_rest_route( 'wcs/v1', '/wcs_mail_active',[
+            'methods'=>'GET',
+            'callback'=>[$this, 'get_wcs_mail_active'],
+            'permission_callback' => [$this, 'get_wcs_mail_active_permission']
+        ] );
+        register_rest_route( 'wcs/v1', '/wcs_mail_infosave',[
+            'methods'=>'POST',
+            'callback'=>[$this, 'get_wcs_mail_infosave'],
+            'permission_callback' => [$this, 'get_wcs_mail_infosave_permission']
+        ] );
+
     } 
         /**
          * Routing declaration-------------------------------------------------------------------------------
@@ -180,7 +191,8 @@ class WCS_React_Rest_Route{
             if ( array_intersect( $allowed_roles, $details_info->roles ) ) {
                 global $wpdb;
                 $table_name = $wpdb->prefix . 'wcs_tickets';
-                $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY id DESC");
+                // $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY id DESC");
+                $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY $table_name.`status` ASC");
                 return rest_ensure_response($results);
                 wp_die();
             }else if( $user_role == 'subscriber'){
@@ -946,7 +958,7 @@ class WCS_React_Rest_Route{
         }
         
         /**
-         * 
+         * PRO active
          */
         public function get_wcs_pro_active(){
             $isProActive = get_option('wcs_pro_options_value');
@@ -955,6 +967,65 @@ class WCS_React_Rest_Route{
         }
         public function get_wcs_pro_active_permission(){
             return true;
+        }
+        /**
+         * Mail get security
+         */
+        public function get_wcs_mail_active(){
+            $isConfigured = get_option('wcs_mail_config');
+            $getCreden = json_decode( $isConfigured);
+            return rest_ensure_response($getCreden); 
+            wp_die();
+        }
+        public function get_wcs_mail_active_permission(){
+            return true;
+        }
+        /**
+         * Mail security store
+         */
+        public function get_wcs_mail_infosave( $req ){
+            function sanitize_text_or_array_field($array_or_string) {
+                if( is_string($array_or_string) ){
+                    $array_or_string = sanitize_text_field($array_or_string);
+                }elseif( is_array($array_or_string) ){
+                    foreach ( $array_or_string as $key => &$value ) {
+                        if ( is_array( $value ) ) {
+                            $value = sanitize_text_or_array_field($value);
+                        }
+                        else {
+                            $value = sanitize_text_field( $value );
+                        }
+                    }
+                } 
+                return $array_or_string;
+            }
+            /**
+             * Collect all request and sanitize
+             */
+            $toogleswitch = sanitize_text_or_array_field($req ['mailactive']) ?? '';
+            $username = sanitize_text_or_array_field($req ['username']) ?? '';
+            $password = sanitize_text_or_array_field($req ['password'])?? '';
+            $host = sanitize_text_or_array_field($req ['host']) ?? '';
+
+            $wcs_mail_configs=array(
+                'mailactive'=>$toogleswitch,
+                'ownermail'=>$username,
+                'username'=>$username,
+                'password'=>$password,
+                'host'=>$host,
+            );
+
+            $isConfig = update_option('wcs_mail_config', json_encode( $wcs_mail_configs ));
+            if($isConfig){
+                return rest_ensure_response(1); 
+                wp_die();
+            }else{
+                return rest_ensure_response(2); 
+                wp_die();
+            }
+        }
+        public function get_wcs_mail_infosave_permission(){
+            return current_user_can( 'publish_posts' );
         }
 
 }

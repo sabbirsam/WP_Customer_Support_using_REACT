@@ -122,6 +122,9 @@ const DataTableStaff = () => {
         disableSelectionOnClick
         getRowId={row => row.ID}
         
+        columnBuffer={7}
+        disableVirtualization
+        
       />
     </div>
   )

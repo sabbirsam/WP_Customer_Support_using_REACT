@@ -7,7 +7,6 @@ import 'sweetalert2/src/sweetalert2.scss'
 import "./addcustomer.scss";
 
 const AddCustomer = () => {
-  
   /**
    * Images
    */
@@ -29,7 +28,7 @@ const AddCustomer = () => {
   const handleChange = e =>{
     setCInputs(prev=>({...prev, [e.target.name] : e.target.value})) 
   }
-  console.log(cinputs);
+  // console.log(cinputs);
   /**
    * On submit
    */
