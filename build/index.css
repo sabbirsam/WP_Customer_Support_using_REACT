@@ -1835,12 +1835,19 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
   outline: none;
   box-shadow: none;
 }
+.wcs_add_staff .wcs_staff_container .wcs_top .wcs_right .formInput span, .wcs_add_staff .wcs_staff_container .wcs_bottom .wcs_right .formInput span {
+  font-size: 12px;
+  padding: 3px;
+  color: crimson;
+  display: none;
+}
+.wcs_add_staff .wcs_staff_container .wcs_top .wcs_right .formInput input:invalid ~ span, .wcs_add_staff .wcs_staff_container .wcs_bottom .wcs_right .formInput input:invalid ~ span {
+  display: block;
+}
 .wcs_add_staff .wcs_staff_container .wcs_top .wcs_right button, .wcs_add_staff .wcs_staff_container .wcs_bottom .wcs_right button {
   width: 160px;
   padding: 10px;
   border: none;
-  background-color: teal;
-  color: white;
   font-weight: bold;
   cursor: pointer;
   margin-top: 10px;
@@ -1992,12 +1999,19 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   outline: none;
   box-shadow: none;
 }
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right .formInput span, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right .formInput span {
+  font-size: 12px;
+  padding: 3px;
+  color: crimson;
+  display: none;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right .formInput input:invalid ~ span, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right .formInput input:invalid ~ span {
+  display: block;
+}
 .wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right button, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right button {
   width: 160px;
   padding: 10px;
   border: none;
-  background-color: teal;
-  color: white;
   font-weight: bold;
   cursor: pointer;
   margin-top: 10px;
@@ -3275,8 +3289,6 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
   width: 160px;
   padding: 10px;
   border: none;
-  background-color: teal;
-  color: white;
   font-weight: bold;
   cursor: pointer;
   margin-top: 10px;

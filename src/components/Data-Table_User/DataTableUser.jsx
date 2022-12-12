@@ -125,9 +125,8 @@ const DataTableStaff = () => {
         disableSelectionOnClick
         // getRowId={row => row.id}
         getRowId={row => row.ID}
-        
-        columnBuffer={7}
-        disableVirtualization
+        // loading={user.length === 0}
+        // rowHeight={38}
       />
     </div>
   )

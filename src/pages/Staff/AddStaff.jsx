@@ -1,6 +1,6 @@
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import Noimage from "../../../assets/img/no_img.png"
-import React, {useState} from "react"
+import React, {useState,useEffect} from "react"
 import axios from "axios";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 
@@ -18,8 +18,27 @@ const AddStaff = () => {
    const [email, setEmail] = useState("");
    const [mobile, setMobile] = useState("");
    const [password, setPassword] = useState("");
+   const [cpassword, setCPassword] = useState("");
    const [address, setAddress] = useState("");
    const [country, setCountry] = useState("");
+   
+   const [evalidation, setEValidation] = useState(true);
+   const [bgColor, setBgcolor] = useState("#cccccc");
+   const [color, setColor] = useState("#666666");
+
+   useEffect(() => {
+    if (username.length <= 2 || email.length <= 3 || password.length <= 7 || cpassword.length <= 7 ) {
+      setEValidation(true)
+      setBgcolor("#cccccc")
+      setColor("#666666")
+    }
+    else {
+      setEValidation(false)
+      setBgcolor("teal")
+      setColor("white")
+    }
+  }, [username, email,password,cpassword, evalidation]);
+  // console.log(evalidation)
    /**
     * On submit
     */
@@ -42,8 +61,14 @@ const AddStaff = () => {
           setEmail("");
           setMobile("");
           setPassword("");
+          setCPassword("");
           setAddress("");
           setCountry("");
+
+          setEValidation(true)
+          setBgcolor("#cccccc")
+          setColor("#666666")
+
           if(res.data === 0){
             Swal.fire({
             toast: true,
@@ -98,34 +123,40 @@ const AddStaff = () => {
                     <input type="file" id="file" name="file" style={{display:"none"}} onChange={(e) =>{setImage(e.target.files[0]); let c = e.target.files[0]; setFile(URL.createObjectURL(c)) }}/>
                   </div>
                   <div className="formInput">
-                    <label htmlFor="username">Username</label>
-                    <input type="text" placeholder="Jondoe" value={username} name="username" onChange={e =>setUsername(e.target.value) }/>
+                    <label htmlFor="username">Username*</label>
+                    <input type="text" placeholder="Jondoe" value={username} name="username" required pattern={"^[A-Za-z0-9]{3,10}$"} onChange={e =>setUsername(e.target.value) }/>
+                   <span>Username should be 3 to 10 character and shouldn't include any special character</span> 
+
+                    {/* { evalidation == true ? <span>Username should be 3 to 10 character and shouldn't include any special character</span> : '' } */}
                   </div>
                   <div className="formInput">
                     <label htmlFor="fullname">Full Name</label>
                     <input type="text" placeholder="Jhon Doe" value={fullname} name="fullname" onChange={e =>setFullname(e.target.value) }/>
                   </div>
                   <div className="formInput">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" placeholder="jhon@gmail.com" value={email} name="email" onChange={e =>setEmail(e.target.value) }/>
+                    <label htmlFor="email">Email*</label>
+                    <input type="email" placeholder="jhon@gmail.com" value={email} name="email" required onChange={e =>setEmail(e.target.value) }/>
+                    <span>Should be a valid email address</span> 
                   </div>
                   <div className="formInput">
                     <label htmlFor="mobile">Mobile Number</label>
                     <input type="number" placeholder="+880 18546165" value={mobile} name="mobile" onChange={e =>setMobile(e.target.value) }/>
                   </div>
                   <div className="formInput">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" placeholder="password" value={password} name="password" onChange={e =>setPassword(e.target.value) }/>
-                  </div>
-                  <div className="formInput">
-                    <label htmlFor="address">Address</label>
-                    <input type="text" placeholder="Dhaka Bangladesh"  value={address} name="address" onChange={e =>setAddress(e.target.value) }/>
+                    <label htmlFor="password">Password*</label>
+                    <input type="password" placeholder="password" value={password} name="password" required pattern={"^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$"} onChange={e =>setPassword(e.target.value) }/>
+                    <span>Password should be minimum eight characters, at least one uppercase letter and one digit</span> 
                   </div>
                   <div className="formInput">
                     <label htmlFor="country">Country</label>
                     <input type="text" placeholder="Bangladesh" value={country} name="country" onChange={e =>setCountry(e.target.value) }/>
                   </div>
-                  <button className="wcs_user_create" onClick={handleSubmit}>SAVE</button>                
+                  <div className="formInput">
+                    <label htmlFor="cpassword">Confirm Password*</label>
+                    <input type="password" placeholder="confirm password" value={cpassword} name="cpassword" required pattern={password} onChange={e =>setCPassword(e.target.value) }/>
+                    <span>Password need to be matched!!</span> 
+                  </div>
+                  <button style={{background:bgColor,color:color}} className="wcs_user_create" disabled={evalidation} onClick={handleSubmit}>SAVE</button>                
                 </form>
               </div>
           </div>

@@ -130,7 +130,7 @@ const Chat = () => {
               {
                 alluser.map(c=>(
                   <div onClick={()=> setCurrentConversationID(c.data.ID)}>
-                      <Conversation users={c}/>
+                      <Conversation key={c.data.ID} users={c}/>
                   </div>
                 ))
               }
@@ -147,7 +147,7 @@ const Chat = () => {
                   {
                     chatconversationUsers.map(m=>(
                       <div ref={scrollRef}>
-                        <Message own={m.senderId == currentuser[0]} chatconversationUsers={m.message} time={m.date_created} currentconversationID={currentconversationID} loggedUserId={currentuser[0]}/>
+                        <Message key={m.senderId} own={m.senderId == currentuser[0]} chatconversationUsers={m.message} time={m.date_created} currentconversationID={currentconversationID} loggedUserId={currentuser[0]}/>
                       </div>
                     ))
                   }

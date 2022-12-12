@@ -71,8 +71,18 @@
                             outline: none;
                             box-shadow: none;
                         }
-
+                       
                     }
+                    span{
+                        font-size: 12px;
+                        padding: 3px;
+                        color: crimson;
+                        display: none;
+                    }
+                    input:invalid ~ span{
+                        display: block;
+                    }
+
                 }
 
                 //@at-root btn
@@ -80,8 +90,8 @@
                     width: 160px;
                     padding: 10px;
                     border: none;
-                    background-color: teal;
-                    color: white;
+                    // background-color: teal;
+                    // color: white;
                     font-weight: bold;
                     cursor: pointer;
                     margin-top: 10px;

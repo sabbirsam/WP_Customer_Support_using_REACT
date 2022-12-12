@@ -121,10 +121,7 @@ const DataTableStaff = () => {
         checkboxSelection
         disableSelectionOnClick
         getRowId={row => row.ID}
-        
-        columnBuffer={7}
-        disableVirtualization
-        
+        // loading={staff.length === 0}        
       />
     </div>
   )

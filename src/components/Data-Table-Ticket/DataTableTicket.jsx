@@ -106,9 +106,8 @@ const DataTableTicket = () => {
         rowsPerPageOptions={[8]}
         checkboxSelection
         disableSelectionOnClick
-
-        columnBuffer={8}
-        disableVirtualization
+        // loading={users.length === 0}
+        // rowHeight={38}
       />
     </div>
   )

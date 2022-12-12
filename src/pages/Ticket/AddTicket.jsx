@@ -10,11 +10,19 @@ import 'sweetalert2/src/sweetalert2.scss'
 import "./addticket.scss";
 
 const AddTicket = () => {
+  /**
+   * Mail
+   */
   const [configuration, setConfiguration] = useState([]);
+  /**
+   * Validation and button design
+   */
    const [evalidation, setEValidation] = useState(true);
    const [bgColor, setBgcolor] = useState("#cccccc");
    const [color, setColor] = useState("#666666");
-
+  /**
+   * Get
+   */
    const [file, setFile] = useState();
    const [image, setImage] = useState("");
    const [username, setUsername] = useState("");
@@ -28,13 +36,15 @@ const AddTicket = () => {
    useEffect(() => {
     if (username.length <= 2 || email.length <= 3) {
       setEValidation(true)
+      setBgcolor("#cccccc")
+      setColor("#666666")
     }
     else {
       setEValidation(false)
       setBgcolor("teal")
       setColor("white")
     }
-  }, [username, email]);
+  }, [username, email,evalidation]);
 
   /**
    * Get Configuration 

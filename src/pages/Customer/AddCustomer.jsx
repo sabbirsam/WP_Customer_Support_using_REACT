@@ -1,6 +1,6 @@
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import Noimage from "../../../assets/img/no_img.png"
-import React, {useState} from "react"
+import React, {useState ,useEffect} from "react"
 import axios from "axios";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
@@ -21,10 +21,29 @@ const AddCustomer = () => {
     email : "",
     mobile : "",
     password : "",
+    cpassword : "",
     address : "",
     country : "",
   }); 
   const [saveloader, setsaveLoader] = useState("SAVE")
+  const [evalidation, setEValidation] = useState(true);
+  const [bgColor, setBgcolor] = useState("#cccccc");
+  const [color, setColor] = useState("#666666");
+
+
+  useEffect(() => {
+    if (cinputs.username.length <= 2 || cinputs.email.length <= 3 || cinputs.password.length <= 7 || cinputs.cpassword.length <= 7 ) {
+      setEValidation(true)
+      setBgcolor("#cccccc")
+      setColor("#666666")
+    }
+    else {
+      setEValidation(false)
+      setBgcolor("teal")
+      setColor("white")
+    }
+  }, [cinputs.username, cinputs.email,cinputs.password,cinputs.cpassword, evalidation]);
+
   const handleChange = e =>{
     setCInputs(prev=>({...prev, [e.target.name] : e.target.value})) 
   }
@@ -55,9 +74,14 @@ const AddCustomer = () => {
           email : "",
           mobile : "",
           password : "",
+          cpassword : "",
           address : "",
           country : "",
         });
+        setEValidation(true)
+        setBgcolor("#cccccc")
+        setColor("#666666")
+
 
       if(res.data === 0){
 
@@ -120,16 +144,18 @@ const AddCustomer = () => {
                     <input type="file" id="file" name="file" style={{display:"none"}} onChange={(e) => { handleChange(e); setFile(e.target.files[0]) }}/>
                   </div>
                   <div className="formInput">
-                    <label htmlFor="username">Username</label>
-                    <input type="text" placeholder="Jondoe" value={cinputs.username} name="username" onChange={handleChange}/>
+                    <label htmlFor="username">Username*</label>
+                    <input type="text" placeholder="Jondoe" value={cinputs.username} name="username" required pattern={"^[A-Za-z0-9]{3,10}$"} onChange={handleChange}/>
+                    <span>Username should be 3 to 10 character and shouldn't include any special character</span> 
                   </div>
                   <div className="formInput">
                     <label htmlFor="fullname">Full Name</label>
                     <input type="text" placeholder="Jhon Doe" value={cinputs.fullname} name="fullname" onChange={handleChange}/>
                   </div>
                   <div className="formInput">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" placeholder="jhon@gmail.com" value={cinputs.email} name="email" onChange={handleChange}/>
+                    <label htmlFor="email">Email*</label>
+                    <input type="email" placeholder="jhon@gmail.com" value={cinputs.email} name="email" required onChange={handleChange}/>
+                    <span>Should be a valid email address</span> 
                   </div>
                   <div className="formInput">
                     <label htmlFor="mobile">Mobile Number</label>
@@ -137,17 +163,24 @@ const AddCustomer = () => {
                   </div>
                   <div className="formInput">
                     <label htmlFor="password">Password</label>
-                    <input type="password" placeholder="password" value={cinputs.password} name="password" onChange={handleChange}/>
+                    <input type="password" placeholder="password" value={cinputs.password} name="password" required pattern={"^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$"} onChange={handleChange}/>
+                    <span>Password should be minimum eight characters, at least one uppercase letter and one digit</span> 
                   </div>
                   <div className="formInput">
                     <label htmlFor="address">Address</label>
                     <input type="text" placeholder="Dhaka Bangladesh" value={cinputs.address} name="address" onChange={handleChange}/>
                   </div>
                   <div className="formInput">
+                    <label htmlFor="cpassword">Confirm Password*</label>
+                    <input type="password" placeholder="confirm password" value={cinputs.cpassword} name="cpassword" required pattern={cinputs.password} onChange={handleChange}/>
+                    <span>Password need to be matched!!</span> 
+                  </div>
+
+                  <div className="formInput">
                     <label htmlFor="country">Country</label>
                     <input type="text" placeholder="Bangladesh" value={cinputs.country} name="country" onChange={handleChange}/>
                   </div>
-                  <button className="wcs_user_create" onClick={handleSubmit}>{saveloader}</button>                  
+                  <button style={{background:bgColor,color:color}} className="wcs_user_create" disabled={evalidation} onClick={handleSubmit}>{saveloader}</button>                  
                 </form>
               </div>
           </div>
