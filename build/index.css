@@ -2008,6 +2008,13 @@ input.PrivateSwitchBase-input.css-1m9pwf3 {
 .wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right .formInput input:invalid ~ span, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right .formInput input:invalid ~ span {
   display: block;
 }
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right .formInput .wcsPass, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right .formInput .wcsPass {
+  position: relative;
+}
+.wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right .formInput .wcsPass .passVisibility, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right .formInput .wcsPass .passVisibility {
+  position: absolute;
+  right: 0px;
+}
 .wcs_add_customer .wcs_tickets_container .wcs_top .wcs_right button, .wcs_add_customer .wcs_tickets_container .wcs_bottom .wcs_right button {
   width: 160px;
   padding: 10px;

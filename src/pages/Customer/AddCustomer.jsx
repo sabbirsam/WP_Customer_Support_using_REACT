@@ -1,4 +1,6 @@
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Noimage from "../../../assets/img/no_img.png"
 import React, {useState ,useEffect} from "react"
 import axios from "axios";
@@ -11,6 +13,7 @@ const AddCustomer = () => {
    * Images
    */
   const [file, setFile] = useState();
+  const [passview, setPassview] = useState(false);
   /**
    * Set all input 
    */
@@ -124,6 +127,12 @@ const AddCustomer = () => {
     }
 
   }
+  // useEffect(() => {
+  //   handleView();
+  // }, [passview]);
+  const handleView = () =>{
+    passview === true ? setPassview(false): setPassview(true)
+  }
 
   return (
     <div className="wcs_add_customer" id="wcs_add_customer">
@@ -162,8 +171,13 @@ const AddCustomer = () => {
                     <input type="number" placeholder="+880 18546165" value={cinputs.mobile} name="mobile" onChange={handleChange}/>
                   </div>
                   <div className="formInput">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" placeholder="password" value={cinputs.password} name="password" required pattern={"^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$"} onChange={handleChange}/>
+                    <label htmlFor="password">Password*</label>
+                    <div className="wcsPass">   
+                      <div className="passimg" onClick={handleView}>
+                          {passview === false ? <VisibilityOffIcon className='passVisibility'/> : <VisibilityIcon className='passVisibility'/>}
+                      </div> 
+                      <input type={passview === true ? "text" : "password"} placeholder="password" value={cinputs.password} name="password" required pattern={"^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$"} onChange={handleChange}/>
+                    </div>
                     <span>Password should be minimum eight characters, at least one uppercase letter and one digit</span> 
                   </div>
                   <div className="formInput">
@@ -172,7 +186,7 @@ const AddCustomer = () => {
                   </div>
                   <div className="formInput">
                     <label htmlFor="cpassword">Confirm Password*</label>
-                    <input type="password" placeholder="confirm password" value={cinputs.cpassword} name="cpassword" required pattern={cinputs.password} onChange={handleChange}/>
+                    <input type={passview === true ? "text" : "password"} placeholder="confirm password" value={cinputs.cpassword} name="cpassword" required pattern={cinputs.password} onChange={handleChange}/>
                     <span>Password need to be matched!!</span> 
                   </div>
 

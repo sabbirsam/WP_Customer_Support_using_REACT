@@ -84,6 +84,14 @@
                         display: block;
                     }
 
+                    .wcsPass{
+                        position: relative;
+                        .passVisibility{
+                            position: absolute;
+                            right: 0px;
+                        }
+                    }
+
                 }
 
                 //@at-root btn
