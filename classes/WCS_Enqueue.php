@@ -39,6 +39,7 @@ class WCS_Enqueue extends WCS_BaseController{
         $allowed_roles = array( 'editor', 'administrator','subscriber' );
         if (is_page( 'Get Support' ) ){
             if ( array_intersect( $allowed_roles, $user->roles ) ) {
+                wp_enqueue_script( 'wcs_fr_smtp_js', $this->plugin_url .'assets/JS/smtp.js',array('jquery'),1.0,true );
                 wp_enqueue_style( 'wcs_fr_scss_style', $this->plugin_url . 'build/index.css' ); 
                 wp_enqueue_script( 'wcs_fr_js', $this->plugin_url .'build/index.js',array('jquery','wp-element'),1.0,true ); 
                 wp_localize_script('wcs_fr_js', 'appLocalizer', [

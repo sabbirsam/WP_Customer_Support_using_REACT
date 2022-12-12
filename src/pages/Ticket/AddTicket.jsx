@@ -10,6 +10,7 @@ import 'sweetalert2/src/sweetalert2.scss'
 import "./addticket.scss";
 
 const AddTicket = () => {
+  const [currentuser, setCurrentUserinfo] = useState([]);
   /**
    * Mail
    */
@@ -32,7 +33,29 @@ const AddTicket = () => {
    const [description, setDescription] = useState("");
   //  const [resdescription, setResdescription] = useState([]);
 
+  /**
+   * Get current capability
+   */
+  useEffect(()=>{
+    const getTabstatus = async () =>{
+            const res = await axios.get(`${appLocalizer.apiUrl}/wcs/v1/uid`,{
+                headers:{
+                'content-type': 'application/json',
+                'X-WP-NONCE':appLocalizer.nonce
+                }},).then(function(response) {
+                   setCurrentUserinfo(response.data);
+            });
+        }; 
+       getTabstatus()   
+  },[]); //it run 2 times
+  const capability = currentuser[4]
+  const subsusername = currentuser[1]
+  const subsusermail = currentuser[3]
+  // console.log(currentuser)
 
+  /**
+   * Validation
+   */
    useEffect(() => {
     if (username.length <= 2 || email.length <= 3) {
       setEValidation(true)
@@ -167,21 +190,40 @@ const AddTicket = () => {
                       <img src={image ? URL.createObjectURL(image)  : Noimage } value={image} alt="Add Customer" />
                     </div>
                   </div>
+              
+                  {  capability =='subscriber' ?<>
                   <div className="formInput">
-                    <label htmlFor="username">Username</label>
-                    <input type="text" placeholder="User name" name="username" value={username} onChange={e =>setUsername(e.target.value) }/>
+                    <label htmlFor="username">Username*</label>
+                    <input type="text" placeholder="User name" name="username" disabled value={subsusername}/>
                   </div>
                   <div className="formInput">
-                    <label htmlFor="title">Title</label>
-                    <input type="text" placeholder="title" name="title" value={title} onChange={e =>setTitle(e.target.value) }/>
+                    <label htmlFor="email">Email*</label>
+                    <input type="email" placeholder="jhon@gmail.com" name="email"  disabled value={subsusermail}/>
                   </div>
-                  <div className="formInput">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" placeholder="jhon@gmail.com" name="email" value={email} onChange={e =>setEmail(e.target.value) }/>
-                  </div>
-                 
+                      </>
+                   :
+                      <>
+                      <div className="formInput">
+                        <label htmlFor="username">Username</label>
+                        <input type="text" placeholder="User name" name="username" value={username} onChange={e =>setUsername(e.target.value) }/>
+                      </div>
+                    
+                    <div className="formInput">
+                      <label htmlFor="email">Email</label>
+                      <input type="email" placeholder="jhon@gmail.com" name="email" value={email} onChange={e =>setEmail(e.target.value) }/>
+                    </div>
+                     </>
+                   }
+                    <div className="formInput">
+                      <label htmlFor="title">Title</label>
+                      <input type="text" placeholder="title" name="title" value={title} onChange={e =>setTitle(e.target.value) }/>
+                    </div>
+
+                  {  capability =='subscriber' ?
+                   <button style={{background:"teal",color:"white"}} className="wcs_user_create" onClick={handleSubmit}>ADD</button>
+                  :
                   <button style={{background:bgColor,color:color}} className="wcs_user_create" disabled={evalidation} onClick={handleSubmit}>ADD</button>
-                  
+                  }
                 </form>
               </div>
           </div>

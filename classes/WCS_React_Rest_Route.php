@@ -1025,7 +1025,14 @@ class WCS_React_Rest_Route{
             }
         }
         public function get_wcs_mail_infosave_permission(){
-            return current_user_can( 'publish_posts' );
+            $details_info = wp_get_current_user();
+            $allowed_roles = array( 'editor', 'administrator','subscriber' );
+            if ( array_intersect( $allowed_roles, $details_info->roles ) ) {
+                return true;
+            }else {
+                 return false;
+            }
+
         }
 
 }
