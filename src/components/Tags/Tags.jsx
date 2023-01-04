@@ -1,7 +1,8 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import {Box, TextField, MenuItem} from '@mui/material';
 import axios from "axios";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
+import CreatableSelect, { useCreatable } from 'react-select/creatable';
 import 'sweetalert2/src/sweetalert2.scss'
 import "./tag.scss"
 
@@ -12,6 +13,7 @@ const Tags = ({ticketNum}) => {
     const [agent, setAgent] = useState(ticketNum.row.staff_id);
     const [group, setGroup] = useState(ticketNum.row.groups);
     const [staff, setstaff] = useState([]);
+    const [tagValue, setTagValue] = useState('')
    
       const handleChange = (event) => {
         setStatus(event.target.value);
@@ -25,6 +27,20 @@ const Tags = ({ticketNum}) => {
       const handleGroup = (event) => {
         setGroup(event.target.value);
       };
+
+      const tag = [
+        {label: 'Support',value: 'support'},
+        {label: 'Marketing',value: 'marketing'},
+      ]
+      const handleTagChange = (field, value) =>{
+        switch (field) {
+          case 'tag':
+            setTagValue(value)
+            break;
+          default:
+            break;
+        }
+      }
       /**
        * Staff name and info collect
        */
@@ -85,6 +101,15 @@ const Tags = ({ticketNum}) => {
   return (
 
         <div className="status_widget">
+          <Box width='250px' className='selectFields'>
+              <CreatableSelect className="ticket-tags"
+                isClearable
+                isMulti
+                onChange={(value) => handleTagChange('tag',value)}
+                options ={tag}
+                value={tagValue}
+              />
+            </Box>
             <Box width='250px' className='selectFields'>
                 <TextField label="Status" select value={status} onChange={handleChange} fullWidth>
                     <MenuItem value="0">Open</MenuItem>
