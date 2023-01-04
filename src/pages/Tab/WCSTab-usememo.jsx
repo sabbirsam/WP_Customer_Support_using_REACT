@@ -47,7 +47,6 @@ const WCSTab = () => {
             getTabstatus()   
      },[frontview]);
 
-
     const capability = currentuser[4]
     const isAdmin = useMemo(() => currentuser[4], [capability])
     // console.log(isAdmin)
